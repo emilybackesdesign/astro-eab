@@ -473,24 +473,13 @@ const testimonials = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--toe-bean-pink-200);
+    color: var(--muted);
     text-decoration: none;
-    border: 1px solid rgba(241, 180, 187, 0.35);
-    border-radius: var(--radius-sm);
-    padding: 0.5rem 1rem;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    transition: color 0.15s;
   }
-  .hero-cta:hover {
-    color: var(--ink);
-    border-color: var(--toe-bean-pink-200);
-    background: rgba(241, 180, 187, 0.08);
-  }
-  .hero-cta-arrow {
-    transition: transform 0.2s;
-  }
-  .hero-cta:hover .hero-cta-arrow {
-    transform: translateY(3px);
-  }
+  .hero-cta:hover { color: var(--toe-bean-pink-200); }
+  .hero-cta-arrow { transition: transform 0.2s; }
+  .hero-cta:hover .hero-cta-arrow { transform: translateY(3px); }
 
   .hero-rive {
     width: clamp(200px, 26vw, 340px);
