@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# impeccable tool cache / critique output (local state)
+.impeccable/
+
+# scratch / debug screenshots at repo root (portfolio images live in public/assets)
+/*.png

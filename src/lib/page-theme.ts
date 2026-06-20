@@ -11,6 +11,10 @@ export type PageTheme = 'light' | 'dark';
 export const LIGHT_ROUTES: string[] = [
   '/about',
   '/the-5-pillars-of-emily',
+  '/case-study/sage-designing-an-ai-powered-chatbot', // light/cream case-study port
+  '/case-study/lago', // light (#fafcfd) Webflow port
+  '/case-study/sprocket-app', // light (#ebe9f0) Webflow port
+  // Folsom & Subscription case studies are dark-themed, so they keep the dark nav.
   // When /resume and /legal/* are ported to the light Webflow design, add them here.
 ];
 

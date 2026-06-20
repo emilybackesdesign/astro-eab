@@ -1,0 +1,736 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+<PageLayout title="Subscription Cancellation — A UX Case Study | Emily Backes" description="How I helped recover 80 customers a month by untangling subscription cancellation and redesigning the off-boarding experience." ogImage="/assets/cs/sage/662ad570421ba9e8a98b25bc_og-eb-logo.png">
+<div class="cs-port-root">
+<div id="company-cancel-root" class="company-cancel-root inline-div-43"><div id="company-cancel-page-header" class="company-cancel-page-header page-header"><div class="meta inline-div-0">  <span class="inline-span-4-1">Cancellation &amp; Retention</span><span class="meta-dot inline-span-5"></span> <span class="inline-span-6">Q2 2025</span></div><h1 class="page-title inline-h1-0">How I Helped Sortly Recover 80 Customers a Month by Untangling Cancellation from Deletion</h1></div><div id="company-cancel-intro" class="company-cancel-intro page-header-btm"><p class="page-lede inline-p-0">When the FTC sued Uber One for a 23-screen cancellation gauntlet, we looked at our own process. Sortly didn&#x27;t have a cancellation flow. The only exit was deletion.</p></div><div id="company-cancel-hero-graphic" class="company-cancel-hero-graphic inline-div-2"><div class="code-embed-5 w-embed w-script"><!-- ═══ HERO GRAPHIC ═══ -->
+<style>
+@keyframes cc-skel-pulse {
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 0.22; }
+}
+.cc-skel { animation: cc-skel-pulse 1.9s ease-in-out infinite; }
+</style>
+<div id="hero-wrap" style="overflow:hidden; line-height:0; padding:var(--sp-3) 0;">
+  <svg id="hero-svg" viewBox="0 0 1200 222" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;">
+
+    <!-- DELETION FLOW CONNECTORS (hidden via JS dashoffset) -->
+    <line id="hl-0" x1="210" y1="52" x2="292" y2="52" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line id="hl-1" x1="442" y1="52" x2="524" y2="52" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line id="hl-2" x1="674" y1="52" x2="756" y2="52" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <line id="hl-3" x1="906" y1="52" x2="988" y2="52" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+
+    <!-- BRANCH LINE: D3 down to cancel flow -->
+    <line id="hl-b" x1="599" y1="84" x2="599" y2="132" stroke="rgba(221,42,59,0.55)" stroke-width="1.5"/>
+
+    <!-- CANCEL HORIZONTAL CONNECTOR -->
+    <line id="hl-ch" x1="330" y1="132" x2="870" y2="132" stroke="rgba(221,42,59,0.28)" stroke-width="1"/>
+
+    <!-- CANCEL DROP LINES -->
+    <line class="hl-cd" x1="330" y1="132" x2="330" y2="142" stroke="rgba(221,42,59,0.36)" stroke-width="1"/>
+    <line class="hl-cd" x1="510" y1="132" x2="510" y2="142" stroke="rgba(221,42,59,0.36)" stroke-width="1"/>
+    <line class="hl-cd" x1="690" y1="132" x2="690" y2="142" stroke="rgba(221,42,59,0.36)" stroke-width="1"/>
+    <line class="hl-cd" x1="870" y1="132" x2="870" y2="142" stroke="rgba(221,42,59,0.36)" stroke-width="1"/>
+
+    <!-- CANCEL BETWEEN-NODE CONNECTORS -->
+    <line class="hl-cc" x1="395" y1="172" x2="445" y2="172" stroke="rgba(221,42,59,0.28)" stroke-width="1"/>
+    <line class="hl-cc" x1="575" y1="172" x2="625" y2="172" stroke="rgba(221,42,59,0.28)" stroke-width="1"/>
+    <line class="hl-cc" x1="755" y1="172" x2="805" y2="172" stroke="rgba(221,42,59,0.28)" stroke-width="1"/>
+
+    <!-- DELETION NODES (skeleton screens, opacity 0) -->
+    <g id="hn-d1" opacity="0">
+      <rect x="60"  y="20" width="150" height="64" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
+      <rect class="cc-skel" x="72"  y="35" width="85"  height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+      <rect class="cc-skel" x="72"  y="48" width="105" height="5" rx="3" fill="rgba(255,255,255,0.06)" style="animation-delay:.18s"/>
+      <rect class="cc-skel" x="72"  y="61" width="62"  height="5" rx="3" fill="rgba(255,255,255,0.04)" style="animation-delay:.36s"/>
+    </g>
+    <g id="hn-d2" opacity="0">
+      <rect x="292" y="20" width="150" height="64" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
+      <rect class="cc-skel" x="304" y="35" width="75"  height="6" rx="3" fill="rgba(255,255,255,0.08)" style="animation-delay:.08s"/>
+      <rect class="cc-skel" x="304" y="48" width="110" height="5" rx="3" fill="rgba(255,255,255,0.06)" style="animation-delay:.26s"/>
+      <rect class="cc-skel" x="304" y="61" width="55"  height="5" rx="3" fill="rgba(255,255,255,0.04)" style="animation-delay:.44s"/>
+    </g>
+    <g id="hn-d3" opacity="0">
+      <rect x="524" y="20" width="150" height="64" rx="9" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.38)" stroke-width="1"/>
+      <rect class="cc-skel" x="536" y="35" width="90"  height="6" rx="3" fill="rgba(221,42,59,0.18)"/>
+      <rect class="cc-skel" x="536" y="48" width="108" height="5" rx="3" fill="rgba(255,255,255,0.06)" style="animation-delay:.2s"/>
+      <rect class="cc-skel" x="536" y="61" width="66"  height="5" rx="3" fill="rgba(221,42,59,0.12)" style="animation-delay:.4s"/>
+    </g>
+    <g id="hn-d4" opacity="0">
+      <rect x="756" y="20" width="150" height="64" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
+      <rect class="cc-skel" x="768" y="35" width="80"  height="6" rx="3" fill="rgba(255,255,255,0.08)" style="animation-delay:.12s"/>
+      <rect class="cc-skel" x="768" y="48" width="100" height="5" rx="3" fill="rgba(255,255,255,0.06)" style="animation-delay:.30s"/>
+      <rect class="cc-skel" x="768" y="61" width="60"  height="5" rx="3" fill="rgba(255,255,255,0.04)" style="animation-delay:.48s"/>
+    </g>
+    <g id="hn-d5" opacity="0">
+      <rect x="988" y="20" width="150" height="64" rx="9" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
+      <rect class="cc-skel" x="1000" y="35" width="70"  height="6" rx="3" fill="rgba(255,255,255,0.08)" style="animation-delay:.06s"/>
+      <rect class="cc-skel" x="1000" y="48" width="95"  height="5" rx="3" fill="rgba(255,255,255,0.06)" style="animation-delay:.24s"/>
+      <rect class="cc-skel" x="1000" y="61" width="58"  height="5" rx="3" fill="rgba(255,255,255,0.04)" style="animation-delay:.42s"/>
+    </g>
+
+    <!-- CANCEL NODES (skeleton screens, red) -->
+    <g id="hn-c1" opacity="0">
+      <rect x="265" y="142" width="130" height="60" rx="9" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.32)" stroke-width="1"/>
+      <rect class="cc-skel" x="277" y="156" width="74" height="6" rx="3" fill="rgba(221,42,59,0.18)" style="animation-delay:.10s"/>
+      <rect class="cc-skel" x="277" y="169" width="92" height="5" rx="3" fill="rgba(221,42,59,0.13)" style="animation-delay:.28s"/>
+      <rect class="cc-skel" x="277" y="182" width="54" height="5" rx="3" fill="rgba(221,42,59,0.10)" style="animation-delay:.46s"/>
+    </g>
+    <g id="hn-c2" opacity="0">
+      <rect x="445" y="142" width="130" height="60" rx="9" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.32)" stroke-width="1"/>
+      <rect class="cc-skel" x="457" y="156" width="82" height="6" rx="3" fill="rgba(221,42,59,0.18)" style="animation-delay:.22s"/>
+      <rect class="cc-skel" x="457" y="169" width="96" height="5" rx="3" fill="rgba(221,42,59,0.13)" style="animation-delay:.40s"/>
+      <rect class="cc-skel" x="457" y="182" width="60" height="5" rx="3" fill="rgba(221,42,59,0.10)" style="animation-delay:.58s"/>
+    </g>
+    <g id="hn-c3" opacity="0">
+      <rect x="625" y="142" width="130" height="60" rx="9" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.32)" stroke-width="1"/>
+      <rect class="cc-skel" x="637" y="156" width="68" height="6" rx="3" fill="rgba(221,42,59,0.18)" style="animation-delay:.14s"/>
+      <rect class="cc-skel" x="637" y="169" width="88" height="5" rx="3" fill="rgba(221,42,59,0.13)" style="animation-delay:.32s"/>
+      <rect class="cc-skel" x="637" y="182" width="50" height="5" rx="3" fill="rgba(221,42,59,0.10)" style="animation-delay:.50s"/>
+    </g>
+    <g id="hn-c4" opacity="0">
+      <rect x="805" y="142" width="130" height="60" rx="9" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.32)" stroke-width="1"/>
+      <rect class="cc-skel" x="817" y="156" width="78" height="6" rx="3" fill="rgba(221,42,59,0.18)" style="animation-delay:.06s"/>
+      <rect class="cc-skel" x="817" y="169" width="94" height="5" rx="3" fill="rgba(221,42,59,0.13)" style="animation-delay:.24s"/>
+      <rect class="cc-skel" x="817" y="182" width="56" height="5" rx="3" fill="rgba(221,42,59,0.10)" style="animation-delay:.42s"/>
+    </g>
+
+  </svg>
+</div>
+
+<script is:inline>
+(function () {
+  var svg = document.getElementById('hero-svg');
+  if (!svg) return;
+
+  var LENS = { 'hl-0':82,'hl-1':82,'hl-2':82,'hl-3':82,'hl-b':48,'hl-ch':540 };
+  Object.keys(LENS).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.strokeDasharray = LENS[id]; el.style.strokeDashoffset = LENS[id]; }
+  });
+  svg.querySelectorAll('.hl-cd').forEach(function (el) { el.style.strokeDasharray = 10;  el.style.strokeDashoffset = 10; });
+  svg.querySelectorAll('.hl-cc').forEach(function (el) { el.style.strokeDasharray = 50;  el.style.strokeDashoffset = 50; });
+
+  function draw(id, dur, t) {
+    setTimeout(function () {
+      var el = document.getElementById(id);
+      if (el) { el.style.transition = 'stroke-dashoffset ' + dur + 'ms cubic-bezier(0.4,0,0.2,1)'; el.style.strokeDashoffset = 0; }
+    }, t);
+  }
+  function drawAll(sel, dur, t0, gap) {
+    svg.querySelectorAll(sel).forEach(function (el, i) {
+      setTimeout(function () {
+        el.style.transition = 'stroke-dashoffset ' + dur + 'ms cubic-bezier(0.4,0,0.2,1)'; el.style.strokeDashoffset = 0;
+      }, t0 + i * gap);
+    });
+  }
+  function fade(id, dur, t) {
+    setTimeout(function () {
+      var el = document.getElementById(id);
+      if (el) { el.style.transition = 'opacity ' + dur + 'ms ease'; el.style.opacity = 1; }
+    }, t);
+  }
+
+  function run() {
+    var t = 0;
+    /* Existing deletion flow — left to right */
+    fade('hn-d1', 380, t);  t += 220;
+    draw('hl-0',  260, t);  t += 320;
+    fade('hn-d2', 380, t);  t += 220;
+    draw('hl-1',  260, t);  t += 320;
+    fade('hn-d3', 440, t);  t += 340;
+    draw('hl-2',  260, t);
+    setTimeout(function() { fade('hn-d4', 380, t + 300); }, 0);
+    setTimeout(function() { draw('hl-3',  260, t + 300); }, 0);
+    setTimeout(function() { fade('hn-d5', 380, t + 620); }, 0);
+    t += 1050;
+
+    /* New cancel flow emerges from D3 */
+    draw('hl-b',  380, t);              t += 450;
+    draw('hl-ch', 520, t);              t += 580;
+    drawAll('.hl-cd', 130, t, 90);
+    setTimeout(function() {
+      fade('hn-c1', 340, t + 70);
+      fade('hn-c2', 340, t + 190);
+      fade('hn-c3', 340, t + 310);
+      fade('hn-c4', 340, t + 430);
+    }, 0);
+    t += 640;
+    drawAll('.hl-cc', 220, t, 100);
+  }
+
+  new IntersectionObserver(function (entries, obs) {
+    if (entries[0].isIntersecting) { obs.disconnect(); run(); }
+  }, { threshold: 0.05 }).observe(svg);
+}());
+</script></div></div><div id="company-cancel-problem-section" class="company-cancel-process-section band band--dark"><div class="band-col inline-div-20"><div class="eyebrow inline-div-19"><strong>The Problem</strong></div><h2 class="inline-h2-1">Our user had exactly two cancellation options: call customer support, or delete their account entirely</h2><p class="inline-p-6-1">The deletion route worked. Technically. But over 40 customers a month were coming back after deleting, forced to start from scratch. Their data, their setup, their history: gone. <br/><br/>The reactivation rate was sitting at 4.5%.Every returning customer was paying a tax they shouldn&#x27;t have had to.</p></div><div class="asset-wrap inline-div-21"><div class="w-embed"><style>
+
+  /* ── Before the Redesign HTML cards ── */
+  .before-graphic-bg {
+    width:100%; background:#1a1c23; border-radius:14px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.35),0 20px 72px rgba(0,0,0,0.4);
+    padding:var(--sp-6);
+  }
+  .before-cards-row {
+    display:grid; grid-template-columns:1fr auto 1fr;
+    gap:var(--sp-5); align-items:stretch;
+  }
+  .before-card {
+    display:flex; flex-direction:column;
+    padding:16px; border-radius:8px;
+  }
+  .before-card--muted { background:#22242d; border:1px solid rgba(255,255,255,0.08); }
+  .before-card--danger { background:#1c0d0f; border:1px solid rgba(221,42,59,0.28); }
+  .before-icon-circle {
+    width:72px; height:72px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto var(--sp-4);
+  }
+  .before-icon-circle--muted { background:rgba(118,119,125,0.12); }
+  .before-icon-circle--danger { background:rgba(221,42,59,0.14); }
+  .before-card-title {
+    font-family:var(--font-display); font-size:13px; font-weight:700;
+    color:var(--ink); margin-bottom:var(--sp-3);
+  }
+  .before-card-list {
+    list-style-type: :none;
+    color:var(--muted); font-family:var(--font-display);
+    font-size:10.5px; line-height:1.7;
+    flex:1; margin-bottom:var(--sp-4);
+  }
+  .before-card--danger .before-card-list { color:var(--body); }
+  .before-badge {
+    display:block; text-align:center;
+    font-family:var(--font-display); font-size:9px; font-weight:700;
+    letter-spacing:0.1em; text-transform:uppercase;
+    padding:4px 14px; border-radius:10px; align-self:center;
+  }
+  .before-badge--muted { background:rgba(118,119,125,0.16); color:#76777d; }
+  .before-badge--danger { background:rgba(221,42,59,0.18); color:#e45562; }
+  .before-or-divider {
+    display:flex; align-items:center; justify-content:center;
+  }
+  .before-or-divider span {
+    font-family:var(--font-display); font-size:11px; font-weight:700;
+    color:#54565d; background:#111216; border-radius:14px;
+    padding:6px 10px; border:1px solid rgba(255,255,255,0.05);
+  }
+</style>
+
+<div class="asset-wrap" style="margin-top: var(--sp-6); padding-bottom: 0">
+  <div class="before-graphic-bg">
+    <div class="eyebrow" style="text-align: center; letter-spacing: 0.3em; margin-bottom: var(--sp-6)">Before the Redesign</div>
+    <div class="before-cards-row">
+      <div class="before-card before-card--muted">
+        <div class="before-icon-circle before-icon-circle--muted">
+          <lord-icon src="CX%20phone.json" trigger="loop" colors="primary:#76777d,secondary:#54565d" style="width: 40px; height: 40px"></lord-icon>
+        </div>
+        <h3 class="before-card-title">Call support</h3>
+        <ul class="before-card-list">
+          <li>Business hours only</li>
+          <li>Wait on hold</li>
+          <li>Dependent on rep availability</li>
+        </ul>
+        <span class="before-badge before-badge--muted">FRICTION</span>
+      </div>
+
+      <div class="before-or-divider">
+        <span>OR</span>
+      </div>
+
+      <div class="before-card before-card--danger">
+        <div class="before-icon-circle before-icon-circle--danger">
+          <lord-icon src="Trash.json" trigger="loop" colors="primary:#dd2a3b,secondary:#dd2a3b" style="width: 40px; height: 40px"></lord-icon>
+        </div>
+        <h3 class="before-card-title">Delete account</h3>
+        <ul class="before-card-list">
+          <li>All inventory data: removed</li>
+          <li>All user accounts: removed</li>
+          <li>History and settings: permanently gone</li>
+        </ul>
+        <span class="before-badge before-badge--danger">IRREVERSIBLE</span>
+      </div>
+    </div>
+  </div>
+  <p class="asset-caption">Pre-redesign state: no self-service cancellation path existed. The only exit was account deletion.</p>
+</div></div></div></div><div id="company-cancel-pull-quote-section" class="company-cancel-pull-quote-section band band--tint"><p class="pull-quote inline-p-5"><em class="inline-em-0">How could I make it easy to leave Sortly, and even easier to come back?</em></p></div><div id="company-cancel-process-section" class="company-cancel-process-section band band--dark"><div class="band-col inline-div-20"><div class="eyebrow inline-div-19">Process</div><h2 class="inline-h2-1">What looked like a copy change, wasn&#x27;t</h2><p class="inline-p-6-1">My PM and I mapped the existing deletion flow end to end. Sketches are low consequences. I started there, mapping where a cancellation path could branch off the deletion flow without duplicating it. <br/><br/>The constraints surfaced fast: different subscription plans had different deletion flows, and Apple&#x27;s App Store has strict regulations around in-app cancellation that full account deletion doesn&#x27;t trigger. Cancellation and deletion couldn&#x27;t share the same screens. They couldn&#x27;t even follow the same logic.</p></div><div class="asset-wrap inline-div-21 process-section"><div class="code-embed-6 w-embed"><div class="asset-wrap" style="margin-top:var(--sp-6);padding-bottom:0;">
+ <svg viewBox="0 0 1024 514" xmlns="http://www.w3.org/2000/svg">
+   <defs><clipPath id="clip-v1"><rect width="1024" height="514" rx="14"/></clipPath></defs>
+   <style>text,tspan{text-transform:none!important;font-variant:normal!important;}</style>
+   <g clip-path="url(#clip-v1)">
+
+   <rect width="1024" height="514" fill="#22242d"/>
+
+   <!-- eyebrow -->
+   <text x="512" y="34" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#e45562" text-anchor="middle" letter-spacing="3">THE CONSTRAINT THAT REBUILT VERSION 1</text>
+
+   <!-- V1 badge + label -->
+   <rect x="192" y="44" width="28" height="18" rx="4" fill="rgba(221,42,59,0.2)"/>
+   <text x="206" y="57" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#e45562" text-anchor="middle" letter-spacing="1">V1</text>
+   <text x="228" y="57" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#c4c5c9">Inline modal — what I designed first</text>
+
+   <!-- screen bg -->
+   <rect x="192" y="64" width="640" height="308" rx="10" fill="#1a1c23" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+   <!-- sidebar -->
+   <rect x="192" y="64" width="52" height="308" rx="10" fill="#dd2a3b"/>
+   <rect x="192" y="64" width="26" height="308" fill="#dd2a3b"/>
+
+   <!-- nav icon -->
+   <rect x="200" y="76" width="36" height="20" rx="4" fill="rgba(255,255,255,0.18)"/>
+   <text x="218" y="90" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">S</text>
+   <rect x="202" y="106" width="30" height="2" rx="1" fill="rgba(255,255,255,0.40)"/>
+   <rect x="202" y="113" width="24" height="2" rx="1" fill="rgba(255,255,255,0.22)"/>
+   <rect x="202" y="120" width="18" height="2" rx="1" fill="rgba(255,255,255,0.16)"/>
+   <rect x="200" y="132" width="36" height="20" rx="4" fill="rgba(255,255,255,0.09)"/>
+   <rect x="202" y="141" width="30" height="2" rx="1" fill="rgba(255,255,255,0.28)"/>
+   <rect x="202" y="148" width="22" height="2" rx="1" fill="rgba(255,255,255,0.16)"/>
+
+   <!-- page header -->
+   <rect x="244" y="64" width="588" height="34" fill="#1e2028"/>
+   <text x="262" y="87" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#c4c5c9">Company Details</text>
+   <rect x="244" y="98" width="588" height="1" fill="rgba(255,255,255,0.05)"/>
+
+   <!-- settings rows -->
+   <text x="262" y="122" font-family="system-ui,sans-serif" font-size="9.5" fill="#b0b1b6">Company name</text>
+   <rect x="430" y="112" width="248" height="15" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <text x="262" y="148" font-family="system-ui,sans-serif" font-size="9.5" fill="#b0b1b6">Billing email</text>
+   <rect x="430" y="138" width="248" height="15" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <text x="262" y="174" font-family="system-ui,sans-serif" font-size="9.5" fill="#b0b1b6">Subscription plan</text>
+   <rect x="430" y="164" width="168" height="15" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <!-- manage account -->
+   <text x="262" y="200" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#a8a8ac">Manage account</text>
+   <rect x="262" y="208" width="162" height="26" rx="4" fill="rgba(221,42,59,0.85)"/>
+   <text x="343" y="225" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="white" text-anchor="middle">Cancel subscription</text>
+
+   <!-- inline confirmation dialog -->
+   <rect x="244" y="248" width="556" height="116" rx="8" fill="#2a2c36" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+   <text x="266" y="270" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#f4f4f6">Cancel your subscription?</text>
+   <text x="266" y="289" font-family="system-ui,sans-serif" font-size="9.5" fill="#b0b1b6">Your plan ends at the billing period.</text>
+   <text x="266" y="305" font-family="system-ui,sans-serif" font-size="9.5" fill="#b0b1b6">Data retained for 30 days.</text>
+
+   <!-- dialog buttons -->
+   <rect x="266" y="316" width="110" height="26" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+   <text x="321" y="333" font-family="system-ui,sans-serif" font-size="9" fill="#a8a8ac" text-anchor="middle">Keep plan</text>
+   <rect x="390" y="316" width="372" height="26" rx="4" fill="#dd2a3b"/>
+   <text x="576" y="333" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="white" text-anchor="middle">Cancel subscription</text>
+
+   <!-- rejection badge -->
+   <rect x="192" y="382" width="640" height="78" fill="rgba(221,42,59,0.09)" stroke="rgba(221,42,59,0.22)" stroke-width="1"/>
+   <text x="212" y="406" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#e45562">✗</text>
+   <text x="232" y="406" font-family="system-ui,sans-serif" font-size="11" fill="#e45562">App Store rejected: inline confirmation dialogs</text>
+   <text x="232" y="424" font-family="system-ui,sans-serif" font-size="11" fill="#e45562">are invalid for iOS subscription cancellation.</text>
+   <text x="232" y="442" font-family="system-ui,sans-serif" font-size="10" fill="#ef7480">This required a full rebuild — an unplanned sprint.</text>
+
+   <!-- footnote -->
+   <text x="512" y="490" font-family="system-ui,sans-serif" font-size="10.5" fill="#b0b1b6" text-anchor="middle">Those constraints belong at the kickoff, not the handoff.</text>
+
+   </g>
+ </svg>
+ </div></div><p class="paragraph">Version 1 used inline modals throughout. App Store compliance required full-screen modals on iOS discovered mid-design. Version 2 splits by platform.</p><div class="code-embed-6 w-embed"><div class="asset-wrap" style="margin-top:var(--sp-6);padding-bottom:0;">
+ <svg viewBox="0 0 1024 548" xmlns="http://www.w3.org/2000/svg">
+   <defs><clipPath id="clip-v2"><rect width="1024" height="548" rx="14"/></clipPath></defs>
+   <style>text,tspan{text-transform:none!important;font-variant:normal!important;}</style>
+   <g clip-path="url(#clip-v2)">
+
+   <rect width="1024" height="548" fill="#22242d"/>
+
+   <!-- eyebrow -->
+   <text x="512" y="34" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#559d69" text-anchor="middle" letter-spacing="3">THE PLATFORM-SPECIFIC REBUILD</text>
+
+   <!-- V2 badge + label -->
+   <rect x="102" y="44" width="28" height="18" rx="4" fill="rgba(85,157,105,0.2)"/>
+   <text x="116" y="57" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#559d69" text-anchor="middle" letter-spacing="1">V2</text>
+   <text x="138" y="57" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#c4c5c9">Platform-specific approach</text>
+
+   <!-- column sub-labels -->
+   <text x="342" y="76" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#b0b1b6" text-anchor="middle" letter-spacing="2">WEB</text>
+   <text x="784" y="76" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#b0b1b6" text-anchor="middle" letter-spacing="2">IOS NATIVE</text>
+
+   <!-- WEB SCREEN: x=102 y=84 w=480 h=290 -->
+   <rect x="102" y="84" width="480" height="290" rx="10" fill="#1a1c23" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+   <!-- web sidebar -->
+   <rect x="102" y="84" width="50" height="290" rx="10" fill="#dd2a3b"/>
+   <rect x="102" y="84" width="25" height="290" fill="#dd2a3b"/>
+   <rect x="110" y="96" width="34" height="20" rx="4" fill="rgba(255,255,255,0.18)"/>
+   <text x="127" y="110" font-family="system-ui,sans-serif" font-size="8" font-weight="700" fill="white" text-anchor="middle">S</text>
+   <rect x="112" y="126" width="26" height="2" rx="1" fill="rgba(255,255,255,0.40)"/>
+   <rect x="112" y="133" width="20" height="2" rx="1" fill="rgba(255,255,255,0.22)"/>
+
+   <!-- web header -->
+   <rect x="152" y="84" width="430" height="30" fill="#1e2028"/>
+   <text x="168" y="105" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#c4c5c9">Company Details</text>
+   <rect x="152" y="114" width="430" height="1" fill="rgba(255,255,255,0.05)"/>
+
+   <!-- web settings rows -->
+   <text x="168" y="135" font-family="system-ui,sans-serif" font-size="9" fill="#b0b1b6">Company name</text>
+   <rect x="290" y="125" width="242" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <text x="168" y="155" font-family="system-ui,sans-serif" font-size="9" fill="#b0b1b6">Billing email</text>
+   <rect x="290" y="145" width="242" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <text x="168" y="175" font-family="system-ui,sans-serif" font-size="9" fill="#b0b1b6">Subscription plan</text>
+   <rect x="290" y="165" width="162" height="14" rx="3" fill="rgba(255,255,255,0.04)"/>
+
+   <!-- web cancel button -->
+   <rect x="168" y="185" width="154" height="22" rx="4" fill="rgba(221,42,59,0.85)"/>
+   <text x="245" y="200" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="white" text-anchor="middle">Cancel subscription</text>
+
+   <!-- web inline dialog: x=152 y=216 w=410 h=152 -->
+   <rect x="152" y="216" width="410" height="152" rx="8" fill="#2a2c36" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+   <text x="172" y="238" font-family="system-ui,sans-serif" font-size="10.5" font-weight="700" fill="#f4f4f6">Cancel subscription?</text>
+   <text x="172" y="256" font-family="system-ui,sans-serif" font-size="9" fill="#b0b1b6">Plan ends at billing period. Data retained 30 days.</text>
+   <text x="172" y="276" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#a8a8ac">Why are you leaving?</text>
+
+   <!-- web radios -->
+   <circle cx="172" cy="294" r="5" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+   <text x="185" y="299" font-family="system-ui,sans-serif" font-size="9" fill="#a8a8ac">Too expensive</text>
+   <circle cx="172" cy="312" r="5" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
+   <text x="185" y="317" font-family="system-ui,sans-serif" font-size="9" fill="#a8a8ac">Not using it</text>
+   <circle cx="172" cy="330" r="5" fill="rgba(221,42,59,0.9)" stroke="rgba(221,42,59,0.9)" stroke-width="1.5"/>
+   <text x="185" y="335" font-family="system-ui,sans-serif" font-size="9" fill="#f4f4f6">Switching tools</text>
+
+   <!-- web continue button -->
+   <rect x="172" y="344" width="370" height="24" rx="4" fill="#dd2a3b"/>
+   <text x="357" y="360" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="white" text-anchor="middle">Continue</text>
+
+   <!-- iOS SCREEN: x=646 y=84 w=276 h=310 center=784 -->
+   <rect x="646" y="84" width="276" height="310" rx="14" fill="#1a1c23" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+   <!-- status bar -->
+   <rect x="646" y="84" width="276" height="20" rx="14" fill="#0e1014"/>
+   <rect x="646" y="96" width="276" height="8" fill="#0e1014"/>
+
+   <!-- full-screen red modal -->
+   <rect x="646" y="104" width="276" height="290" fill="#dd2a3b"/>
+
+   <!-- wordmark -->
+   <rect x="734" y="116" width="100" height="12" rx="3" fill="rgba(255,255,255,0.20)"/>
+
+   <!-- emoji -->
+   <circle cx="784" cy="155" r="32" fill="rgba(255,255,255,0.14)"/>
+   <text x="784" y="167" font-family="system-ui,sans-serif" font-size="26" fill="white" text-anchor="middle">😢</text>
+
+   <!-- heading -->
+   <text x="784" y="206" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">Before you go...</text>
+   <text x="784" y="224" font-family="system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.72)" text-anchor="middle">Tell us why you're leaving.</text>
+
+   <!-- iOS radios -->
+   <circle cx="662" cy="244" r="5.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+   <text x="676" y="249" font-family="system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)">Too expensive</text>
+   <circle cx="662" cy="262" r="5.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+   <text x="676" y="267" font-family="system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.85)">Not using it</text>
+   <circle cx="662" cy="280" r="5.5" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.92)" stroke-width="1.5"/>
+   <text x="676" y="285" font-family="system-ui,sans-serif" font-size="9.5" fill="white">Switching tools</text>
+
+   <!-- iOS CTA button -->
+   <rect x="656" y="298" width="256" height="28" rx="8" fill="rgba(255,255,255,0.20)"/>
+   <text x="784" y="317" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">Continue →</text>
+
+   <!-- home indicator -->
+   <rect x="759" y="356" width="50" height="4" rx="2" fill="rgba(255,255,255,0.38)"/>
+
+   <!-- APPROVAL BADGE: x=102 y=408 w=820 h=76 -->
+   <rect x="102" y="408" width="820" height="76" fill="rgba(85,157,105,0.09)" stroke="rgba(85,157,105,0.22)" stroke-width="1"/>
+   <text x="122" y="432" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#559d69">✓</text>
+   <text x="142" y="432" font-family="system-ui,sans-serif" font-size="11" fill="#559d69">Web: inline modal valid · iOS: full-screen modal compliant</text>
+   <text x="142" y="451" font-family="system-ui,sans-serif" font-size="11" fill="#559d69">Both App Store approved.</text>
+   <text x="142" y="468" font-family="system-ui,sans-serif" font-size="10" fill="#6cb37f">Platform-aware UX. The rebuild passed review on first submission.</text>
+
+   <!-- footnote -->
+   <text x="512" y="518" font-family="system-ui,sans-serif" font-size="10.5" fill="#b0b1b6" text-anchor="middle">Rebuilding after discovery added a sprint. Those constraints belong at the
+kickoff, not the handoff.</text>
+
+   </g>
+ </svg>
+ </div></div><p class="paragraph">Version 2 splits by platform: web keeps the inline modal (valid), iOS uses a full-screen flow required by the App Store. Both passed review.</p></div><div class="band-col inline-div-20"><p class="inline-p-7">Version 1 layered a cancellation path on top of the existing deletion screens, using a modal approach that matched the deletion UI. Testing killed it: the App Store compliance requirements for subscription cancellation on iOS require full-screen modals, not inline ones. I had to rebuild the screens I&#x27;d just designed.</p><p class="inline-p-8">The approach that held was separating cancellation and deletion entirely: cancellation as its own discrete flow, embedded within the deletion process as a branch rather than a replacement. A user who wanted to cancel their subscription could do so without touching their account or data. If they wanted to delete later, that remained a separate, explicit choice.</p></div></div><div id="company-cancel-solution-section" class="company-cancel-solution-section band band--surface"><div class="band-col inline-div-24"><div class="eyebrow inline-div-23">Solution</div><h2 class="inline-h2-2">Cancellation and deletion are now distinct actions</h2><p class="inline-p-10">The cancellation flow surfaces before any deletion prompt. Users who want to leave keep their data, their account, and a clear path back. The deletion flow still exists for users who want a full exit. Neither process conflicts with the other, and both comply with App Store regulations.</p></div><div class="asset-wrap inline-div-25"><svg viewBox="0 0 800 434" xmlns="http://www.w3.org/2000/svg" STYLE="box-sizing: border-box; margin: 0; padding: 0; width: 100%; display: block; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.35),0 20px 72px rgba(0,0,0,0.4);" class="inline-svg-2"><defs STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-defs-1"><clippath id="g3c" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-clippath-1"><rect width="800" height="434" rx="14" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-76"></rect></clippath></defs><g clip-path="url(#g3c)" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-g-10"><rect width="800" height="434" fill="#111216" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-77"></rect><text x="400" y="34" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#e45562" text-anchor="middle" letter-spacing="3" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-46">11 FLOWS FROM ONE DECISION POINT</text><rect x="268" y="50" width="264" height="48" rx="9" fill="#2a2c36" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-78"></rect><text x="400" y="70" font-family="system-ui,sans-serif" font-size="9" fill="#b0b1b6" text-anchor="middle" letter-spacing="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-47">ENTRY POINT</text><text x="400" y="87" font-family="system-ui,sans-serif" font-size="12.5" font-weight="700" fill="#f4f4f6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-48">Settings › Company Details</text><line x1="400" y1="98" x2="400" y2="124" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-14"></line><line x1="185" y1="124" x2="615" y2="124" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-15"></line><line x1="210" y1="124" x2="210" y2="152" stroke="rgba(221,42,59,0.5)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-16"></line><line x1="590" y1="124" x2="590" y2="152" stroke="rgba(84,86,93,0.5)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-17"></line><rect x="78" y="152" width="264" height="44" rx="8" fill="#1f0e10" stroke="rgba(221,42,59,0.55)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-79"></rect><text x="210" y="173" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#e45562" text-anchor="middle" letter-spacing="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-49">CANCEL SUBSCRIPTION</text><text x="210" y="188" font-family="system-ui,sans-serif" font-size="8.5" fill="#a8a8ac" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-50">Data retained · Account active · Reversible</text><rect x="458" y="152" width="264" height="44" rx="8" fill="#1e2028" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-80"></rect><text x="590" y="173" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#b0b1b6" text-anchor="middle" letter-spacing="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-51">DELETE ACCOUNT</text><text x="590" y="188" font-family="system-ui,sans-serif" font-size="8.5" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-52">Explicit choice · Separate · Permanent</text><line x1="210" y1="196" x2="210" y2="216" stroke="rgba(221,42,59,0.35)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-18"></line><line x1="100" y1="216" x2="320" y2="216" stroke="rgba(221,42,59,0.25)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-19"></line><line x1="100" y1="216" x2="100" y2="234" stroke="rgba(221,42,59,0.22)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-20"></line><rect x="48" y="234" width="104" height="22" rx="6" fill="rgba(221,42,59,0.13)" stroke="rgba(221,42,59,0.28)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-81"></rect><text x="100" y="249" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-53">Cancel · Stripe</text><line x1="100" y1="256" x2="100" y2="268" stroke="rgba(221,42,59,0.18)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-21"></line><rect x="48" y="268" width="104" height="22" rx="6" fill="rgba(221,42,59,0.09)" stroke="rgba(221,42,59,0.20)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-82"></rect><text x="100" y="283" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-54">Cancel · Apple Web</text><line x1="100" y1="290" x2="100" y2="302" stroke="rgba(221,42,59,0.15)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-22"></line><rect x="48" y="302" width="104" height="22" rx="6" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.16)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-83"></rect><text x="100" y="317" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-55">Cancel · Apple iOS</text><line x1="100" y1="324" x2="100" y2="336" stroke="rgba(221,42,59,0.12)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-23"></line><rect x="48" y="336" width="104" height="22" rx="6" fill="rgba(221,42,59,0.05)" stroke="rgba(221,42,59,0.12)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-84"></rect><text x="100" y="351" font-family="system-ui,sans-serif" font-size="8.5" fill="#a8a8ac" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-56">Export Data</text><line x1="320" y1="216" x2="320" y2="234" stroke="rgba(221,42,59,0.22)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-24"></line><rect x="268" y="234" width="104" height="22" rx="6" fill="rgba(221,42,59,0.13)" stroke="rgba(221,42,59,0.28)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-85"></rect><text x="320" y="249" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-57">Reactivate · Stripe</text><line x1="320" y1="256" x2="320" y2="268" stroke="rgba(221,42,59,0.18)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-25"></line><rect x="268" y="268" width="104" height="22" rx="6" fill="rgba(221,42,59,0.09)" stroke="rgba(221,42,59,0.20)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-86"></rect><text x="320" y="283" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-58">Reactivate · Apple</text><line x1="320" y1="290" x2="320" y2="302" stroke="rgba(221,42,59,0.15)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-26"></line><rect x="268" y="302" width="104" height="22" rx="6" fill="rgba(221,42,59,0.07)" stroke="rgba(221,42,59,0.16)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-87"></rect><text x="320" y="317" font-family="system-ui,sans-serif" font-size="8.5" fill="#e45562" text-anchor="middle" font-weight="500" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-59">Reactivate + Upgrade</text><text x="210" y="394" font-family="system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#e45562" text-anchor="middle" letter-spacing="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-60">7 FLOWS · 2 PLATFORMS · 3 PAYMENT CONTEXTS</text><line x1="590" y1="196" x2="590" y2="216" stroke="rgba(84,86,93,0.4)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-27"></line><line x1="514" y1="216" x2="666" y2="216" stroke="rgba(84,86,93,0.3)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-28"></line><line x1="514" y1="216" x2="514" y2="234" stroke="rgba(84,86,93,0.3)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-29"></line><rect x="462" y="234" width="104" height="22" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-88"></rect><text x="514" y="249" font-family="system-ui,sans-serif" font-size="8.5" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-61">Force Delete</text><line x1="514" y1="256" x2="514" y2="268" stroke="rgba(84,86,93,0.22)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-30"></line><rect x="462" y="268" width="104" height="22" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-89"></rect><text x="514" y="283" font-family="system-ui,sans-serif" font-size="8.5" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-62">Delete · &gt;14 days left</text><line x1="666" y1="216" x2="666" y2="234" stroke="rgba(84,86,93,0.3)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-31"></line><rect x="614" y="234" width="104" height="22" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-90"></rect><text x="666" y="249" font-family="system-ui,sans-serif" font-size="8.5" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-63">Abbreviated Delete</text><line x1="666" y1="256" x2="666" y2="268" stroke="rgba(84,86,93,0.22)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-32"></line><rect x="614" y="268" width="104" height="22" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-rect-91"></rect><text x="666" y="283" font-family="system-ui,sans-serif" font-size="8.5" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-64">Delete · &lt;14 days left</text><text x="590" y="322" font-family="system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#b0b1b6" text-anchor="middle" letter-spacing="1.5" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-65">4 FLOWS · EXPLICIT · PERMANENT</text><line x1="52" y1="406" x2="748" y2="406" stroke="rgba(255,255,255,0.05)" stroke-width="1" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-line-33"></line><text x="400" y="424" font-family="system-ui,sans-serif" font-size="11" fill="#b0b1b6" text-anchor="middle" STYLE="box-sizing: border-box; margin: 0; padding: 0;" class="inline-text-66">Neither process conflicts with the other. Both are App Store compliant.</text></g></svg><p class="asset-caption inline-p-12">The solution architecture: cancellation embedded <br/>as a branch within the deletion flow. <br/>11 flows, one entry point.</p></div></div><div id="company-cancel-outcomes-section" class="company-cancel-outcomes-section band band--dark"><div class="band-col inline-div-28"><div class="eyebrow inline-div-27">Outcomes</div><p class="inline-p-13">Reactivation rate increased from 4.5% to 7.4% in the first 8 weeks. That&#x27;s 80 of 1,086 cancellations converting back, surpassing the 5% SNG target ahead of schedule.</p></div><div class="band-col--wide inline-div-34"><div class="eyebrow inline-div-29">First 8 Weeks</div><div class="outcomes-grid inline-div-33"><div class="outcome-card inline-div-30"><span id="cnt-before" class="outcome-num neutral inline-span-10">4.5%</span> <span class="outcome-label inline-span-11">reactivation rate at project start</span></div><div class="outcome-card accent inline-div-31"><span id="cnt-after" class="outcome-num inline-span-12">7.4%</span> <span class="outcome-label inline-span-13">reactivation rate after launch —<strong class="inline-strong-0">surpassed 5% SNG target</strong></span></div><div class="outcome-card inline-div-32"><span id="cnt-customers" class="outcome-num neutral inline-span-14">80</span> <span class="outcome-label inline-span-15">customers recovered per month out of  cancellations</span></div></div><p class="outcome-note inline-p-14">Target: 5.0% · Delivered: 7.4% · Ahead of schedule</p></div></div><div id="company-cancel-retrospective-section" class="company-cancel-retrospective-section band band--surface"><div class="band-col inline-div-37"><div class="eyebrow inline-div-36">Retrospective</div><h2 class="inline-h2-3">The hardest part was scope &amp; waiting</h2><p class="inline-p-15">Stakeholders initially assumed this was a copy change. It became a separate product surface. With more time, I would have mapped the App Store mobile requirements before the first sketch. <br/><br/>Discovering them mid-design meant rebuilding modal screens as full-screen modals and absorbing that rework cost late in the project. Those constraints belong in the kickoff, not the handoff.<br/><br/>When releasing a critical design flow to production where the difference can mean gaining or losing about $100,000 a year in customer subscriptions, waiting for relevant data to come in was excrutiating. </p></div></div><div class="code-embed-4 w-embed w-script"><script is:inline>
+// ── Scroll reveal ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ── Counter animations ──
+function animatePct(el, from, to, ms) {
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / ms, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = (from + (to - from) * e).toFixed(1) + '%';
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+function animateInt(el, to, ms) {
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / ms, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * e);
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animatePct(document.getElementById('cnt-before'), 4.5, 4.5, 400);
+      animatePct(document.getElementById('cnt-after'), 4.5, 7.4, 1600);
+      animateInt(document.getElementById('cnt-customers'), 80, 1400);
+      statsObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const grid = document.querySelector('.outcomes-grid');
+if (grid) statsObs.observe(grid);
+</script></div></div>
+</div>
+
+<script is:inline>!function(){var t=document.getElementById("hero-svg");if(t){var e={"hl-0":82,"hl-1":82,"hl-2":82,"hl-3":82,"hl-b":48,"hl-ch":540};Object.keys(e).forEach(function(t){var n=document.getElementById(t);n&&(n.style.strokeDasharray=e[t],n.style.strokeDashoffset=e[t])}),t.querySelectorAll(".hl-cd").forEach(function(t){t.style.strokeDasharray=10,t.style.strokeDashoffset=10}),t.querySelectorAll(".hl-cc").forEach(function(t){t.style.strokeDasharray=50,t.style.strokeDashoffset=50}),new IntersectionObserver(function(t,e){var c;t[0].isIntersecting&&(e.disconnect(),o("hn-d1",380,c=0),n("hl-0",260,c+=220),o("hn-d2",380,c+=320),n("hl-1",260,c+=220),o("hn-d3",440,c+=320),n("hl-2",260,c+=340),setTimeout(function(){o("hn-d4",380,c+300)},0),setTimeout(function(){n("hl-3",260,c+300)},0),setTimeout(function(){o("hn-d5",380,c+620)},0),n("hl-b",380,c+=1050),n("hl-ch",520,c+=450),s(".hl-cd",130,c+=580,90),setTimeout(function(){o("hn-c1",340,c+70),o("hn-c2",340,c+190),o("hn-c3",340,c+310),o("hn-c4",340,c+430)},0),s(".hl-cc",220,c+=640,100))},{threshold:.05}).observe(t)}function n(t,e,n){setTimeout(function(){var n=document.getElementById(t);n&&(n.style.transition="stroke-dashoffset "+e+"ms cubic-bezier(0.4,0,0.2,1)",n.style.strokeDashoffset=0)},n)}function s(e,n,s,o){t.querySelectorAll(e).forEach(function(t,e){setTimeout(function(){t.style.transition="stroke-dashoffset "+n+"ms cubic-bezier(0.4,0,0.2,1)",t.style.strokeDashoffset=0},s+e*o)})}function o(t,e,n){setTimeout(function(){var n=document.getElementById(t);n&&(n.style.transition="opacity "+e+"ms ease",n.style.opacity=1)},n)}}();}</script>
+<script is:inline>!function(){var e=document.querySelectorAll(".reveal");if(e.length&&"IntersectionObserver"in window){var t=new IntersectionObserver(function(e){e.forEach(function(e){e.isIntersecting&&(e.target.style.opacity="1",e.target.style.transform="none",t.unobserve(e.target))})},{threshold:.08});e.forEach(function(e){t.observe(e)})}else e.forEach(function(e){e.style.opacity="1",e.style.transform="none"});function n(e,t,n,r){if(e){var o=performance.now();!function c(i){var a=Math.min((i-o)/r,1),s=1-Math.pow(1-a,3);e.textContent=(t+(n-t)*s).toFixed(1)+"%",a<1&&requestAnimationFrame(c)}(o)}}function r(e,t,n){if(e){var r=performance.now();!function o(c){var i=Math.min((c-r)/n,1),a=1-Math.pow(1-i,3);e.textContent=Math.round(t*a),i<1&&requestAnimationFrame(o)}(r)}}var o=document.querySelector(".outcomes-grid");if(o){if(!("IntersectionObserver"in window))return n(document.getElementById("cnt-before"),4.5,4.5,400),n(document.getElementById("cnt-after"),4.5,7.4,1600),void r(document.getElementById("cnt-customers"),80,1400);var c=new IntersectionObserver(function(e){e.forEach(function(e){e.isIntersecting&&(n(document.getElementById("cnt-before"),4.5,4.5,400),n(document.getElementById("cnt-after"),4.5,7.4,1600),r(document.getElementById("cnt-customers"),80,1400),c.unobserve(e.target))})},{threshold:.3});c.observe(o)}}();}</script>
+</PageLayout>
+
+<style>
+.cs-port-root{--font-display:'Josefin Sans',sans-serif;}
+@font-face{font-family:webflow-icons;src:url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBiUAAAC8AAAAYGNtYXDpP+a4AAABHAAAAFxnYXNwAAAAEAAAAXgAAAAIZ2x5ZmhS2XEAAAGAAAADHGhlYWQTFw3HAAAEnAAAADZoaGVhCXYFgQAABNQAAAAkaG10eCe4A1oAAAT4AAAAMGxvY2EDtALGAAAFKAAAABptYXhwABAAPgAABUQAAAAgbmFtZSoCsMsAAAVkAAABznBvc3QAAwAAAAAHNAAAACAAAwP4AZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpAwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAQAAAAAwACAACAAQAAQAg5gPpA//9//8AAAAAACDmAOkA//3//wAB/+MaBBcIAAMAAQAAAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEBIAAAAyADgAAFAAAJAQcJARcDIP5AQAGA/oBAAcABwED+gP6AQAABAOAAAALgA4AABQAAEwEXCQEH4AHAQP6AAYBAAcABwED+gP6AQAAAAwDAAOADQALAAA8AHwAvAAABISIGHQEUFjMhMjY9ATQmByEiBh0BFBYzITI2PQE0JgchIgYdARQWMyEyNj0BNCYDIP3ADRMTDQJADRMTDf3ADRMTDQJADRMTDf3ADRMTDQJADRMTAsATDSANExMNIA0TwBMNIA0TEw0gDRPAEw0gDRMTDSANEwAAAAABAJ0AtAOBApUABQAACQIHCQEDJP7r/upcAXEBcgKU/usBFVz+fAGEAAAAAAL//f+9BAMDwwAEAAkAABcBJwEXAwE3AQdpA5ps/GZsbAOabPxmbEMDmmz8ZmwDmvxmbAOabAAAAgAA/8AEAAPAAB0AOwAABSInLgEnJjU0Nz4BNzYzMTIXHgEXFhUUBw4BBwYjNTI3PgE3NjU0Jy4BJyYjMSIHDgEHBhUUFx4BFxYzAgBqXV6LKCgoKIteXWpqXV6LKCgoKIteXWpVSktvICEhIG9LSlVVSktvICEhIG9LSlVAKCiLXl1qal1eiygoKCiLXl1qal1eiygoZiEgb0tKVVVKS28gISEgb0tKVVVKS28gIQABAAABwAIAA8AAEgAAEzQ3PgE3NjMxFSIHDgEHBhUxIwAoKIteXWpVSktvICFmAcBqXV6LKChmISBvS0pVAAAAAgAA/8AFtgPAADIAOgAAARYXHgEXFhUUBw4BBwYHIxUhIicuAScmNTQ3PgE3NjMxOAExNDc+ATc2MzIXHgEXFhcVATMJATMVMzUEjD83NlAXFxYXTjU1PQL8kz01Nk8XFxcXTzY1PSIjd1BQWlJJSXInJw3+mdv+2/7c25MCUQYcHFg5OUA/ODlXHBwIAhcXTzY1PTw1Nk8XF1tQUHcjIhwcYUNDTgL+3QFt/pOTkwABAAAAAQAAmM7nP18PPPUACwQAAAAAANciZKUAAAAA1yJkpf/9/70FtgPDAAAACAACAAAAAAAAAAEAAAPA/8AAAAW3//3//QW2AAEAAAAAAAAAAAAAAAAAAAAMBAAAAAAAAAAAAAAAAgAAAAQAASAEAADgBAAAwAQAAJ0EAP/9BAAAAAQAAAAFtwAAAAAAAAAKABQAHgAyAEYAjACiAL4BFgE2AY4AAAABAAAADAA8AAMAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADQAAAAEAAAAAAAIABwCWAAEAAAAAAAMADQBIAAEAAAAAAAQADQCrAAEAAAAAAAUACwAnAAEAAAAAAAYADQBvAAEAAAAAAAoAGgDSAAMAAQQJAAEAGgANAAMAAQQJAAIADgCdAAMAAQQJAAMAGgBVAAMAAQQJAAQAGgC4AAMAAQQJAAUAFgAyAAMAAQQJAAYAGgB8AAMAAQQJAAoANADsd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzUmVndWxhcgBSAGUAZwB1AGwAYQByd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==)format("truetype");font-weight:400;font-style:normal}
+.w-icon-nav-menu:before{content:""}
+.w-button{color:#fff;line-height:inherit;cursor:pointer;background-color:#3898ec;border:0;border-radius:0;padding:9px 15px;text-decoration:none;display:inline-block}
+input.w-button{-webkit-appearance:button}
+.w-list-unstyled{padding-left:0;list-style:none}
+.w-embed:before,.w-embed:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-embed:after{clear:both}
+@media screen and (max-width:767px){.w-nav-brand{padding-left:10px}}
+.w-richtext:before,.w-richtext:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-richtext:after{clear:both}
+.w-richtext[contenteditable=true]:before,.w-richtext[contenteditable=true]:after{white-space:initial}
+.w-richtext ol,.w-richtext ul{overflow:hidden}
+.w-richtext .w-richtext-figure-selected.w-richtext-figure-type-video div:after,.w-richtext .w-richtext-figure-selected[data-rt-type=video] div:after,.w-richtext .w-richtext-figure-selected.w-richtext-figure-type-image div,.w-richtext .w-richtext-figure-selected[data-rt-type=image] div{outline:2px solid #2895f7}
+.w-richtext figure.w-richtext-figure-type-video>div:after,.w-richtext figure[data-rt-type=video]>div:after{content:"";display:none;position:absolute;inset:0}
+.w-richtext figure{max-width:60%;position:relative}
+.w-richtext figure>div:before{cursor:default!important}
+.w-richtext figure img{width:100%}
+.w-richtext figure figcaption.w-richtext-figcaption-placeholder{opacity:.6}
+.w-richtext figure div{color:#0000;font-size:0}
+.w-richtext figure.w-richtext-figure-type-image,.w-richtext figure[data-rt-type=image]{display:table}
+.w-richtext figure.w-richtext-figure-type-image>div,.w-richtext figure[data-rt-type=image]>div{display:inline-block}
+.w-richtext figure.w-richtext-figure-type-image>figcaption,.w-richtext figure[data-rt-type=image]>figcaption{caption-side:bottom;display:table-caption}
+.w-richtext figure.w-richtext-figure-type-video,.w-richtext figure[data-rt-type=video]{width:60%;height:0}
+.w-richtext figure.w-richtext-figure-type-video iframe,.w-richtext figure[data-rt-type=video] iframe{width:100%;height:100%;position:absolute;top:0;left:0}
+.w-richtext figure.w-richtext-figure-type-video>div,.w-richtext figure[data-rt-type=video]>div{width:100%}
+.w-richtext figure.w-richtext-align-center{clear:both;margin-left:auto;margin-right:auto}
+.w-richtext figure.w-richtext-align-center.w-richtext-figure-type-image>div,.w-richtext figure.w-richtext-align-center[data-rt-type=image]>div{max-width:100%}
+.w-richtext figure.w-richtext-align-normal{clear:both}
+.w-richtext figure.w-richtext-align-fullwidth{text-align:center;clear:both;width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:block}
+.w-richtext figure.w-richtext-align-fullwidth>div{padding-bottom:inherit;display:inline-block}
+.w-richtext figure.w-richtext-align-fullwidth>figcaption{display:block}
+.w-richtext figure.w-richtext-align-floatleft{float:left;clear:none;margin-right:15px}
+.w-richtext figure.w-richtext-align-floatright{float:right;clear:none;margin-left:15px}
+.w-nav{z-index:1000;background:#ddd;position:relative}
+.w-nav:before,.w-nav:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-nav:after{clear:both}
+.w-nav-brand{float:left;color:#333;text-decoration:none;position:relative}
+.w-nav-menu{float:right;position:relative}
+.w-nav[data-animation=over-left] .w-nav-overlay{width:auto}
+.w-nav[data-animation=over-left] .w-nav-overlay,.w-nav[data-animation=over-left] [data-nav-menu-open]{z-index:1;top:0;right:auto}
+.w-nav[data-animation=over-right] .w-nav-overlay{width:auto}
+.w-nav[data-animation=over-right] .w-nav-overlay,.w-nav[data-animation=over-right] [data-nav-menu-open]{z-index:1;top:0;left:auto}
+.w-nav-button{float:right;cursor:pointer;-webkit-tap-highlight-color:#0000;tap-highlight-color:#0000;-webkit-user-select:none;user-select:none;padding:18px;font-size:24px;display:none;position:relative}
+.w-nav-button:focus{outline:0}
+.w-nav-button.w--open{color:#fff;background-color:#c8c8c8}
+.w-nav[data-collapse=all] .w-nav-menu{display:none}
+.w-nav[data-collapse=all] .w-nav-button,.w--nav-dropdown-open,.w--nav-dropdown-toggle-open{display:block}
+@media screen and (max-width:991px){.w-nav[data-collapse=medium] .w-nav-menu{display:none}.w-nav[data-collapse=medium] .w-nav-button{display:block}}
+@media screen and (max-width:767px){.w-nav[data-collapse=small] .w-nav-menu{display:none}.w-nav[data-collapse=small] .w-nav-button{display:block}.w-nav-brand{padding-left:10px}}
+@media screen and (max-width:479px){.w-nav[data-collapse=tiny] .w-nav-menu{display:none}.w-nav[data-collapse=tiny] .w-nav-button{display:block}}
+.cs-port-root{--light-bg:snow;--card-bg-default:#282838;--lg-spacer:4rem;--main-bg:#161623;--h2:2.488rem;--white:white;--text-body:1rem;--toe-bean-pink-200:#f1b4bb;--midnight-blue-500:#2f4276;--def-spacer:1rem;--navy-blue-500:#1f4172;--toe-bean-pink-400:#c88f96;--text-extra-sm:.694rem;--md-spacer:2rem;--exp-bg:#fbfbfb;--h1:2.986rem;--h5:1.44rem;--h3:2.074rem;--tf-body:#09143a;--main-body-bg:#161623;--primary-dark-600:#333;--h4:1.728rem;--xl-spacer:8rem;--5p-bg:#f6f2ec;--text-sm:.833rem;--tf-blue:#1d44c0;--toe-bean-pink-300:#c88f96;--text-xl:56px;--navy-blue-200:#92bfff;--navy-blue-100:#c3dbff;--secondary-bg:#161623;--toe-bean-pink-100:#f6dadd;--midnight-blue-300:#89a0dc;--midnight-blue-600:#132043;--xs-spacer:.5rem;--5p-sakura:#dfb1b6;--5p-cold:#234272;--xxs-spacer:.25rem;--5p-orchid:#cd899e;--sm-spacer:.75rem;--5p-ballad:#a6427c;--xxl-spacer:16rem;--ui-minty:#c7e0da;--ui-banana-smoothie:#f2e2a4;--bg:#111216;--body:#c4c5c9;--sp-9:96px;--sp-6:32px;--sp-5:24px;--sp-3:12px;--muted:#a8a8ac;--subtle:#76777d;--ink:#f4f4f6;--sp-7:48px;--rule:#ffffff12;--surface:#1a1c23;--elevated:#22242d;--brand-tint:#170c0d;--sp-8:64px;--sp-4:16px;--brand:#dd2a3b;--brand-light:#e45562;--rule-strong:#ffffff21;--sp-2:8px;--sp-1:4px;--highest:#2f313a;--brand-dim:#dd2a3b1a;--brand-subtle:#dd2a3b0f;--green:#559d69;--toe-bean-pink-500:#774d52;--navy-blue-300:#6695d8;--navy-blue-400:#3d68a5;--navy-blue-600:#1a365f;--midnight-blue-100:#dae4ff;--midnight-blue-200:#bcceff;--midnight-blue-400:#566da9;--black:black}
+.navbar-logo-left-container{z-index:5;background-color:#0000;width:1030px;max-width:100%;margin-left:auto;margin-right:auto;padding:15px 20px}
+.navbar-logo-left-container.shadow-three{z-index:888;-webkit-backdrop-filter:blur(1rem);backdrop-filter:blur(1rem);-webkit-text-fill-color:inherit;background-color:#28283800;background-clip:border-box;border:1px #373749;border-radius:4px;width:100%;max-width:1140px;margin-top:0;margin-bottom:0;padding:2rem 1rem;position:sticky;top:1rem}
+.container-13{width:100%;max-width:1140px;margin-left:auto;margin-right:auto}
+.navbar-wrapper-2{color:#fff;justify-content:space-between;align-items:center;max-width:1140px;display:flex}
+.nav-menu-two{justify-content:center;align-items:baseline;margin-bottom:0;display:flex}
+.nav-link-2{color:var(--white);font-family:Public Sans,sans-serif;font-size:var(--text-body);letter-spacing:.25px;background-color:#37374900;border:1px #373749;margin-left:4px;margin-right:4px;padding:5px 8px;line-height:20px;text-decoration:none}
+.nav-link-2:hover{color:var(--toe-bean-pink-200);border-radius:4px}
+.nav-link-2:focus-visible,.nav-link-2[data-wf-focus-visible]{outline-offset:0px;color:#0050bd;border-radius:4px;outline:2px solid #0050bd}
+.nav-link-2.w--current:hover{color:var(--toe-bean-pink-200)}
+.nav-link-2.nav_last_item{margin-right:var(--def-spacer)}
+.nav-link-2.lago_nav_item{color:var(--midnight-blue-500)}
+.nav-link-2.sprocket_nav_item,.nav-link-2.about_nav_item:hover{color:var(--navy-blue-500)}
+.nav-link-2._5p_nav__item{color:var(--midnight-blue-500)}
+.btn_primary{background-color:var(--toe-bean-pink-200);box-shadow:-4px 4px 0 0 var(--light-bg);color:var(--navy-blue-500);letter-spacing:2px;text-transform:uppercase;border-radius:4px;padding:.75rem 1.5rem;font-family:Public Sans,sans-serif;font-size:12px;line-height:20px;transition:all .2s}
+.btn_primary:hover{background-color:var(--toe-bean-pink-400);box-shadow:none;color:#fff;transform:translate(-4px,4px)}
+.btn_primary:active{background-color:#43464d}
+.btn_primary.cta_button{background-color:var(--navy-blue-500);color:var(--light-bg);font-family:Public Sans,sans-serif}
+.btn_primary.btn_about{background-color:var(--navy-blue-500);color:var(--light-bg)}
+.btn_primary.exp_prim_btn{margin-top:var(--md-spacer);background-color:var(--exp-bg);box-shadow:-4px 4px 0 0 var(--card-bg-default)}
+.btn_primary.exp_prim_btn:hover{color:var(--navy-blue-500)}
+.list-item._5p_nav__item{color:var(--midnight-blue-500)}
+.inline-div-0{grid-column-gap:0px;grid-row-gap:0px;letter-spacing:.14em;text-transform:uppercase;color:#718182;color:lab(52.603% -5.4661 -2.92336);flex-wrap:wrap;align-items:center;margin-bottom:24px;font-family:Lato,sans-serif;font-size:12px;font-weight:500;display:flex}
+.inline-h1-0{max-width:58ch;color:var(--tf-body);letter-spacing:-.01em;margin:0 0 32px;font-family:Lato,sans-serif;font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1}
+.inline-p-0{color:#718182;color:lab(52.603% -5.4661 -2.92336);max-width:58ch;margin:0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.75}
+.inline-div-2{text-align:center;letter-spacing:.08em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);background-image:linear-gradient(#fff,#e5f6f6);background-image:linear-gradient(lab(100% 0 0),lab(95.5506% -5.8383 -1.93609));border-style:dashed;border-width:1px;border-radius:14px;justify-content:center;align-items:center;width:100%;min-height:440px;padding:24px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1.5;display:flex;box-shadow:0 2px 8px #0000000f,0 12px 48px #0000001a}
+.inline-span-5{text-transform:uppercase;color:#a3adae;color:lab(69.9595% -3.79741 -1.5921);margin-left:auto;font-family:Lato,sans-serif;font-size:12px;font-weight:700}
+.inline-p-5{color:#718182;color:lab(52.603% -5.4661 -2.92336);margin:0;font-family:Bitter,serif;font-size:12px;font-style:italic;line-height:1.6}
+.inline-div-19{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-20{letter-spacing:.15em;text-transform:uppercase;color:#a3adae;color:lab(69.9595% -3.79741 -1.5921);font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:9px;font-weight:700}
+.inline-div-21{text-align:center;letter-spacing:.08em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);background-image:linear-gradient(#fff,#e5f6f6);background-image:linear-gradient(lab(100% 0 0),lab(95.5506% -5.8383 -1.93609));border-style:dashed;border-width:1px;border-radius:12px;justify-content:center;align-items:center;width:100%;height:400px;padding:24px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1.5;display:flex}
+.inline-div-23{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-24{grid-column-gap:24px;grid-row-gap:24px;flex-flow:column;grid-template-rows:auto;grid-template-columns:1fr 1fr;display:flex}
+.inline-div-25{grid-column-gap:16px;grid-row-gap:16px;flex-direction:column;display:flex}
+.inline-div-27{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);flex-flow:column;justify-content:center;align-items:center;max-width:900px;margin:0 auto;font-family:\"Libre Baskervill;display:flex}
+.inline-div-28{border-top-style:solid;border-top-width:1px;padding:48px 32px}
+.test-wrapper.inline-div-0{background-color:#111;padding:20px}
+.company-cancel-root{background-color:var(--bg);min-height:100vh;color:var(--body);font-family:"var(--font-body)";line-height:1.7}
+.company-cancel-root.inline-div-43{box-sizing:border-box;color:#c4c5c9;background-color:#111216;min-height:100vh;margin:0;padding:0;font-family:Libre Baskerville,Georgia,serif;line-height:1.7}
+.page-header{max-width:640px;padding-top:var(--sp-9);padding-right:var(--sp-6);padding-bottom:var(--sp-5);padding-left:var(--sp-6);margin:0 auto}
+.meta{margin-bottom:var(--sp-5);grid-column-gap:var(--sp-3);grid-row-gap:var(--sp-3);color:var(--muted);letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap;align-items:center;font-family:var(--font-display);font-size:11px;font-weight:500;display:flex}
+.meta.inline-div-0{box-sizing:border-box;grid-column-gap:12px;grid-row-gap:12px;color:#a8a8ac;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap;align-items:center;margin:0 0 24px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:11px;font-weight:500;display:flex}
+.meta-dot{background-color:var(--subtle);border-radius:50%;flex-shrink:0;width:3px;height:3px;display:inline-block}
+.meta-dot.inline-span-1,.meta-dot.inline-span-3,.meta-dot.inline-span-5{box-sizing:border-box;background-color:#76777d;border-radius:50%;flex-shrink:0;width:3px;height:3px;margin:0;padding:0;display:inline-block}
+.page-title{max-width:58ch;margin-bottom:var(--sp-6);color:var(--ink);letter-spacing:-.01em;font-family:var(--font-display);font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1}
+.page-title.inline-h1-0{box-sizing:border-box;color:#f4f4f6;letter-spacing:-.01em;max-width:58ch;margin:0;padding:0;font-family:Josefin Sans,sans-serif;font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1}
+.reveal{opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);transform:translateY(18px)}
+.reveal.visible{opacity:1;transform:none}
+.band{padding:var(--sp-7)var(--sp-6);border-top:1px solid var(--rule)}
+.band--dark{background-color:var(--bg)}
+.band--surface{background-color:var(--surface)}
+.band--tint{background-color:var(--brand-tint);border-top-color:#dd2a3b26}
+.band-col{max-width:640px;margin:0 auto}
+.band-col.inline-div-5{box-sizing:border-box;max-width:640px;margin:0 auto;padding:0}
+.band-col.inline-div-20{box-sizing:border-box;max-width:640px;margin:4rem auto 0;padding:0;font-family:Lato,sans-serif}
+.band-col.inline-div-24{box-sizing:border-box;grid-column-gap:0px;grid-row-gap:0px;max-width:640px;margin:0 auto;padding:0;font-family:Lato,sans-serif}
+.band-col.inline-div-28{box-sizing:border-box;border-top-style:none;border-top-color:#000;flex-flow:column;justify-content:flex-start;align-items:flex-start;max-width:640px;margin:0 auto;padding:0;display:flex}
+.band-col.inline-div-37{box-sizing:border-box;max-width:640px;margin:0 auto;padding:0}
+.band-col--wide{max-width:900px;margin:0 auto}
+.band-col--wide.inline-div-6{margin-top:var(--sp-7)}
+.band-col--wide.inline-div-34{box-sizing:border-box;flex-flow:column;justify-content:flex-start;align-items:center;max-width:900px;margin:48px auto 0;padding:0;display:flex}
+.page-header-btm{max-width:640px;padding-top:var(--sp-5);padding-right:var(--sp-6);padding-bottom:var(--sp-8);padding-left:var(--sp-6);margin:0 auto}
+.page-lede{max-width:58ch;color:var(--muted);font-family:"var(--font-body)";font-size:17px;font-style:italic;line-height:1.75}
+.page-lede.inline-p-0{box-sizing:border-box;color:#a8a8ac;max-width:58ch;margin:0;padding:0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.75}
+.eyebrow{margin-bottom:var(--sp-4);color:var(--brand);letter-spacing:.2em;text-transform:uppercase;font-family:var(--font-display);font-size:10px;font-weight:600}
+.eyebrow.inline-div-1{margin-bottom:var(--sp-6);text-align:center;letter-spacing:.3em}
+.eyebrow.inline-div-5{margin-bottom:var(--sp-6);text-align:center}
+.eyebrow.inline-div-4{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-6{box-sizing:border-box;color:#dd2a3b;text-align:center;letter-spacing:.3em;text-transform:uppercase;margin:0 0 32px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-19,.eyebrow.inline-div-23{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-27{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-29{box-sizing:border-box;color:#dd2a3b;text-align:center;letter-spacing:.2em;text-transform:uppercase;margin:0 0 32px;padding:0;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-36{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.pull-quote{max-width:48ch;padding-top:var(--sp-5);padding-bottom:var(--sp-5);color:var(--brand-light);text-align:center;border-top:1px solid #dd2a3b38;border-bottom:1px solid #dd2a3b38;margin:0 auto;padding-left:0;padding-right:0;font-family:"var(--font-body)";font-size:17px;font-style:italic;line-height:1.7}
+.pull-quote.inline-p-5{box-sizing:border-box;color:#e45562;text-align:center;border-top:1px solid #dd2a3b38;border-bottom:1px solid #dd2a3b38;max-width:48ch;margin:0 auto;padding:24px 0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.7}
+.asset-wrap{max-width:860px;padding-right:var(--sp-6);padding-bottom:var(--sp-7);padding-left:var(--sp-6);margin:0 auto;padding-top:0}
+.asset-wrap.inline-div-2,.asset-wrap.inline-div-3,.asset-wrap.inline-div-4{margin-top:var(--sp-6);padding-bottom:0}
+.asset-wrap.inline-div-16{box-sizing:border-box;max-width:860px;margin:32px auto 0;padding:0 32px}
+.asset-wrap.inline-div-21{box-sizing:border-box;background-image:none;border-style:none;border-color:#000;max-width:860px;margin:32px auto 0;padding:0 32px}
+.asset-wrap.inline-div-21.process-section{grid-column-gap:1rem;grid-row-gap:1rem;flex-flow:column;max-width:100%;height:100%}
+.asset-wrap.inline-div-25{box-sizing:border-box;justify-content:flex-start;align-items:center;max-width:860px;margin:32px auto 0;padding:0 32px}
+.asset-caption{margin-top:var(--sp-3);color:var(--subtle);text-align:center;letter-spacing:.04em;white-space:nowrap;font-family:var(--font-display);font-size:11.5px}
+.asset-caption.inline-p-4,.asset-caption.inline-p-9{box-sizing:border-box;color:#76777d;text-align:center;letter-spacing:.04em;white-space:nowrap;max-width:64ch;margin:12px 0 0;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:11.5px;line-height:1.8}
+.asset-caption.inline-p-12{box-sizing:border-box;text-align:center;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);max-width:64ch;margin:12px 0 0;padding:0;font-family:Lato,sans-serif;font-size:12px;line-height:1.8}
+.before-graphic-bg{width:100%;padding:var(--sp-6);background-color:#1a1c23;border-radius:14px;box-shadow:0 2px 12px #00000059,0 20px 72px #0006}
+.before-graphic-bg.inline-div-15{box-sizing:border-box;background-color:#1a1c23;border-radius:14px;width:100%;margin:0;padding:32px;box-shadow:0 2px 12px #00000059,0 20px 72px #0006}
+.before-cards-row{grid-column-gap:var(--sp-5);grid-row-gap:var(--sp-5);grid-template-rows:auto;grid-template-columns:1fr auto 1fr;align-items:stretch;display:grid}
+.before-cards-row.inline-div-14{box-sizing:border-box;grid-column-gap:24px;grid-row-gap:24px;grid-template-rows:auto;grid-template-columns:1fr auto 1fr;align-items:stretch;margin:0;padding:0;display:grid}
+.before-card{border-radius:10px;flex-direction:column;padding:16px;display:flex}
+.before-card.before-card--muted.inline-div-9{box-sizing:border-box;background-color:#22242d;border:1px solid #ffffff14;border-radius:10px;flex-direction:column;margin:0;padding:16px;display:flex}
+.before-card.before-card--danger.inline-div-13{box-sizing:border-box;background-color:#1c0d0f;border:1px solid #dd2a3b47;border-radius:10px;flex-direction:column;margin:0;padding:16px;display:flex}
+.before-card--muted{background-color:#22242d;border:1px solid #ffffff14}
+.before-card--danger{background-color:#1c0d0f;border:1px solid #dd2a3b47}
+.before-icon-circle{width:72px;height:72px;margin-right:auto;margin-bottom:var(--sp-4);border-radius:50%;justify-content:center;align-items:center;margin-top:0;margin-left:auto;display:flex}
+.before-icon-circle.before-icon-circle--muted.inline-div-8{box-sizing:border-box;background-color:#76777d1f;border-radius:50%;justify-content:center;align-items:center;width:72px;height:72px;margin:0 auto 16px;padding:0;display:flex}
+.before-icon-circle.before-icon-circle--danger.inline-div-12{box-sizing:border-box;background-color:#dd2a3b24;border-radius:50%;justify-content:center;align-items:center;width:72px;height:72px;margin:0 auto 16px;padding:0;display:flex}
+.before-icon-circle--muted{background-color:#76777d1f}
+.before-icon-circle--danger{background-color:#dd2a3b24}
+.before-card-title{margin-bottom:var(--sp-3);color:var(--ink);font-family:var(--font-display);font-size:13px;font-weight:700}
+.before-card-title.inline-h3-0,.before-card-title.inline-h3-1{box-sizing:border-box;color:#f4f4f6;margin:0 0 12px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:13px;font-weight:700}
+.before-card-list{margin-bottom:var(--sp-4);padding-left:var(--sp-5);color:var(--muted);flex:1;font-family:var(--font-display);font-size:10.5px;line-height:1.7;list-style:disc}
+.before-card-list.inline-ul-0{box-sizing:border-box;color:#a8a8ac;flex:1;margin:0 0 16px;padding:0 0 0 24px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10.5px;line-height:1.7;list-style:disc}
+.before-card-list.inline-ul-1{box-sizing:border-box;color:#c4c5c9;flex:1;margin:0 0 16px;padding:0 0 0 24px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10.5px;line-height:1.7;list-style:disc}
+.before-badge{text-align:center;letter-spacing:.1em;text-transform:uppercase;border-radius:10px;align-self:center;padding:4px 14px;font-family:var(--font-display);font-size:9px;font-weight:700;display:block}
+.before-badge.before-badge--muted.inline-span-7{box-sizing:border-box;color:#76777d;text-align:center;letter-spacing:.1em;text-transform:uppercase;background-color:#76777d29;border-radius:10px;align-self:center;margin:0;padding:4px 14px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:9px;font-weight:700;display:block}
+.before-badge.before-badge--danger.inline-span-9{box-sizing:border-box;color:#e45562;text-align:center;letter-spacing:.1em;text-transform:uppercase;background-color:#dd2a3b2e;border-radius:10px;align-self:center;margin:0;padding:4px 14px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:9px;font-weight:700;display:block}
+.before-badge--muted{color:#76777d;background-color:#76777d29}
+.before-badge--danger{color:#e45562;background-color:#dd2a3b2e}
+.before-or-divider{justify-content:center;align-items:center;display:flex}
+.before-or-divider.inline-div-10{box-sizing:border-box;justify-content:center;align-items:center;margin:0;padding:0;display:flex}
+.outcomes-grid{margin-bottom:var(--sp-5);grid-column-gap:var(--sp-4);grid-row-gap:var(--sp-4);grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;display:grid}
+.outcomes-grid.inline-div-33{box-sizing:border-box;grid-column-gap:16px;grid-row-gap:16px;grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;margin:0 0 24px;padding:0;display:grid}
+.outcome-card{padding:var(--sp-5);border:1px solid var(--rule-strong);background-color:#ffffff0a;border-radius:10px}
+.outcome-card.accent{background-color:#dd2a3b1a;border-color:#dd2a3b47}
+.outcome-card.accent.inline-div-31{box-sizing:border-box;background-color:#dd2a3b1a;border:1px solid #dd2a3b47;border-radius:8px;flex-flow:column;justify-content:center;align-items:center;margin:0;padding:24px;font-family:Lato,sans-serif;display:flex}
+.outcome-card.inline-div-30{box-sizing:border-box;background-color:#ffffff0a;border:1px solid #ffffff21;border-radius:8px;flex-flow:column;justify-content:flex-start;align-items:center;margin:0;padding:24px;font-family:Lato,sans-serif;display:flex}
+.outcome-card.inline-div-32{box-sizing:border-box;background-color:#ffffff0a;border:1px solid #ffffff21;border-radius:8px;flex-flow:column;justify-content:center;align-items:center;margin:0;padding:24px;font-family:Lato,sans-serif;display:flex}
+.outcome-num{margin-bottom:var(--sp-2);color:var(--brand);letter-spacing:-.02em;font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.outcome-num.neutral{color:var(--ink)}
+.outcome-num.neutral.inline-span-10,.outcome-num.neutral.inline-span-14{box-sizing:border-box;color:#f4f4f6;letter-spacing:-.02em;margin:0 0 8px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.outcome-num.inline-span-12{box-sizing:border-box;color:#dd2a3b;letter-spacing:-.02em;margin:0 0 8px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.outcome-label{color:var(--muted);font-family:"var(--font-body)";font-size:12.5px;line-height:1.5}
+.outcome-label.inline-span-11{box-sizing:border-box;color:#a8a8ac;text-transform:uppercase;margin:0;padding:0;font-family:Lato,sans-serif;font-size:12.5px;line-height:1.5}
+.outcome-label.inline-span-13,.outcome-label.inline-span-15{box-sizing:border-box;color:#a8a8ac;text-align:center;text-transform:uppercase;margin:0;padding:0;font-family:Lato,sans-serif;font-size:12.5px;line-height:1.5}
+.outcome-note{padding-top:var(--sp-4);color:var(--subtle);text-align:center;letter-spacing:.03em;border-top:1px solid #dd2a3b26;font-family:var(--font-display);font-size:11.5px}
+.outcome-note.inline-p-14{box-sizing:border-box;color:#76777d;text-align:center;letter-spacing:.03em;border-top:1px solid #dd2a3b26;max-width:64ch;margin:0;padding:16px 0 0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:11.5px;line-height:1.8}
+.cc-skel{animation:1.9s ease-in-out infinite cc-skel-pulse}
+.cc-skel.inline-rect-0{animation-delay:.18s}
+.cc-skel.inline-rect-1{animation-delay:.36s}
+.cc-skel.inline-rect-2{animation-delay:80ms}
+.cc-skel.inline-rect-3{animation-delay:.26s}
+.cc-skel.inline-rect-4{animation-delay:.44s}
+.cc-skel.inline-rect-5{animation-delay:.2s}
+.cc-skel.inline-rect-6{animation-delay:.4s}
+.cc-skel.inline-rect-7{animation-delay:.12s}
+.cc-skel.inline-rect-8{animation-delay:.3s}
+.cc-skel.inline-rect-9{animation-delay:.48s}
+.cc-skel.inline-rect-10{animation-delay:60ms}
+.cc-skel.inline-rect-11{animation-delay:.24s}
+.cc-skel.inline-rect-12{animation-delay:.42s}
+.cc-skel.inline-rect-13{animation-delay:.1s}
+.cc-skel.inline-rect-14{animation-delay:.28s}
+.cc-skel.inline-rect-15{animation-delay:.46s}
+.cc-skel.inline-rect-16{animation-delay:.22s}
+.cc-skel.inline-rect-17{animation-delay:.4s}
+.cc-skel.inline-rect-18{animation-delay:.58s}
+.cc-skel.inline-rect-19{animation-delay:.14s}
+.cc-skel.inline-rect-20{animation-delay:.32s}
+.cc-skel.inline-rect-21{animation-delay:.5s}
+.cc-skel.inline-rect-22{animation-delay:60ms}
+.cc-skel.inline-rect-23{animation-delay:.24s}
+.cc-skel.inline-rect-24{animation-delay:.42s}
+.cc-skel.inline-rect-25{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .22s infinite cc-skel-pulse}
+.cc-skel.inline-rect-26{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .4s infinite cc-skel-pulse}
+.cc-skel.inline-rect-27{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .58s infinite cc-skel-pulse}
+.cc-skel.inline-rect-29{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .14s infinite cc-skel-pulse}
+.cc-skel.inline-rect-30{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .32s infinite cc-skel-pulse}
+.cc-skel.inline-rect-31{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .5s infinite cc-skel-pulse}
+.cc-skel.inline-rect-33{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out 60ms infinite cc-skel-pulse}
+.cc-skel.inline-rect-34{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .24s infinite cc-skel-pulse}
+.cc-skel.inline-rect-35{box-sizing:border-box;margin:0;padding:0;animation:1.9s ease-in-out .42s infinite cc-skel-pulse}
+.company-cancel-hero-graphic.inline-div-0{padding-top:var(--sp-3);padding-bottom:var(--sp-3);padding-left:0;padding-right:0;line-height:0;overflow:hidden}
+.company-cancel-hero-graphic.inline-div-2{box-sizing:border-box;background-image:none;border-style:none;border-color:#000;min-height:0;margin:0;padding:2rem;line-height:0;overflow:hidden}
+.inline-span-0-1-2-3,.inline-span-2-1-2,.inline-span-4-1,.inline-span-6,.inline-line-0,.inline-line-1,.inline-line-2,.inline-line-3,.inline-line-4,.inline-line-5,.hl-cd.inline-line-6,.hl-cd.inline-line-7,.hl-cd.inline-line-8,.hl-cd.inline-line-9,.hl-cc.inline-line-10,.hl-cc.inline-line-11,.hl-cc.inline-line-12,.inline-rect-0{box-sizing:border-box;margin:0;padding:0}
+.inline-li-3,.inline-li-4,.inline-li-5,.inline-em-0{box-sizing:border-box;margin:0;padding:0}
+.inline-h2-1{box-sizing:border-box;color:#f4f4f6;text-transform:none;margin:0 0 24px;padding:0;font-family:Josefin Sans,sans-serif;font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.2}
+.inline-p-6-1,.inline-p-7{box-sizing:border-box;color:#c4c5c9;text-transform:none;max-width:64ch;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:15.5px;font-weight:400;line-height:1.8}
+.inline-p-8{box-sizing:border-box;color:#c4c5c9;text-transform:none;max-width:64ch;margin:0;padding:0;font-family:Lato,sans-serif;font-size:15.5px;font-weight:400;line-height:1.8}
+.company-cancel-process-section.band.band--dark{margin-bottom:2rem}
+.inline-h2-2{box-sizing:border-box;color:#f4f4f6;margin:0 0 24px;padding:0;font-family:Josefin Sans,sans-serif;font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.2}
+.inline-p-10{box-sizing:border-box;color:#c4c5c9;max-width:64ch;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:15.5px;line-height:1.8}
+.inline-rect-76,.inline-clippath-1,.inline-defs-1,.inline-rect-77,.inline-text-46,.inline-rect-78,.inline-text-47,.inline-text-48,.inline-line-14,.inline-line-15,.inline-line-16,.inline-line-17,.inline-rect-79,.inline-text-49,.inline-text-50,.inline-rect-80,.inline-text-51,.inline-text-52,.inline-line-18,.inline-line-19,.inline-line-20,.inline-rect-81,.inline-text-53,.inline-line-21,.inline-rect-82,.inline-text-54,.inline-line-22,.inline-rect-83,.inline-text-55,.inline-line-23,.inline-rect-84,.inline-text-56,.inline-line-24,.inline-rect-85,.inline-text-57,.inline-line-25,.inline-rect-86,.inline-text-58,.inline-line-26,.inline-rect-87,.inline-text-59,.inline-text-60,.inline-line-27,.inline-line-28,.inline-line-29,.inline-rect-88,.inline-text-61,.inline-line-30,.inline-rect-89,.inline-text-62,.inline-line-31,.inline-rect-90,.inline-text-63,.inline-line-32,.inline-rect-91,.inline-text-64,.inline-text-65,.inline-line-33,.inline-text-66,.inline-g-10{box-sizing:border-box;margin:0;padding:0}
+.inline-svg-2{box-sizing:border-box;border-radius:14px;width:100%;margin:0;padding:0;display:block;box-shadow:0 2px 12px #00000059,0 20px 72px #0006}
+.inline-p-13{box-sizing:border-box;color:#c4c5c9;text-align:left;max-width:64ch;margin:0;padding:0;font-family:Lato,sans-serif;font-size:15.5px;line-height:1.8}
+.inline-strong-0{box-sizing:border-box;color:#f4f4f6;margin:0;padding:0;font-style:normal}
+.inline-h2-3{box-sizing:border-box;color:#f4f4f6;margin:0 0 24px;padding:0;font-family:Josefin Sans,sans-serif;font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.2}
+.inline-p-15{box-sizing:border-box;color:#c4c5c9;max-width:64ch;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:15.5px;line-height:1.8}
+.code-embed-4{display:none}
+.code-embed-5,.code-embed-6{width:100%}
+.paragraph{color:#00595a;color:lab(33.6003% -27.5874 -8.82139);flex-flow:column;max-width:800px;display:flex}
+@media screen and (min-width:1440px){.nav-link-2.nav_last_item{margin-right:var(--def-spacer)}}
+@media screen and (max-width:991px){.navbar-logo-left-container.shadow-three{margin-left:0;margin-right:0}.container-13{max-width:728px}.nav-menu-wrapper-2{background-color:#0000}.nav-menu-two{background-color:#fff;border-radius:4px;flex-wrap:wrap;justify-content:space-around;align-items:center;margin-top:10px;padding:20px;display:flex;box-shadow:0 8px 50px #0000000d}.nav-link-2{color:var(--midnight-blue-500);padding-left:5px;padding-right:5px}.btn_primary{font-size:var(--text-extra-sm)}.menu-button-2{padding:12px}.menu-button-2.w--open{color:#fff;background-color:#a6b1bf}.icon-2,.list-item{color:var(--navy-blue-500)}}
+@media screen and (max-width:767px){.navbar-logo-left-container{max-width:100%}.navbar-brand-2{padding-left:0}.nav-menu-wrapper-2{justify-content:center;align-items:center;display:flex}.nav-menu-two{border-radius:20px;flex-flow:row;margin-top:.5rem;margin-bottom:.5rem;padding:2rem 1rem}.nav-link-2{padding-top:10px;padding-bottom:10px;display:inline-block}.nav-link-2.nav_last_item{text-align:left;padding:12px 4px}.mobile-margin-top-11{margin-top:10px}.btn_primary{padding:.5rem;font-size:.55rem}.list-item-2{text-align:left;justify-content:center;align-items:center;display:block}}
+@media screen and (max-width:479px){.container-13{max-width:none}.nav-menu-two{flex-flow:column;justify-content:center;align-items:center}.nav-link-2.nav_last_item{margin-left:0;margin-right:0;padding-left:0;padding-right:0}.asset-wrap.inline-div-21.process-section{padding:0}.outcomes-grid.inline-div-33{flex-flow:column;display:flex}}
+.before-card-title{font-family:'Barlow Semi Condensed',sans-serif}.eyebrow{color:#e45562!important}.before-or-divider span{color:#b0b1b6!important}.before-badge--muted{color:#b0b1b6!important}.before-badge--danger{color:#ef7480!important}.asset-caption{color:#b0b1b6!important}.outcome-note{color:#b0b1b6!important}
+</style>
+
+

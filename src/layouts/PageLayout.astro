@@ -8,10 +8,12 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  /** Per-page <body> background for light Webflow-port pages (see Layout.astro). */
+  bodyBg?: string;
 }
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, bodyBg } = Astro.props;
 ---
-<Layout title={title} description={description} ogImage={ogImage}>
+<Layout title={title} description={description} ogImage={ogImage} bodyBg={bodyBg}>
   <Nav />
   <main id="main-content">
     <slot />

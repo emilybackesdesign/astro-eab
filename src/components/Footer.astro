@@ -84,7 +84,7 @@ const logoSrc = theme === 'light' ? '/assets/images/eb_logo2.svg' : '/assets/ima
   .footer-copy {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-extra-sm);
-    color: var(--subtle);
+    color: var(--muted); /* --subtle (#76777d) failed WCAG AA on the dark footer (4.19:1) */
     text-align: center;
     margin: 1.25rem 0 0;
     letter-spacing: 0.06em;

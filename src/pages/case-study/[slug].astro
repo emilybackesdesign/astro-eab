@@ -3,11 +3,22 @@ import { getCollection, render } from 'astro:content';
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
 export async function getStaticPaths() {
+  // Slugs ported to dedicated 1:1 prod-parity pages (src/pages/case-study/<slug>.astro).
+  // Excluded here so the dynamic MDX route doesn't collide with those static routes.
+  const PORTED = new Set([
+    'sage-designing-an-ai-powered-chatbot',
+    'folsom-psychology',
+    'subscription-cancellation',
+    'lago',
+    'sprocket-app',
+  ]);
   const caseStudies = await getCollection('case-studies');
-  return caseStudies.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+  return caseStudies
+    .filter((entry) => !PORTED.has(entry.id))
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;

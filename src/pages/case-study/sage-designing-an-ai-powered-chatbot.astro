@@ -1,0 +1,649 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+<PageLayout title="Designing Sage — An AI Powered Chatbot | Emily Backes" description="How redesigning Sage from full-page to sidekick doubled resolution rates and cut agent tickets 29%." ogImage="/assets/cs/sage/662ad570421ba9e8a98b25bc_og-eb-logo.png" bodyBg="#f3f7f4">
+<div class="sage-main-wrapper"><div id="sage-header-hero-section" class="sage-header-hero-section"><div id="sage-page-header" class="sage-page-header"><div class="inline-div-0"><span class="inline-span-0"></span><span class="inline-span-1"></span><span>AI / Chatbot</span><span class="inline-span-2"></span><span>2024–2026</span></div><h1 class="inline-h1-0">How I Doubled Chatbot Resolution Rate and Cut Agent Tickets 29% by Turning Sortly Sage from a Full Page into a Sidekick</h1><p class="inline-p-0">When we shipped the full-page beta at 10% of users, it outperformed the old bot immediately. Users were also opening second browser windows to follow its instructions. That one behavior told me everything: accurate answers don&#x27;t matter if the container fights the user.</p></div><div id="sage-hero-placeholder" class="sage-hero-visual"><div class="w-embed"><!-- ── Animated Chatbot Hero ─────────────────────────────────────────────────── -->
+<div class="anim-section reveal">
+<svg id="sage-anim" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <clipPath id="frame-clip"><rect width="800" height="440" rx="14"/></clipPath>
+</defs>
+<g clip-path="url(#frame-clip)">
+
+  <rect width="800" height="440" fill="#f0f2f5"/>
+
+  <!-- Browser chrome -->
+  <rect width="800" height="30" fill="#e2e4e8"/>
+  <circle cx="16" cy="15" r="5.5" fill="#ff5f57"/>
+  <circle cx="31" cy="15" r="5.5" fill="#febc2e"/>
+  <circle cx="46" cy="15" r="5.5" fill="#28c840"/>
+  <rect x="198" y="8" width="404" height="14" rx="7" fill="#c8cad0"/>
+  <text x="400" y="19" font-family="system-ui,sans-serif" font-size="8" fill="#7b8089" text-anchor="middle">app.sortly.com/inventory</text>
+
+  <!-- Left nav -->
+  <rect x="0" y="30" width="54" height="410" fill="#dd2a3b"/>
+  <rect x="9" y="40" width="36" height="32" rx="7" fill="rgba(255,255,255,0.18)"/>
+  <text x="27" y="61" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle">S</text>
+  <rect x="12" y="84" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.5)"/>
+  <rect x="12" y="91" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.28)"/>
+  <rect x="12" y="98" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.28)"/>
+  <rect x="9" y="112" width="36" height="30" rx="6" fill="rgba(255,255,255,0.13)"/>
+  <rect x="14" y="120" width="26" height="2.5" rx="1" fill="rgba(255,255,255,0.45)"/>
+  <rect x="14" y="126" width="26" height="2.5" rx="1" fill="rgba(255,255,255,0.28)"/>
+  <rect x="9" y="152" width="36" height="30" rx="6" fill="rgba(255,255,255,0.13)"/>
+  <rect x="14" y="160" width="26" height="2.5" rx="1" fill="rgba(255,255,255,0.25)"/>
+  <rect x="14" y="166" width="18" height="2.5" rx="1" fill="rgba(255,255,255,0.18)"/>
+
+  <!-- Content header -->
+  <rect x="54" y="30" width="746" height="36" fill="white"/>
+  <rect x="54" y="65" width="746" height="1" fill="#e5e7eb"/>
+  <text x="74" y="53" font-family="system-ui,sans-serif" font-size="13" font-weight="600" fill="#1f2937">Inventory</text>
+  <rect x="200" y="40" width="160" height="20" rx="5" fill="#f3f4f6"/>
+  <text x="280" y="54" font-family="system-ui,sans-serif" font-size="9.5" fill="#9ca3af" text-anchor="middle">Search items...</text>
+  <rect x="420" y="40" width="80" height="20" rx="5" fill="#dd2a3b"/>
+  <text x="460" y="54" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="white" text-anchor="middle">+ Add Item</text>
+
+  <!-- Column headers -->
+  <rect x="54" y="66" width="454" height="24" fill="#f8f9fa"/>
+  <rect x="54" y="89" width="454" height="1" fill="#e5e7eb"/>
+  <text x="88" y="82" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#9ca3af" letter-spacing="0.07em">ITEM</text>
+  <text x="290" y="82" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#9ca3af" letter-spacing="0.07em">QTY</text>
+  <text x="360" y="82" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#9ca3af" letter-spacing="0.07em">LOCATION</text>
+
+  <!-- Inventory rows -->
+  <rect x="54" y="90" width="454" height="40" fill="white"/>
+  <rect x="54" y="129" width="454" height="1" fill="#f3f4f6"/>
+  <rect x="68" y="103" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="90" y="114" font-family="system-ui,sans-serif" font-size="11" fill="#1f2937">Laptop Stand</text>
+  <rect x="286" y="104" width="30" height="16" rx="3" fill="#eff6ff"/>
+  <text x="301" y="116" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#3b82f6" text-anchor="middle">×12</text>
+  <text x="360" y="115" font-family="system-ui,sans-serif" font-size="10.5" fill="#6b7280">Warehouse A</text>
+
+  <rect x="54" y="130" width="454" height="40" fill="#fafbfc"/>
+  <rect x="54" y="169" width="454" height="1" fill="#f3f4f6"/>
+  <rect x="68" y="143" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="90" y="154" font-family="system-ui,sans-serif" font-size="11" fill="#1f2937">HDMI Cables</text>
+  <rect x="286" y="144" width="30" height="16" rx="3" fill="#eff6ff"/>
+  <text x="301" y="156" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#3b82f6" text-anchor="middle">×48</text>
+  <text x="360" y="155" font-family="system-ui,sans-serif" font-size="10.5" fill="#6b7280">Warehouse A</text>
+
+  <rect x="54" y="170" width="454" height="40" fill="white"/>
+  <rect x="54" y="209" width="454" height="1" fill="#f3f4f6"/>
+  <rect x="68" y="183" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="90" y="194" font-family="system-ui,sans-serif" font-size="11" fill="#1f2937">USB Hubs</text>
+  <rect x="286" y="184" width="26" height="16" rx="3" fill="#fef3c7"/>
+  <text x="299" y="196" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#d97706" text-anchor="middle">×7</text>
+  <text x="360" y="195" font-family="system-ui,sans-serif" font-size="10.5" fill="#6b7280">Storage B</text>
+
+  <rect x="54" y="210" width="454" height="40" fill="#fafbfc"/>
+  <rect x="54" y="249" width="454" height="1" fill="#f3f4f6"/>
+  <rect x="68" y="223" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="90" y="234" font-family="system-ui,sans-serif" font-size="11" fill="#1f2937">Monitor</text>
+  <rect x="286" y="224" width="26" height="16" rx="3" fill="#fee2e2"/>
+  <text x="299" y="236" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#ef4444" text-anchor="middle">×3</text>
+  <text x="360" y="235" font-family="system-ui,sans-serif" font-size="10.5" fill="#6b7280">Warehouse A</text>
+
+  <rect x="54" y="250" width="454" height="40" fill="white"/>
+  <rect x="54" y="289" width="454" height="1" fill="#f3f4f6"/>
+  <rect x="68" y="263" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="90" y="274" font-family="system-ui,sans-serif" font-size="11" fill="#1f2937">Keyboards</text>
+  <rect x="286" y="264" width="30" height="16" rx="3" fill="#eff6ff"/>
+  <text x="301" y="276" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="#3b82f6" text-anchor="middle">×15</text>
+  <text x="360" y="275" font-family="system-ui,sans-serif" font-size="10.5" fill="#6b7280">Office</text>
+
+  <!-- Fading rows -->
+  <rect x="54" y="290" width="454" height="40" fill="#fafbfc" opacity="0.65"/>
+  <rect x="68" y="304" width="13" height="13" rx="3" fill="none" stroke="#d1d5db" stroke-width="1.5" opacity="0.35"/>
+  <rect x="90" y="308" width="90" height="8" rx="2" fill="#e5e7eb" opacity="0.55"/>
+  <rect x="54" y="330" width="454" height="40" fill="white" opacity="0.35"/>
+  <rect x="54" y="370" width="454" height="40" fill="#fafbfc" opacity="0.18"/>
+  <rect x="54" y="410" width="454" height="32" fill="white" opacity="0.09"/>
+
+  <!-- ═══════════ SAGE DRAWER (animated) ═══════════ -->
+  <g id="sage-drawer">
+    <rect x="506" y="30" width="3" height="410" fill="rgba(0,0,0,0.06)"/>
+    <rect x="509" y="30" width="291" height="410" fill="white"/>
+    <rect x="509" y="30" width="291" height="36" fill="#046c7a"/>
+
+    <!-- Owl avatar -->
+    <circle cx="528" cy="48" r="11" fill="rgba(255,255,255,0.16)"/>
+    <circle cx="524.5" cy="46" r="3" fill="white" opacity="0.9"/>
+    <circle cx="531.5" cy="46" r="3" fill="white" opacity="0.9"/>
+    <circle cx="525" cy="46.5" r="1.3" fill="#046c7a"/>
+    <circle cx="532" cy="46.5" r="1.3" fill="#046c7a"/>
+    <polygon points="526,50 528,53.5 530,50" fill="rgba(255,255,255,0.65)"/>
+
+    <text x="546" y="44" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="white" letter-spacing="0.02em">Sage</text>
+    <text x="546" y="58" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.6)">AI Assistant · Always on</text>
+    <text x="787" y="52" font-family="system-ui,sans-serif" font-size="15" fill="rgba(255,255,255,0.45)" text-anchor="middle">×</text>
+
+    <rect x="509" y="66" width="291" height="360" fill="#fafbfc"/>
+
+    <!-- User message (animated) — single line -->
+    <g id="msg-user">
+      <rect x="572" y="80" width="198" height="34" rx="10" fill="#e8f6f7"/>
+      <polygon points="769,85 779,97 769,109" fill="#e8f6f7"/>
+      <circle cx="789" cy="97" r="9" fill="#4283de"/>
+      <text x="789" y="100.5" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">E</text>
+      <text x="583" y="102" font-family="system-ui,sans-serif" font-size="10" fill="#1f2937">How do I create a pick list?</text>
+    </g>
+
+    <!-- Typing dots (animated) -->
+    <g id="typing-dots">
+      <rect x="518" y="128" width="56" height="26" rx="11" fill="#eeeff1"/>
+      <circle cx="533" cy="141" r="3.5" fill="#adb2bb" style="transform-box:fill-box;transform-origin:center;animation:dotBounce 0.9s ease-in-out 0s infinite"/>
+      <circle cx="546" cy="141" r="3.5" fill="#adb2bb" style="transform-box:fill-box;transform-origin:center;animation:dotBounce 0.9s ease-in-out 0.18s infinite"/>
+      <circle cx="559" cy="141" r="3.5" fill="#adb2bb" style="transform-box:fill-box;transform-origin:center;animation:dotBounce 0.9s ease-in-out 0.36s infinite"/>
+    </g>
+
+    <!-- Sage response (animated) -->
+    <g id="msg-sage">
+      <circle cx="527" cy="183" r="10" fill="#046c7a"/>
+      <circle cx="524" cy="181.5" r="2.4" fill="white" opacity="0.9"/>
+      <circle cx="530" cy="181.5" r="2.4" fill="white" opacity="0.9"/>
+      <circle cx="524.5" cy="182" r="1.1" fill="#046c7a"/>
+      <circle cx="530.5" cy="182" r="1.1" fill="#046c7a"/>
+      <polygon points="527,185 525,188 529,188" fill="rgba(255,255,255,0.65)"/>
+      <rect x="543" y="166" width="237" height="72" rx="10" fill="white"/>
+      <rect x="542" y="165" width="239" height="74" rx="11" fill="none" stroke="#e8eaed" stroke-width="1"/>
+      <polygon points="543,175 533,182 543,189" fill="white"/>
+      <polygon points="542,175 532,182 542,189" fill="#e8eaed"/>
+      <polygon points="543,175 533,182 543,189" fill="white"/>
+      <text x="556" y="182" font-family="system-ui,sans-serif" font-size="10.5" fill="#1f2937">Here's how to set one up:</text>
+      <text x="556" y="197" font-family="system-ui,sans-serif" font-size="10" fill="#374151">1. Go to Returns in the left menu</text>
+      <text x="556" y="211" font-family="system-ui,sans-serif" font-size="10" fill="#374151">2. Tap "New Pick List" to start</text>
+      <text x="556" y="225" font-family="system-ui,sans-serif" font-size="10" fill="#9ca3af">3. Select items to include...</text>
+    </g>
+
+    <!-- Help article card (animated) -->
+    <g id="help-card">
+      <rect x="518" y="253" width="256" height="46" rx="9" fill="white"/>
+      <rect x="517" y="252" width="258" height="48" rx="10" fill="none" stroke="#daedef" stroke-width="1.5"/>
+      <rect x="528" y="263" width="28" height="24" rx="6" fill="#e8f6f7"/>
+      <rect x="534" y="268" width="16" height="2" rx="1" fill="#046c7a"/>
+      <rect x="534" y="272" width="16" height="2" rx="1" fill="#046c7a" opacity="0.55"/>
+      <rect x="534" y="276" width="10" height="2" rx="1" fill="#046c7a" opacity="0.3"/>
+      <text x="564" y="271" font-family="system-ui,sans-serif" font-size="10.5" font-weight="600" fill="#1f2937">Creating Pick Lists</text>
+      <text x="564" y="285" font-family="system-ui,sans-serif" font-size="9.5" fill="#046c7a">Help article  →</text>
+    </g>
+
+    <!-- Input field -->
+    <rect x="523" y="404" width="235" height="28" rx="8" fill="#f0f2f4"/>
+    <text x="538" y="422" font-family="system-ui,sans-serif" font-size="10" fill="#b0b5c0">Ask Sage anything...</text>
+    <circle cx="776" cy="418" r="10" fill="#046c7a"/>
+    <text x="776" y="422" font-family="system-ui,sans-serif" font-size="12" text-anchor="middle" fill="white">↑</text>
+  </g>
+
+  <rect width="800" height="440" rx="14" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1.5"/>
+</g>
+</svg>
+</div></div></div></div><div id="sage-problem-section" class="sage-problem-section"><div class="inline-div-2-1"><div class="div-block-367"><div class="inline-div-0-1">Problem</div><p class="inline-p-0-1">The off-the-shelf bot was failing. The dev team replaced it with a quick-and-dirty full-page beta: no thoughtful UI, no UX, just a proof of concept using our help center documentation plus Claude Sonnet to validate response quality. At 10% of users, it outperformed the old bot. Good enough to ship. Not good enough to use.</p></div><div class="div-block-368"><div class="inline-div-1-1">How could I build a chatbot experience that made Sage genuinely useful for the questions it could answer, without leaving users or the CX team feeling abandoned by it?</div></div></div></div><div id="sage-process-section" class="sage-process-section"><div class="inline-div-27"><div class="div-block-366"><div class="inline-div-0-1-2">Process</div><p class="inline-p-0-1-2">I started with the full-page experience and immediately hit the fundamental problem: for &quot;How to&quot; questions, Sage was returning accurate, step-by-step instructions. But users couldn&#x27;t follow those steps while staying in an open dialogue. They had to choose between reading Sage&#x27;s answer and doing the thing Sage was describing. Most opened a second browser window. Some just closed the chat.</p></div><div class="inline-div-13"><div class="inline-div-12"><div class="inline-div-1-1-2"></div><div class="inline-div-2-1-2"><span class="inline-span-0-1">V1</span><span class="inline-span-1-1">Full Page Experience</span><span class="inline-span-2-1">Sage as a destination</span></div><div class="inline-div-11"><div class="inline-div-6"><div class="inline-div-3-1-2">Isolated component</div><div class="inline-div-5"><img src="/assets/cs/sage/69f9433cfcd90fe574300751_Image_1.png" loading="lazy" sizes="(max-width: 820px) 100vw, 820px" srcset="/assets/cs/sage/69f9433cfcd90fe574300751_Image_1-p-500.png 500w, /assets/cs/sage/69f9433cfcd90fe574300751_Image_1-p-800.png 800w, /assets/cs/sage/69f9433cfcd90fe574300751_Image_1.png 820w" alt="Chat interface with greeting &#x27;Hey Emily! How can I help?&#x27; and a text input field with placeholder &#x27;Type your question here&#x27; plus three example question buttons: &#x27;How do I move items?&#x27;, &#x27;Can I create Invoices?&#x27; and &#x27;How do I print barcode labels?&#x27;" class="image-170"/></div><p class="inline-p-1">This was the V1 greeting screen — shown once, the first time a user opened Sage. Once they started a prompt and returned, the full page experience took over and they never saw it again.</p></div><div class="inline-div-10"><div class="inline-div-7">In context</div><div class="inline-div-9"><img src="/assets/cs/sage/69f9433cc6db972f3657b6d5_Image_2.png" loading="lazy" sizes="(max-width: 1024px) 100vw, 1024px" srcset="/assets/cs/sage/69f9433cc6db972f3657b6d5_Image_2-p-500.png 500w, /assets/cs/sage/69f9433cc6db972f3657b6d5_Image_2-p-800.png 800w, /assets/cs/sage/69f9433cc6db972f3657b6d5_Image_2.png 1024w" alt="Sortly Sage app interface showing workflow setup instructions, with menu on left and cards for guides on organizing inventory." class="image-169"/></div><p class="inline-p-2">When a response had supporting content — help articles, videos, or gifs related to the prompt — it surfaced as a list in the chat thread. In V0 this was a list view that was very hard for users to see and navigate.</p></div></div></div></div><p class="inline-p-3">We tracked closely through Amplitude: what users asked, what they did after. Two patterns became undeniable: users needed to navigate Sortly while talking to Sage, not instead of it , and when Sage couldn&#x27;t resolve an issue, they were being pushed out of the product to file a Zendesk ticket, re-entering information (email, username, company ID) that Sortly already had.</p><p class="inline-p-4">Version 1 was the full-page experience. Accurate responses, wrong container. Version 2 introduced a collapsible chat window. Better, but the ticket submission path still kicked users out of the product. CX stakeholders needed an in-product ticket flow; getting engineering alignment required surfacing the user cost of making someone re-enter their own account information to ask for help.</p><div class="inline-div-26"><div class="inline-div-25"><div class="inline-div-14"></div><div class="inline-div-15"><span class="inline-span-3">V2</span><span class="inline-span-4">Collapsible Drawer</span><span class="inline-span-5">Sage as a sidekick</span></div><div class="inline-div-24"><div class="inline-div-19"><div class="inline-div-16">In context</div><div class="inline-div-18"><img src="/assets/cs/sage/69f9433c9211f6317a029cfe_Image_3.png" loading="lazy" sizes="(max-width: 1024px) 100vw, 1024px" srcset="/assets/cs/sage/69f9433c9211f6317a029cfe_Image_3-p-500.png 500w, /assets/cs/sage/69f9433c9211f6317a029cfe_Image_3-p-800.png 800w, /assets/cs/sage/69f9433c9211f6317a029cfe_Image_3.png 1024w" alt="Inventory management interface showing folders and items with a chatbot assistant named Sage offering common question options." class="image-171"/></div><p class="inline-p-5">We expanded the FAQs section based on the questions users asked most in V1. The collapsed nav keeps the app fully accessible — no context switch required.</p></div><div class="inline-div-23"><div class="inline-div-20">In context</div><div class="inline-div-22"><img src="/assets/cs/sage/69f9433c2802a4e7ed2aa38f_Image_4.png" loading="lazy" sizes="(max-width: 1024px) 100vw, 1024px" srcset="/assets/cs/sage/69f9433c2802a4e7ed2aa38f_Image_4-p-500.png 500w, /assets/cs/sage/69f9433c2802a4e7ed2aa38f_Image_4-p-800.png 800w, /assets/cs/sage/69f9433c2802a4e7ed2aa38f_Image_4.png 1024w" alt="Inventory management interface with folders and items list on the left and a chat window on the right showing support conversation and resource links." class="image-172"/></div><p class="inline-p-6">When Sage can&#x27;t resolve an issue, the ticket is filed directly in the drawer — chat history attached, no product exit.</p></div></div></div></div></div></div><div id="sage-solution-section" class="sage-solution-section"><div class="inline-div-2-1-2-3"><div class="inline-div-0-1-2-3">Solution</div><p class="inline-p-0-1-2-3">Sage became a sidekick, not a destination. Users can open it from anywhere in the product, follow instructions without losing the thread, and submit a support ticket without re-entering information we already have. The full-page experience was retired.</p><p class="inline-p-1-1">The solution that shipped was a persistent, collapsible Sage window accessible from any screen, with a direct ticket submission screen pre-populated with account data. Sage got a name, a brand identity (the owl icon), cards for external links and how-to videos, and a layout built to scale down to mobile from day one.</p></div></div><div id="sage-outcomes-section" class="sage-outcomes-section"><div id="sage-outcomes-content" class="sage-outcomes-content"><div class="inline-div-0-1-2-3-4">Outcomes</div><p class="inline-p-0-1-2-3-4">Once we started to see the results, the numbers didn&#x27;t lie.</p><div id="sage-outcomes-grid" class="sage-outcomes-grid"><div class="inline-div-3-1-2-3-4"><div id="sage-outcome-solves" data-prefix="+" data-target="44" data-suffix="%" class="inline-div-1-1-2-3-4">+44%</div><div class="inline-div-2-1-2-3-4">Sage-handled solves</div></div><div class="inline-div-6-1"><div id="sage-outcome-agent-tickets" data-prefix="-" data-target="29" data-suffix="%" class="inline-div-4-1-2">−29%</div><div class="inline-div-5-1">Agent-handled tickets</div></div><div class="inline-div-9-1"><div id="sage-outcome-zendesk-tickets" data-prefix="-" data-target="15" data-suffix="%" class="inline-div-7-1">−15%</div><div class="inline-div-8-1">Zendesk-handled tickets</div></div><div class="inline-div-12-1"><div id="sage-outcome-trial-tickets" data-prefix="-" data-target="48" data-suffix="%" class="inline-div-10-1">−48%</div><div class="inline-div-11-1">Trial tickets in August</div></div></div><div id="sage-outcomes-footnote" class="inline-div-14-1">Steepest single-month trial ticket decline in over a year · Zendesk bot fully sunsetted January 2026</div></div><div id="sage-channel-chart-placeholder" class="sage-channel-chart-placeholder"><div class="w-embed"><!-- ── Outcomes + Solves by Channel (tinted) ─────────────────────────────────── -->
+<div class="band band--tinted outcomes-band reveal">
+  <div class="chart-wrap chart-wrap--card">
+    <svg id="chart-channel" xmlns="http://www.w3.org/2000/svg" style="display: block; width: 100%; max-width: 920px; margin: 0 auto"></svg>
+  </div>
+</div></div></div></div><div id="sage-analysis-section" class="sage-analysis-section"><div class="inline-div-1-1-2-3-4-5"><div class="inline-div-0-1-2-3-4-5">Analysis</div></div><p class="inline-p-0-1-2-3-4-5">As the chatbot window gained more users, I kept tracking not just resolution rates but what Sage was actually handling. Each week I reviewed the conversations: what users asked, how Sage responded, where the answers were accurate. This is a representative week from December 2025 threads all resolved without agent handoff.</p><div id="sage-topic-chart-placeholder" class="sage-topic-chart-placeholder"><div class="code-embed-2 w-embed"><div class="chart-wrap">
+  <svg id="chart-topics" xmlns="http://www.w3.org/2000/svg" style="display: block; width: 100%; max-width: 720px; margin: 0 auto"></svg>
+</div></div></div><p class="inline-p-1-1-2">Sage wasn&#x27;t perfect. The LLM occasionally fabricated instructions, and users would follow steps that were incomplete or flat-out wrong. Those failures were useful: they exposed gaps in the help center documentation, and fixing Sage&#x27;s errors made the source material more accurate than it had been before Sage existed.</p></div><div id="sage-retrospective-footer-section" class="sage-retrospective-footer-section"><div id="sage-retrospective-section" class="sage-retrospective-section"><div class="inline-div-1-1-2-3-4-5-6"><div class="inline-div-0-1-2-3-4-5-6">Retrospective</div><p class="inline-p-0-1-2-3-4-5-6">The hardest advocacy win was the ticket submission feature. Engineering saw it as scope; the CX team needed it; users were paying the cost of its absence every time they left the product to file a ticket. Getting alignment required making that cost visible with data, not just logic.</p><p class="inline-p-1-1-2-3">With more time, I would have started this project 6–12 months earlier. The dev team&#x27;s &quot;quick and dirty&quot; validation phase was necessary, but it ran longer than it needed to because the UX work wasn&#x27;t parallel to the quality validation. Sage could have reached its current form sooner.</p></div></div></div></div><div id="sage-scripts" class="code-embed-3 w-embed w-script"><!-- ── Chart: Solves by Channel ──────────────────────────────────────────────── -->
+<script is:inline>
+(function() {
+  const NS = 'http://www.w3.org/2000/svg';
+  const W=920, H=458, ML=52, MR=28, MT=90, MB=100;
+  const PW=W-ML-MR, PH=H-MT-MB, YB=MT+PH;
+  const BAR_W=36, STEP=56, N=15;
+  const BX0=ML+(PW-(N*BAR_W+(N-1)*20))/2;
+  const SCALE=PH/100;
+  const C={
+    sage:'#046c7a',sageBg:'#e8f6f7',
+    zd:'#d1f470',zdText:'#2d4200',
+    agent:'#d8e6ec',agentT:'#4a6272',
+    grid:'#f3f4f6',axis:'#e5e7eb',
+    text:'#1f2937',muted:'#9ca3af',dim:'#6b7280',
+    blue:'#0d4798',blueBg:'#edf2fb',blueBdr:'#7fa8d4',
+  };
+  const data=[
+    {m:'Nov',y:'2024',s:0,z:17,a:83},{m:'Dec',y:'2024',s:0,z:17,a:83},
+    {m:'Jan',y:'2025',s:0,z:14,a:86},{m:'Feb',y:'2025',s:0,z:15,a:85},
+    {m:'Mar',y:'2025',s:0,z:13,a:87},{m:'Apr',y:'2025',s:0,z:24,a:76},
+    {m:'May',y:'2025',s:0,z:24,a:76},{m:'Jun',y:'2025',s:0,z:22,a:78},
+    {m:'Jul',y:'2025',s:0,z:26,a:74},{m:'Aug',y:'2025',s:0,z:29,a:71},
+    {m:'Sep',y:'2025',s:0,z:26,a:74},{m:'Oct',y:'2025',s:0,z:27,a:71},
+    {m:'Nov',y:'2025',s:46,z:12,a:42},{m:'Dec',y:'2025',s:51,z:9,a:40},
+    {m:'Jan',y:'2026',s:41,z:4,a:55,retired:true},
+  ];
+  const svg=document.getElementById('chart-channel');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('height',H);
+  function mk(t,a,txt){const e=document.createElementNS(NS,t);for(const[k,v]of Object.entries(a))e.setAttribute(k,v);if(txt!==undefined)e.textContent=txt;return e;}
+  function tx(x,y,s,{fill=C.text,size=12,weight=400,anchor='start'}={}){return mk('text',{x,y,fill,'font-size':size,'font-weight':weight,'text-anchor':anchor,'font-family':"-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"},s);}
+  svg.appendChild(mk('rect',{width:W,height:H,fill:'#fff'}));
+  [0,25,50,75,100].forEach(p=>{
+    const gy=YB-p*SCALE;
+    svg.appendChild(mk('line',{x1:ML,y1:gy,x2:W-MR,y2:gy,stroke:p===0?C.axis:C.grid,'stroke-width':1}));
+    svg.appendChild(tx(ML-8,gy+4,p+'%',{fill:C.muted,size:10,anchor:'end'}));
+  });
+  svg.appendChild(tx(ML,26,'Solves by Channel',{size:15,weight:600}));
+  svg.appendChild(tx(ML,45,'Ticket resolution shift across Sage Bot, ZD Bot, and human agents',{fill:C.muted,size:11}));
+  const LEG=[{l:'Sage Bot',c:C.sage},{l:'ZD Bot',c:C.zd,s:'#2d4200'},{l:'Agent',c:C.agent,s:'#c2d4dc'}];
+  let lx=W-MR-228;
+  LEG.forEach(i=>{svg.appendChild(mk('rect',{x:lx,y:20,width:10,height:10,rx:2,fill:i.c,stroke:i.s||'none','stroke-width':1}));svg.appendChild(tx(lx+14,29,i.l,{fill:C.dim,size:11}));lx+=78;});
+  const bi=12,bx0=Math.round(BX0+bi*STEP)-9,bx1=Math.round(BX0+14*STEP+BAR_W)+9;
+  svg.appendChild(mk('rect',{x:bx0,y:MT-12,width:bx1-bx0,height:YB-(MT-12)+4,fill:'none',stroke:C.sage,'stroke-width':1.5,'stroke-dasharray':'6,4',rx:8}));
+  const bcx=bx0+(bx1-bx0)/2,bw=130,bh=18,by=MT-35;
+  svg.appendChild(mk('rect',{x:bcx-65,y:by,width:bw,height:bh,rx:9,fill:C.sageBg,stroke:C.sage,'stroke-width':1}));
+  svg.appendChild(tx(bcx-8,by+12.5,'Sage Bot launches',{fill:C.sage,size:9.5,weight:600,anchor:'middle'}));
+  const ax=bcx+55,ay=by+bh/2;
+  svg.appendChild(mk('polygon',{points:`${ax},${ay} ${ax-6},${ay-4} ${ax-6},${ay+4}`,fill:C.sage}));
+  data.forEach((d,i)=>{
+    const bx=BX0+i*STEP,cx=bx+BAR_W/2;
+    const aH=d.a*SCALE,aY=YB-aH;
+    svg.appendChild(mk('rect',{x:bx,y:aY,width:BAR_W,height:aH,fill:C.agent,rx:2}));
+    if(aH>=12)svg.appendChild(tx(cx,aY+aH/2+4,d.a+'%',{fill:C.agentT,size:10,weight:600,anchor:'middle'}));
+    if(d.z>0){const zH=d.z*SCALE,zY=YB-(d.a+d.z)*SCALE;svg.appendChild(mk('rect',{x:bx,y:zY,width:BAR_W,height:zH,fill:C.zd,rx:2}));if(zH>=14)svg.appendChild(tx(cx,zY+zH/2+4,d.z+'%',{fill:C.zdText,size:10,weight:600,anchor:'middle'}));}
+    if(d.s>0){const sH=d.s*SCALE;svg.appendChild(mk('rect',{x:bx,y:MT,width:BAR_W,height:sH,fill:C.sage,rx:2}));if(sH>=14)svg.appendChild(tx(cx,MT+sH/2+4,d.s+'%',{fill:'#fff',size:10,weight:700,anchor:'middle'}));}
+    svg.appendChild(tx(cx,YB+16,d.m,{fill:C.text,size:10,anchor:'middle'}));
+    svg.appendChild(tx(cx,YB+28,d.y,{fill:C.muted,size:9,anchor:'middle'}));
+    if(d.retired){
+      const px=cx-36,py=YB+52;
+      const g=mk('g',{});
+      g.appendChild(mk('line',{x1:cx,y1:py-2,x2:cx,y2:YB+38,stroke:C.blue,'stroke-width':1.5}));
+      g.appendChild(mk('polygon',{points:`${cx},${YB+33} ${cx-3.5},${YB+38} ${cx+3.5},${YB+38}`,fill:C.blue}));
+      g.appendChild(mk('rect',{x:px,y:py,width:72,height:15,rx:7,fill:C.blueBg,stroke:C.blueBdr,'stroke-width':1}));
+      g.appendChild(tx(cx,py+10.5,'ZD Bot retired',{fill:C.blue,size:8,weight:500,anchor:'middle'}));
+      g.appendChild(mk('animateTransform',{
+        attributeName:'transform',type:'translate',
+        values:'0,0; 0,-5; 0,0',dur:'1.8s',repeatCount:'indefinite',
+        calcMode:'spline',keyTimes:'0; 0.5; 1',keySplines:'0.4 0 0.6 1; 0.4 0 0.6 1'
+      }));
+      svg.appendChild(g);
+    }
+  });
+})();
+</script>
+
+<!-- ── Chart: Topic Breakdown ─────────────────────────────────────────────────── -->
+<script is:inline>
+(function() {
+  const NS='http://www.w3.org/2000/svg';
+  const W=720,H=548,ML=200,MR=72,MT=100,MB=32;
+  const PW=W-ML-MR,PH=H-MT-MB;
+  const BAR_H=40,STEP=52,N=8;
+  const TBH=N*BAR_H+(N-1)*12;
+  const BY0=MT+(PH-TBH)/2;
+  const MX=7,XS=PW/MX;
+  function bc(n){const t=(n-2)/(MX-2);return `rgb(${Math.round(4+t*109)},${Math.round(108+t*65)},${Math.round(122+t*8)})`;}
+  const cats=[
+    {label:'Returns / Pick Lists',  sub1:'Streamline return process,', sub2:'bulk actions',            count:7},
+    {label:'Reporting / Visibility',sub1:'Item locations, client',     sub2:'assets, summaries',       count:4},
+    {label:'Item Management',       sub1:'Variants, barcode scanning,',sub2:'reordering',              count:4},
+    {label:'Inventory Transfers',   sub1:'Location management, user roles',                            count:3},
+    {label:'Warehouse Management',  sub1:'Bay creation,',              sub2:'default return locations',count:2},
+    {label:'Billing / Invoicing',   sub1:'Invoice correction',                                         count:2},
+    {label:'Folder / Structure',    sub1:'Item organization, search',                                  count:2},
+    {label:'Undo Functionality',    sub1:'Recovering deleted actions',                                 count:2},
+  ];
+  const C={text:'#1f2937',muted:'#9ca3af',dim:'#6b7280',teal:'#046c7a',grid:'#f3f4f6',zebra:'#fafafa'};
+  const svg=document.getElementById('chart-topics');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('height',H);
+  function mk(t,a,txt){const e=document.createElementNS(NS,t);for(const[k,v]of Object.entries(a))e.setAttribute(k,v);if(txt!==undefined)e.textContent=txt;return e;}
+  function tx(x,y,s,{fill=C.text,size=12,weight=400,anchor='start'}={}){return mk('text',{x,y,fill,'font-size':size,'font-weight':weight,'text-anchor':anchor,'font-family':"-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"},s);}
+  svg.appendChild(mk('rect',{width:W,height:H,fill:'#fff'}));
+  svg.appendChild(tx(20,30,'What Sage handled in a single week',{size:15,weight:600}));
+  svg.appendChild(tx(20,48,'Too complex for ZD bot, Sage resolved without agent handoff',{fill:C.teal,size:11,weight:500}));
+
+  const gt=BY0-4,gb=BY0+TBH+4;
+  [1,2,3,4,5,6,7].forEach(v=>svg.appendChild(mk('line',{x1:ML+v*XS,y1:gt,x2:ML+v*XS,y2:gb,stroke:C.grid,'stroke-width':1})));
+  svg.appendChild(mk('line',{x1:ML,y1:gt,x2:ML,y2:gb,stroke:'#e5e7eb','stroke-width':1}));
+  const pm={7:'27%',4:'15%',3:'12%',2:'8%'};
+  const barRects=[],barLabels=[];
+  cats.forEach((cat,i)=>{
+    const by=BY0+i*52,cy=by+BAR_H/2,bw=cat.count*XS,tl=!!cat.sub2;
+    if(i%2===0)svg.appendChild(mk('rect',{x:10,y:by-4,width:W-20,height:BAR_H+8,fill:C.zebra,rx:4}));
+    svg.appendChild(tx(20,tl?cy-11:cy-6,cat.label,{fill:C.text,size:11,weight:600}));
+    svg.appendChild(tx(20,tl?cy+1:cy+7,cat.sub1,{fill:C.muted,size:9}));
+    if(cat.sub2)svg.appendChild(tx(20,cy+12,cat.sub2,{fill:C.muted,size:9}));
+    const barEl=mk('rect',{x:ML,y:by,width:0,height:BAR_H,fill:bc(cat.count),rx:4});
+    svg.appendChild(barEl);
+    barRects.push({el:barEl,target:bw,delay:i*85});
+    const labelEl=tx(ML+bw+9,cy+4.5,pm[cat.count]||String(cat.count),{fill:C.dim,size:10,weight:400});
+    labelEl.style.opacity='0';
+    svg.appendChild(labelEl);
+    barLabels.push({el:labelEl,delay:i*85+1100});
+  });
+  const topicsObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      topicsObs.disconnect();
+      barRects.forEach(({el,target,delay})=>{
+        setTimeout(()=>{
+          const start=performance.now(),dur=1200;
+          (function frame(now){
+            const t=Math.min((now-start)/dur,1);
+            el.setAttribute('width',target*(1-Math.pow(1-t,3)));
+            if(t<1)requestAnimationFrame(frame);
+          })(performance.now());
+        },delay);
+      });
+      barLabels.forEach(({el,delay})=>{
+        setTimeout(()=>{el.style.transition='opacity 0.25s ease-out';el.style.opacity='1';},delay);
+      });
+    });
+  },{rootMargin:'0px 0px -33% 0px',threshold:0});
+  topicsObs.observe(svg);
+})();
+</script>
+
+<!-- ── Chatbot animation ─────────────────────────────────────────────────────── -->
+<script is:inline>
+(function() {
+  const drawer   = document.getElementById('sage-drawer');
+  const msgUser  = document.getElementById('msg-user');
+  const typing   = document.getElementById('typing-dots');
+  const msgSage  = document.getElementById('msg-sage');
+  const helpCard = document.getElementById('help-card');
+  if (!drawer) return;
+
+  function set(el, styles) { Object.assign(el.style, styles); }
+
+  function snap(el, hidden) {
+    set(el, { transition:'none', opacity: hidden ? '0' : '1',
+      transform: el === drawer ? (hidden ? 'translateX(291px)' : 'translateX(0)')
+                               : (hidden ? 'translateY(8px)'   : 'translateY(0)') });
+  }
+
+  function reveal(el, delay, dur) {
+    setTimeout(() => set(el, {
+      transition: `opacity ${dur||380}ms ease-out, transform ${dur||380}ms ease-out`,
+      opacity:'1', transform: el === drawer ? 'translateX(0)' : 'translateY(0)'
+    }), delay);
+  }
+
+  function conceal(el, delay, dur) {
+    setTimeout(() => set(el, { transition:`opacity ${dur||280}ms ease-in`, opacity:'0' }), delay);
+  }
+
+  function resetConversation() {
+    [msgUser, typing, msgSage, helpCard].forEach(el => snap(el, true));
+  }
+
+  function play() {
+    resetConversation();
+    setTimeout(() => {
+      reveal(msgUser,  50);
+      reveal(typing,   900);
+      conceal(typing,  2200, 200);
+      reveal(msgSage,  2350, 480);
+      reveal(helpCard, 3300, 360);
+      conceal(msgUser,  5800, 380);
+      conceal(msgSage,  6050, 380);
+      conceal(helpCard, 6300, 380);
+      setTimeout(play, 7400);
+    }, 0);
+  }
+
+  snap(drawer, true);
+  resetConversation();
+
+  setTimeout(() => {
+    set(drawer, {
+      transition: 'opacity 0.5s ease-out, transform 0.75s cubic-bezier(0.16,1,0.3,1)',
+      opacity:'1', transform:'translateX(0)'
+    });
+    setTimeout(play, 750);
+  }, 700);
+})();
+</script>
+
+<!-- ── Outcomes counter animation ────────────────────────────────────────────── -->
+<script is:inline>
+(function() {
+  const items = Array.from(document.querySelectorAll('.outcome-num[data-target]'));
+  items.forEach(el => {
+    el.textContent = (el.dataset.prefix || '') + '0' + (el.dataset.suffix || '');
+  });
+  const band = document.querySelector('.outcomes-band');
+  if (!band) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      obs.disconnect();
+      items.forEach((el, idx) => {
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const target = parseInt(el.dataset.target, 10);
+        setTimeout(() => {
+          const start = performance.now(), dur = 720;
+          (function frame(now) {
+            const t = Math.min((now - start) / dur, 1);
+            el.textContent = prefix + Math.round(target * (1 - Math.pow(1-t,4))) + suffix;
+            if (t < 1) requestAnimationFrame(frame);
+          })(performance.now());
+        }, idx * 110);
+      });
+    });
+  }, {rootMargin:'0px 0px -33% 0px', threshold:0});
+  obs.observe(band);
+})();
+</script>
+
+<!-- ── Scroll reveal ──────────────────────────────────────────────────────────── -->
+<script is:inline>
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  }),
+  { threshold: 0.08 }
+);
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script></div>
+
+<script is:inline>(()=>{if(window.__sageOutcomeAnim)return;window.__sageOutcomeAnim=1;const s=document.getElementById('sage-outcomes-section');if(!s)return;const items=[['sage-outcome-solves',44,'+'],['sage-outcome-agent-tickets',29,'-'],['sage-outcome-zendesk-tickets',15,'-'],['sage-outcome-trial-tickets',48,'-']].map(([id,target,prefix])=>({el:document.getElementById(id),target,prefix})).filter(x=>x.el);items.forEach(x=>x.el.textContent=x.prefix+'0%');const run=()=>items.forEach((x,i)=>setTimeout(()=>{const a=performance.now(),d=720;requestAnimationFrame(function f(n){const t=Math.min((n-a)/d,1),v=Math.round(x.target*(1-(1-t)**4));x.el.textContent=x.prefix+v+'%';if(t<1)requestAnimationFrame(f);});},i*110));const o=new IntersectionObserver(e=>{if(e[0]&&e[0].isIntersecting){o.disconnect();run();}},{rootMargin:'0px 0px -33% 0px'});o.observe(s);})();</script>
+</PageLayout>
+
+<style>
+@font-face{font-family:webflow-icons;src:url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBiUAAAC8AAAAYGNtYXDpP+a4AAABHAAAAFxnYXNwAAAAEAAAAXgAAAAIZ2x5ZmhS2XEAAAGAAAADHGhlYWQTFw3HAAAEnAAAADZoaGVhCXYFgQAABNQAAAAkaG10eCe4A1oAAAT4AAAAMGxvY2EDtALGAAAFKAAAABptYXhwABAAPgAABUQAAAAgbmFtZSoCsMsAAAVkAAABznBvc3QAAwAAAAAHNAAAACAAAwP4AZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpAwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAQAAAAAwACAACAAQAAQAg5gPpA//9//8AAAAAACDmAOkA//3//wAB/+MaBBcIAAMAAQAAAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEBIAAAAyADgAAFAAAJAQcJARcDIP5AQAGA/oBAAcABwED+gP6AQAABAOAAAALgA4AABQAAEwEXCQEH4AHAQP6AAYBAAcABwED+gP6AQAAAAwDAAOADQALAAA8AHwAvAAABISIGHQEUFjMhMjY9ATQmByEiBh0BFBYzITI2PQE0JgchIgYdARQWMyEyNj0BNCYDIP3ADRMTDQJADRMTDf3ADRMTDQJADRMTDf3ADRMTDQJADRMTAsATDSANExMNIA0TwBMNIA0TEw0gDRPAEw0gDRMTDSANEwAAAAABAJ0AtAOBApUABQAACQIHCQEDJP7r/upcAXEBcgKU/usBFVz+fAGEAAAAAAL//f+9BAMDwwAEAAkAABcBJwEXAwE3AQdpA5ps/GZsbAOabPxmbEMDmmz8ZmwDmvxmbAOabAAAAgAA/8AEAAPAAB0AOwAABSInLgEnJjU0Nz4BNzYzMTIXHgEXFhUUBw4BBwYjNTI3PgE3NjU0Jy4BJyYjMSIHDgEHBhUUFx4BFxYzAgBqXV6LKCgoKIteXWpqXV6LKCgoKIteXWpVSktvICEhIG9LSlVVSktvICEhIG9LSlVAKCiLXl1qal1eiygoKCiLXl1qal1eiygoZiEgb0tKVVVKS28gISEgb0tKVVVKS28gIQABAAABwAIAA8AAEgAAEzQ3PgE3NjMxFSIHDgEHBhUxIwAoKIteXWpVSktvICFmAcBqXV6LKChmISBvS0pVAAAAAgAA/8AFtgPAADIAOgAAARYXHgEXFhUUBw4BBwYHIxUhIicuAScmNTQ3PgE3NjMxOAExNDc+ATc2MzIXHgEXFhcVATMJATMVMzUEjD83NlAXFxYXTjU1PQL8kz01Nk8XFxcXTzY1PSIjd1BQWlJJSXInJw3+mdv+2/7c25MCUQYcHFg5OUA/ODlXHBwIAhcXTzY1PTw1Nk8XF1tQUHcjIhwcYUNDTgL+3QFt/pOTkwABAAAAAQAAmM7nP18PPPUACwQAAAAAANciZKUAAAAA1yJkpf/9/70FtgPDAAAACAACAAAAAAAAAAEAAAPA/8AAAAW3//3//QW2AAEAAAAAAAAAAAAAAAAAAAAMBAAAAAAAAAAAAAAAAgAAAAQAASAEAADgBAAAwAQAAJ0EAP/9BAAAAAQAAAAFtwAAAAAAAAAKABQAHgAyAEYAjACiAL4BFgE2AY4AAAABAAAADAA8AAMAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADQAAAAEAAAAAAAIABwCWAAEAAAAAAAMADQBIAAEAAAAAAAQADQCrAAEAAAAAAAUACwAnAAEAAAAAAAYADQBvAAEAAAAAAAoAGgDSAAMAAQQJAAEAGgANAAMAAQQJAAIADgCdAAMAAQQJAAMAGgBVAAMAAQQJAAQAGgC4AAMAAQQJAAUAFgAyAAMAAQQJAAYAGgB8AAMAAQQJAAoANADsd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzUmVndWxhcgBSAGUAZwB1AGwAYQByd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==)format("truetype");font-weight:400;font-style:normal}
+.w-icon-nav-menu:before{content:""}
+.w-button{color:#fff;line-height:inherit;cursor:pointer;background-color:#3898ec;border:0;border-radius:0;padding:9px 15px;text-decoration:none;display:inline-block}
+input.w-button{-webkit-appearance:button}
+.w-list-unstyled{padding-left:0;list-style:none}
+.w-embed:before,.w-embed:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-embed:after{clear:both}
+@media screen and (max-width:767px){.w-nav-brand{padding-left:10px}}
+.w-richtext:before,.w-richtext:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-richtext:after{clear:both}
+.w-richtext[contenteditable=true]:before,.w-richtext[contenteditable=true]:after{white-space:initial}
+.w-richtext ol,.w-richtext ul{overflow:hidden}
+.w-richtext .w-richtext-figure-selected.w-richtext-figure-type-video div:after,.w-richtext .w-richtext-figure-selected[data-rt-type=video] div:after,.w-richtext .w-richtext-figure-selected.w-richtext-figure-type-image div,.w-richtext .w-richtext-figure-selected[data-rt-type=image] div{outline:2px solid #2895f7}
+.w-richtext figure.w-richtext-figure-type-video>div:after,.w-richtext figure[data-rt-type=video]>div:after{content:"";display:none;position:absolute;inset:0}
+.w-richtext figure{max-width:60%;position:relative}
+.w-richtext figure>div:before{cursor:default!important}
+.w-richtext figure img{width:100%}
+.w-richtext figure figcaption.w-richtext-figcaption-placeholder{opacity:.6}
+.w-richtext figure div{color:#0000;font-size:0}
+.w-richtext figure.w-richtext-figure-type-image,.w-richtext figure[data-rt-type=image]{display:table}
+.w-richtext figure.w-richtext-figure-type-image>div,.w-richtext figure[data-rt-type=image]>div{display:inline-block}
+.w-richtext figure.w-richtext-figure-type-image>figcaption,.w-richtext figure[data-rt-type=image]>figcaption{caption-side:bottom;display:table-caption}
+.w-richtext figure.w-richtext-figure-type-video,.w-richtext figure[data-rt-type=video]{width:60%;height:0}
+.w-richtext figure.w-richtext-figure-type-video iframe,.w-richtext figure[data-rt-type=video] iframe{width:100%;height:100%;position:absolute;top:0;left:0}
+.w-richtext figure.w-richtext-figure-type-video>div,.w-richtext figure[data-rt-type=video]>div{width:100%}
+.w-richtext figure.w-richtext-align-center{clear:both;margin-left:auto;margin-right:auto}
+.w-richtext figure.w-richtext-align-center.w-richtext-figure-type-image>div,.w-richtext figure.w-richtext-align-center[data-rt-type=image]>div{max-width:100%}
+.w-richtext figure.w-richtext-align-normal{clear:both}
+.w-richtext figure.w-richtext-align-fullwidth{text-align:center;clear:both;width:100%;max-width:100%;margin-left:auto;margin-right:auto;display:block}
+.w-richtext figure.w-richtext-align-fullwidth>div{padding-bottom:inherit;display:inline-block}
+.w-richtext figure.w-richtext-align-fullwidth>figcaption{display:block}
+.w-richtext figure.w-richtext-align-floatleft{float:left;clear:none;margin-right:15px}
+.w-richtext figure.w-richtext-align-floatright{float:right;clear:none;margin-left:15px}
+.w-nav{z-index:1000;background:#ddd;position:relative}
+.w-nav:before,.w-nav:after{content:" ";grid-area:1/1/2/2;display:table}
+.w-nav:after{clear:both}
+.w-nav-brand{float:left;color:#333;text-decoration:none;position:relative}
+.w-nav-menu{float:right;position:relative}
+.w-nav[data-animation=over-left] .w-nav-overlay{width:auto}
+.w-nav[data-animation=over-left] .w-nav-overlay,.w-nav[data-animation=over-left] [data-nav-menu-open]{z-index:1;top:0;right:auto}
+.w-nav[data-animation=over-right] .w-nav-overlay{width:auto}
+.w-nav[data-animation=over-right] .w-nav-overlay,.w-nav[data-animation=over-right] [data-nav-menu-open]{z-index:1;top:0;left:auto}
+.w-nav-button{float:right;cursor:pointer;-webkit-tap-highlight-color:#0000;tap-highlight-color:#0000;-webkit-user-select:none;user-select:none;padding:18px;font-size:24px;display:none;position:relative}
+.w-nav-button:focus{outline:0}
+.w-nav-button.w--open{color:#fff;background-color:#c8c8c8}
+.w-nav[data-collapse=all] .w-nav-menu{display:none}
+.w-nav[data-collapse=all] .w-nav-button,.w--nav-dropdown-open,.w--nav-dropdown-toggle-open{display:block}
+@media screen and (max-width:991px){.w-nav[data-collapse=medium] .w-nav-menu{display:none}.w-nav[data-collapse=medium] .w-nav-button{display:block}}
+@media screen and (max-width:767px){.w-nav[data-collapse=small] .w-nav-menu{display:none}.w-nav[data-collapse=small] .w-nav-button{display:block}.w-nav-brand{padding-left:10px}}
+@media screen and (max-width:479px){.w-nav[data-collapse=tiny] .w-nav-menu{display:none}.w-nav[data-collapse=tiny] .w-nav-button{display:block}}
+.sage-main-wrapper{--light-bg:snow;--card-bg-default:#282838;--lg-spacer:4rem;--main-bg:#161623;--h2:2.488rem;--white:white;--text-body:1rem;--toe-bean-pink-200:#f1b4bb;--midnight-blue-500:#2f4276;--def-spacer:1rem;--navy-blue-500:#1f4172;--toe-bean-pink-400:#c88f96;--text-extra-sm:.694rem;--md-spacer:2rem;--exp-bg:#fbfbfb;--h1:2.986rem;--h5:1.44rem;--h3:2.074rem;--tf-body:#09143a;--main-body-bg:#161623;--primary-dark-600:#333;--h4:1.728rem;--xl-spacer:8rem;--5p-bg:#f6f2ec;--text-sm:.833rem;--tf-blue:#1d44c0;--toe-bean-pink-300:#c88f96;--text-xl:56px;--navy-blue-200:#92bfff;--navy-blue-100:#c3dbff;--secondary-bg:#161623;--toe-bean-pink-100:#f6dadd;--midnight-blue-300:#89a0dc;--midnight-blue-600:#132043;--xs-spacer:.5rem;--5p-sakura:#dfb1b6;--5p-cold:#234272;--xxs-spacer:.25rem;--5p-orchid:#cd899e;--sm-spacer:.75rem;--5p-ballad:#a6427c;--xxl-spacer:16rem;--ui-minty:#c7e0da;--ui-banana-smoothie:#f2e2a4;--bg:#111216;--body:#c4c5c9;--sp-9:96px;--sp-6:32px;--sp-5:24px;--sp-3:12px;--muted:#a8a8ac;--subtle:#76777d;--ink:#f4f4f6;--sp-7:48px;--rule:#ffffff12;--surface:#1a1c23;--elevated:#22242d;--brand-tint:#170c0d;--sp-8:64px;--sp-4:16px;--brand:#dd2a3b;--brand-light:#e45562;--rule-strong:#ffffff21;--sp-2:8px;--sp-1:4px;--highest:#2f313a;--brand-dim:#dd2a3b1a;--brand-subtle:#dd2a3b0f;--green:#559d69;--toe-bean-pink-500:#774d52;--navy-blue-300:#6695d8;--navy-blue-400:#3d68a5;--navy-blue-600:#1a365f;--midnight-blue-100:#dae4ff;--midnight-blue-200:#bcceff;--midnight-blue-400:#566da9;--black:black}
+.navbar-logo-left-container{z-index:5;background-color:#0000;width:1030px;max-width:100%;margin-left:auto;margin-right:auto;padding:15px 20px}
+.navbar-logo-left-container.shadow-three{z-index:888;-webkit-backdrop-filter:blur(1rem);backdrop-filter:blur(1rem);-webkit-text-fill-color:inherit;background-color:#28283800;background-clip:border-box;border:1px #373749;border-radius:4px;width:100%;max-width:1140px;margin-top:0;margin-bottom:0;padding:2rem 1rem;position:sticky;top:1rem}
+.container-13{width:100%;max-width:1140px;margin-left:auto;margin-right:auto}
+.navbar-wrapper-2{color:#fff;justify-content:space-between;align-items:center;max-width:1140px;display:flex}
+.nav-menu-two{justify-content:center;align-items:baseline;margin-bottom:0;display:flex}
+.nav-link-2{color:var(--white);font-family:Public Sans,sans-serif;font-size:var(--text-body);letter-spacing:.25px;background-color:#37374900;border:1px #373749;margin-left:4px;margin-right:4px;padding:5px 8px;line-height:20px;text-decoration:none}
+.nav-link-2:hover{color:var(--toe-bean-pink-200);border-radius:4px}
+.nav-link-2:focus-visible,.nav-link-2[data-wf-focus-visible]{outline-offset:0px;color:#0050bd;border-radius:4px;outline:2px solid #0050bd}
+.nav-link-2.w--current:hover{color:var(--toe-bean-pink-200)}
+.nav-link-2.nav_last_item{margin-right:var(--def-spacer)}
+.nav-link-2.lago_nav_item{color:var(--midnight-blue-500)}
+.nav-link-2.sprocket_nav_item,.nav-link-2.about_nav_item:hover{color:var(--navy-blue-500)}
+.nav-link-2._5p_nav__item{color:var(--midnight-blue-500)}
+.btn_primary{background-color:var(--toe-bean-pink-200);box-shadow:-4px 4px 0 0 var(--light-bg);color:var(--navy-blue-500);letter-spacing:2px;text-transform:uppercase;border-radius:4px;padding:.75rem 1.5rem;font-family:Public Sans,sans-serif;font-size:12px;line-height:20px;transition:all .2s}
+.btn_primary:hover{background-color:var(--toe-bean-pink-400);box-shadow:none;color:#fff;transform:translate(-4px,4px)}
+.btn_primary:active{background-color:#43464d}
+.btn_primary.cta_button{background-color:var(--navy-blue-500);color:var(--light-bg);font-family:Public Sans,sans-serif}
+.btn_primary.btn_about{background-color:var(--navy-blue-500);color:var(--light-bg)}
+.btn_primary.exp_prim_btn{margin-top:var(--md-spacer);background-color:var(--exp-bg);box-shadow:-4px 4px 0 0 var(--card-bg-default)}
+.btn_primary.exp_prim_btn:hover{color:var(--navy-blue-500)}
+.inline-span-0,.inline-span-1,.inline-span-2{border-radius:50%;flex-shrink:0;width:3px;height:3px;display:inline-block}
+.inline-div-0{grid-column-gap:0px;grid-row-gap:0px;letter-spacing:.14em;text-transform:uppercase;color:#586867;color:#586867;flex-wrap:wrap;align-items:center;margin-bottom:24px;font-family:Lato,sans-serif;font-size:12px;font-weight:500;display:flex}
+.inline-h1-0{max-width:58ch;color:var(--tf-body);letter-spacing:-.01em;margin:0 0 32px;font-family:Lato,sans-serif;font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1}
+.inline-p-0{color:#586867;color:#586867;max-width:58ch;margin:0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.75}
+.inline-div-0-1{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.inline-p-0-1{max-width:64ch;margin:0 0 16px;font-family:Bitter,serif;font-size:15.5px;line-height:1.8}
+.inline-div-1-1{border-top-style:solid;border-top-width:1px;border-top-color:var(--ui-minty);border-bottom-style:solid;border-bottom-width:1px;border-bottom-color:var(--ui-minty);text-align:center;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);max-width:48ch;margin:0 auto;padding:24px 0;font-family:Josefin Sans,sans-serif;font-size:17px;font-style:italic;line-height:1.7}
+.inline-div-2-1{grid-column-gap:0rem;grid-row-gap:0rem;color:#24363b;color:lab(21.2959% -6.74608 -5.26328);flex-flow:column;justify-content:center;align-items:center;max-width:900px;margin:0 auto;font-family:\"Libre Baskervill;display:flex}
+.inline-div-0-1-2{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.inline-p-0-1-2{max-width:64ch;margin:0 0 16px;font-family:Bitter,serif;font-size:15.5px;line-height:1.8}
+.inline-div-1-1-2{height:1px}
+.inline-span-0-1{letter-spacing:.16em;text-transform:uppercase;color:#586867;color:#586867;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:700}
+.inline-span-1-1{letter-spacing:.01em;color:#24363b;color:lab(21.2959% -6.74608 -5.26328);font-family:Lato,sans-serif;font-size:14px;font-weight:700}
+.inline-span-2-1{text-transform:uppercase;color:#586867;color:#586867;margin-left:auto;font-family:Lato,sans-serif;font-size:12px;font-weight:700}
+.inline-div-2-1-2{grid-column-gap:12px;grid-row-gap:12px;align-items:baseline;display:flex}
+.inline-div-3-1-2{letter-spacing:.15em;text-transform:uppercase;color:#586867;color:#586867;font-family:Lato,sans-serif;font-size:9px;font-weight:700}
+.inline-div-5{border-radius:10px;justify-content:center;align-items:center;height:auto;padding:1rem;display:flex;box-shadow:0 1px 3px #0000000f,0 6px 24px #00000017}
+.inline-p-1{color:#586867;color:#586867;margin:0;font-family:Bitter,serif;font-size:12px;font-style:italic;line-height:1.6}
+.inline-div-6{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-7{letter-spacing:.15em;text-transform:uppercase;color:#586867;color:#586867;font-family:Lato,sans-serif;font-size:9px;font-weight:700}
+.inline-div-9{border-radius:10px;padding:1rem;overflow:hidden;box-shadow:0 1px 3px #0000000f,0 6px 24px #00000017}
+.inline-p-2{color:#586867;color:#586867;margin:0;font-family:Bitter,serif;font-size:12px;font-style:italic;line-height:1.6}
+.inline-div-10{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-11{grid-column-gap:24px;grid-row-gap:24px;flex-flow:column;grid-template-rows:auto;grid-template-columns:1fr 1fr;grid-auto-flow:column;display:flex}
+.inline-div-12{grid-column-gap:16px;grid-row-gap:16px;flex-direction:column;display:flex}
+.inline-div-13{margin:32px 0}
+.inline-p-3,.inline-p-4{max-width:64ch;margin:0 0 16px;font-family:Bitter,serif;font-size:15.5px;line-height:1.8}
+.inline-div-14{height:1px}
+.inline-span-3{letter-spacing:.16em;text-transform:uppercase;color:#586867;color:#586867;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:700}
+.inline-span-4{letter-spacing:.01em;color:#24363b;color:lab(21.2959% -6.74608 -5.26328);font-family:Lato,sans-serif;font-size:14px;font-weight:700}
+.inline-span-5{text-transform:uppercase;color:#586867;color:#586867;margin-left:auto;font-family:Lato,sans-serif;font-size:12px;font-weight:700}
+.inline-div-15{grid-column-gap:12px;grid-row-gap:12px;align-items:baseline;display:flex}
+.inline-div-16{letter-spacing:.15em;text-transform:uppercase;color:#586867;color:#586867;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:9px;font-weight:700}
+.inline-div-18{border-radius:10px;padding:1rem;overflow:hidden;box-shadow:0 1px 3px #0000000f,0 6px 24px #00000017}
+.inline-p-5{color:#586867;color:#586867;margin:0;font-family:Bitter,serif;font-size:12px;font-style:italic;line-height:1.6}
+.inline-div-19{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-20{letter-spacing:.15em;text-transform:uppercase;color:#586867;color:#586867;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:9px;font-weight:700}
+.inline-div-22{border-radius:10px;padding:1rem;overflow:hidden;box-shadow:0 1px 3px #0000000f,0 6px 24px #00000017}
+.inline-p-6{color:#586867;color:#586867;margin:0;font-family:Bitter,serif;font-size:12px;font-style:italic;line-height:1.6}
+.inline-div-23{grid-column-gap:12px;grid-row-gap:12px;flex-direction:column;display:flex}
+.inline-div-24{grid-column-gap:24px;grid-row-gap:24px;flex-flow:column;grid-template-rows:auto;grid-template-columns:1fr 1fr;display:flex}
+.inline-div-25{grid-column-gap:16px;grid-row-gap:16px;flex-direction:column;display:flex}
+.inline-div-26{margin:32px 0}
+.inline-div-27{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);flex-flow:column;justify-content:center;align-items:center;max-width:900px;margin:0 auto;font-family:\"Libre Baskervill;display:flex}
+.inline-div-0-1-2-3{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.inline-p-0-1-2-3{max-width:64ch;margin:0 0 16px;font-family:Bitter,serif;font-size:15.5px;line-height:1.8}
+.inline-p-1-1{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);max-width:64ch;margin:0 0 16px;font-family:Bitter,serif;font-size:15.5px;line-height:1.8}
+.inline-div-2-1-2-3{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);max-width:640px;margin:0 auto;font-family:Libre Baskerville,Georgia,serif}
+.inline-div-0-1-2-3-4{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.inline-p-0-1-2-3-4{color:#586867;color:#586867;max-width:48ch;margin:0 0 32px;font-family:Lato,sans-serif;font-size:16px;font-style:italic;line-height:1.75}
+.inline-div-1-1-2-3-4{letter-spacing:-.02em;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:8px;font-family:Lato,sans-serif;font-size:clamp(34px,4.5vw,52px);font-weight:800;line-height:1}
+.inline-div-2-1-2-3-4{text-align:center;color:#586867;color:#586867;max-width:14ch;font-family:Lato,sans-serif;font-size:12px;line-height:1.5}
+.inline-div-3-1-2-3-4{border-right-style:solid;border-right-width:1px;border-right-color:var(--ui-minty);flex-flow:column;justify-content:center;align-items:center;margin-right:24px;padding:0 24px 0 0;display:flex}
+.inline-div-4-1-2{letter-spacing:-.02em;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:8px;font-family:Lato,sans-serif;font-size:clamp(34px,4.5vw,52px);font-weight:800;line-height:1}
+.inline-div-5-1{text-align:center;color:#586867;color:#586867;max-width:14ch;font-family:Lato,sans-serif;font-size:12px;line-height:1.5}
+.inline-div-6-1{border-right-style:solid;border-right-width:1px;border-right-color:var(--ui-minty);flex-flow:column;justify-content:center;align-items:center;margin-right:24px;padding:0 24px 0 0;display:flex}
+.inline-div-7-1{letter-spacing:-.02em;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:8px;font-family:Lato,sans-serif;font-size:clamp(34px,4.5vw,52px);font-weight:800;line-height:1}
+.inline-div-8-1{text-align:center;color:#586867;color:#586867;max-width:14ch;font-family:Lato,sans-serif;font-size:12px;line-height:1.5}
+.inline-div-9-1{border-right-style:solid;border-right-width:1px;border-right-color:var(--ui-minty);flex-flow:column;justify-content:center;align-items:center;margin-right:24px;padding:0 24px 0 0;display:flex}
+.inline-div-10-1{letter-spacing:-.02em;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:8px;font-family:Lato,sans-serif;font-size:clamp(34px,4.5vw,52px);font-weight:800;line-height:1}
+.inline-div-11-1{color:#586867;color:#586867;max-width:14ch;font-family:Lato,sans-serif;font-size:12px;line-height:1.5}
+.inline-div-12-1{text-align:center;flex-flow:column;justify-content:center;align-items:center;padding-right:0;display:flex}
+.inline-div-14-1{letter-spacing:.02em;color:#586867;color:#586867;border-top-style:solid;border-top-width:1px;justify-content:center;align-items:center;margin-top:24px;padding-top:16px;font-family:Lato,sans-serif;font-size:11.5px;display:flex}
+.inline-div-0-1-2-3-4-5{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.inline-div-1-1-2-3-4-5{max-width:640px;margin:0 auto}
+.inline-p-0-1-2-3-4-5{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);max-width:640px;margin:0 auto 32px;font-family:Bitter,serif;font-size:14px;line-height:1.8}
+.inline-p-1-1-2{color:#24363b;color:lab(21.2959% -6.74608 -5.26328);max-width:640px;margin:32px auto 0;font-family:Bitter,serif;font-size:14px;line-height:1.8}
+.inline-div-0-1-2-3-4-5-6{letter-spacing:.2em;text-transform:uppercase;color:#00595a;color:lab(33.6003% -27.5874 -8.82139);margin-bottom:16px;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.inline-p-0-1-2-3-4-5-6{max-width:64ch;margin:0 0 16px;font-size:15.5px;line-height:1.8}
+.inline-p-1-1-2-3{max-width:64ch;margin:0;font-size:15.5px;line-height:1.8}
+.inline-div-1-1-2-3-4-5-6{max-width:640px;margin:0 auto}
+.sage-header-hero-section{background-color:#f3f7f4;width:100%;min-height:100vh}
+.sage-page-header{max-width:640px;margin-left:auto;margin-right:auto;padding:96px 32px 64px}
+.sage-hero-visual{max-width:860px;margin-left:auto;margin-right:auto;padding-bottom:64px;padding-left:32px;padding-right:32px}
+.sage-problem-section{background-color:#fff;border-top:1px solid #dde7e3;padding:48px 32px}
+.sage-process-section{background-color:#f3f7f4;border-top:1px solid #dde7e3;padding:48px 32px}
+.sage-solution-section{background-color:#fff;border-top:1px solid #dde7e3;padding:48px 32px}
+.sage-outcomes-section{background-color:#f3f7f4;border-top:1px solid #dde7e3;padding:48px 32px}
+.sage-outcomes-content{max-width:768px;margin-left:auto;margin-right:auto}
+.sage-outcomes-grid{grid-template-columns:repeat(4,1fr);justify-content:center;align-items:center;gap:0;display:flex}
+.sage-channel-chart-placeholder{max-width:960px;margin-top:48px;margin-left:auto;margin-right:auto}
+.sage-analysis-section{background-color:#fff;border-top:1px solid #dde7e3;padding:48px 32px}
+.sage-topic-chart-placeholder{max-width:960px;margin-left:auto;margin-right:auto}
+.sage-retrospective-footer-section{background-color:#f3f7f4}
+.sage-retrospective-section{border-top:1px solid #dde7e3;padding:48px 32px;font-family:Bitter,serif}
+.code-embed-2{padding-top:1rem}
+.div-block-366{flex-flow:column;justify-content:center;align-items:flex-start;display:flex}
+.div-block-367{flex-flow:column;justify-content:center;align-items:flex-start;max-width:100%;display:flex}
+.div-block-368{justify-content:flex-start;align-items:flex-start;margin-top:2rem;display:flex}
+.code-embed-3{display:none}
+.image-169,.image-170,.image-171,.image-172{border-radius:8px}
+.test-wrapper.inline-div-0{background-color:#111;padding:20px}
+.meta.inline-div-0{box-sizing:border-box;grid-column-gap:12px;grid-row-gap:12px;color:#a8a8ac;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap;align-items:center;margin:0 0 24px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:11px;font-weight:500;display:flex}
+.meta-dot.inline-span-1,.meta-dot.inline-span-3,.meta-dot.inline-span-5{box-sizing:border-box;background-color:#76777d;border-radius:50%;flex-shrink:0;width:3px;height:3px;margin:0;padding:0;display:inline-block}
+.page-title.inline-h1-0{box-sizing:border-box;color:#f4f4f6;letter-spacing:-.01em;max-width:58ch;margin:0;padding:0;font-family:Josefin Sans,sans-serif;font-size:clamp(26px,4.5vw,42px);font-weight:800;line-height:1.1}
+.reveal{opacity:0;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);transform:translateY(18px)}
+.reveal.visible{opacity:1;transform:none}
+.band{padding:var(--sp-7)var(--sp-6);border-top:1px solid var(--rule)}
+.band-col.inline-div-5{box-sizing:border-box;max-width:640px;margin:0 auto;padding:0}
+.band-col.inline-div-20{box-sizing:border-box;max-width:640px;margin:4rem auto 0;padding:0;font-family:Lato,sans-serif}
+.band-col.inline-div-24{box-sizing:border-box;grid-column-gap:0px;grid-row-gap:0px;max-width:640px;margin:0 auto;padding:0;font-family:Lato,sans-serif}
+.band-col--wide.inline-div-6{margin-top:var(--sp-7)}
+.page-lede.inline-p-0{box-sizing:border-box;color:#a8a8ac;max-width:58ch;margin:0;padding:0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.75}
+.eyebrow.inline-div-5{margin-bottom:var(--sp-6);text-align:center}
+.eyebrow.inline-div-6{box-sizing:border-box;color:#dd2a3b;text-align:center;letter-spacing:.3em;text-transform:uppercase;margin:0 0 32px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-19,.eyebrow.inline-div-23{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:10px;font-weight:600}
+.eyebrow.inline-div-27{box-sizing:border-box;color:#dd2a3b;letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px;padding:0;font-family:Lato,sans-serif;font-size:10px;font-weight:600}
+.pull-quote.inline-p-5{box-sizing:border-box;color:#e45562;text-align:center;border-top:1px solid #dd2a3b38;border-bottom:1px solid #dd2a3b38;max-width:48ch;margin:0 auto;padding:24px 0;font-family:Bitter,serif;font-size:17px;font-style:italic;line-height:1.7}
+.asset-wrap.inline-div-16{box-sizing:border-box;max-width:860px;margin:32px auto 0;padding:0 32px}
+.asset-wrap.inline-div-25{box-sizing:border-box;justify-content:flex-start;align-items:center;max-width:860px;margin:32px auto 0;padding:0 32px}
+.asset-caption.inline-p-4,.asset-caption.inline-p-9{box-sizing:border-box;color:#76777d;text-align:center;letter-spacing:.04em;white-space:nowrap;max-width:64ch;margin:12px 0 0;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:11.5px;line-height:1.8}
+.before-graphic-bg.inline-div-15{box-sizing:border-box;background-color:#1a1c23;border-radius:14px;width:100%;margin:0;padding:32px;box-shadow:0 2px 12px #00000059,0 20px 72px #0006}
+.before-cards-row.inline-div-14{box-sizing:border-box;grid-column-gap:24px;grid-row-gap:24px;grid-template-rows:auto;grid-template-columns:1fr auto 1fr;align-items:stretch;margin:0;padding:0;display:grid}
+.before-card.before-card--muted.inline-div-9{box-sizing:border-box;background-color:#22242d;border:1px solid #ffffff14;border-radius:10px;flex-direction:column;margin:0;padding:16px;display:flex}
+.before-card.before-card--danger.inline-div-13{box-sizing:border-box;background-color:#1c0d0f;border:1px solid #dd2a3b47;border-radius:10px;flex-direction:column;margin:0;padding:16px;display:flex}
+.before-icon-circle.before-icon-circle--danger.inline-div-12{box-sizing:border-box;background-color:#dd2a3b24;border-radius:50%;justify-content:center;align-items:center;width:72px;height:72px;margin:0 auto 16px;padding:0;display:flex}
+.before-or-divider.inline-div-10{box-sizing:border-box;justify-content:center;align-items:center;margin:0;padding:0;display:flex}
+.outcomes-grid{margin-bottom:var(--sp-5);grid-column-gap:var(--sp-4);grid-row-gap:var(--sp-4);grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;display:grid}
+.outcomes-grid.inline-div-33{box-sizing:border-box;grid-column-gap:16px;grid-row-gap:16px;grid-template-rows:auto;grid-template-columns:1fr 1fr 1fr;margin:0 0 24px;padding:0;display:grid}
+.outcome-num{margin-bottom:var(--sp-2);color:var(--brand);letter-spacing:-.02em;font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.outcome-num.neutral{color:var(--ink)}
+.outcome-num.neutral.inline-span-10,.outcome-num.neutral.inline-span-14{box-sizing:border-box;color:#f4f4f6;letter-spacing:-.02em;margin:0 0 8px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.outcome-num.inline-span-12{box-sizing:border-box;color:#dd2a3b;letter-spacing:-.02em;margin:0 0 8px;padding:0;font-family:Barlow Semi Condensed,system-ui,sans-serif;font-size:clamp(36px,4.5vw,56px);font-weight:800;line-height:1;display:block}
+.before-icon-glyph.before-icon-glyph--muted.inline-div-7{box-sizing:border-box;color:#76777d;justify-content:center;align-items:center;width:40px;height:40px;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:30px;line-height:1;display:flex}
+.before-icon-glyph.before-icon-glyph--danger.inline-div-11{box-sizing:border-box;color:#dd2a3b;justify-content:center;align-items:center;width:40px;height:40px;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:30px;line-height:1;display:flex}
+.company-cancel-hero-graphic.inline-div-0{padding-top:var(--sp-3);padding-bottom:var(--sp-3);padding-left:0;padding-right:0;line-height:0;overflow:hidden}
+.company-cancel-process-section.band.band--dark{margin-bottom:2rem}
+@media screen and (min-width:1440px){.nav-link-2.nav_last_item{margin-right:var(--def-spacer)}.inline-p-0-1{margin-right:2rem}}
+@media screen and (max-width:991px){.navbar-logo-left-container.shadow-three{margin-left:0;margin-right:0}.container-13{max-width:728px}.nav-menu-wrapper-2{background-color:#0000}.nav-menu-two{background-color:#fff;border-radius:4px;flex-wrap:wrap;justify-content:space-around;align-items:center;margin-top:10px;padding:20px;display:flex;box-shadow:0 8px 50px #0000000d}.nav-link-2{color:var(--midnight-blue-500);padding-left:5px;padding-right:5px}.btn_primary{font-size:var(--text-extra-sm)}.menu-button-2{padding:12px}.menu-button-2.w--open{color:#fff;background-color:#a6b1bf}.icon-2,.list-item{color:var(--navy-blue-500)}.inline-div-2-1{flex-flow:column}}
+@media screen and (max-width:767px){.navbar-logo-left-container{max-width:100%}.navbar-brand-2{padding-left:0}.nav-menu-wrapper-2{justify-content:center;align-items:center;display:flex}.nav-menu-two{border-radius:20px;flex-flow:row;margin-top:.5rem;margin-bottom:.5rem;padding:2rem 1rem}.nav-link-2{padding-top:10px;padding-bottom:10px;display:inline-block}.nav-link-2.nav_last_item{text-align:left;padding:12px 4px}.mobile-margin-top-11{margin-top:10px}.btn_primary{padding:.5rem;font-size:.55rem}.icon-2{color:var(--navy-blue-500)}.inline-div-2-1{margin-top:4rem}}
+@media screen and (max-width:479px){.container-13{max-width:none}.nav-menu-two{flex-flow:column;justify-content:center;align-items:center}.nav-link-2.nav_last_item{margin-left:0;margin-right:0;padding-left:0;padding-right:0}.outcomes-grid.inline-div-33{flex-flow:column;display:flex}}
+.sage-main-wrapper p{color:#586867}
+</style>
+

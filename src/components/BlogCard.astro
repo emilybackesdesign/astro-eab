@@ -5,8 +5,9 @@ interface Props {
   date: Date;
   category: string;
   coverImage: string;
+  excerpt?: string;
 }
-const { title, slug, date, category, coverImage } = Astro.props;
+const { title, slug, date, category, coverImage, excerpt } = Astro.props;
 const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
 ---
 <a href={"/post/" + slug} class="blog-card" data-aos="fade-up">
@@ -19,6 +20,7 @@ const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month:
       <span class="blog-date">{formattedDate}</span>
     </div>
     <h4 class="blog-title">{title}</h4>
+    {excerpt && <p class="blog-excerpt">{excerpt}</p>}
   </div>
 </a>
 
@@ -60,5 +62,16 @@ const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month:
     margin: 0;
     line-height: 1.3;
     letter-spacing: 1px;
+  }
+  .blog-excerpt {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--body);
+    margin: 0.5rem 0 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
