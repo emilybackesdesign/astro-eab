@@ -73,15 +73,20 @@ const isLight = theme === 'light';
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #333;
+    color: var(--navy-blue-500);
     background: var(--toe-bean-pink-200);
     text-decoration: none;
     padding: 9px 15px;
     border-radius: 4px;
     margin-left: 0.5rem;
-    transition: background 0.15s;
+    box-shadow: -4px 4px 0 0 var(--bg);
+    transition: all 0.2s;
   }
-  .nav-cta:hover { background: var(--toe-bean-pink-400); }
+  .nav-cta:hover {
+    background: var(--toe-bean-pink-400);
+    box-shadow: none;
+    transform: translate(-4px, 4px);
+  }
   .nav-hamburger {
     display: none;
     flex-direction: column;
