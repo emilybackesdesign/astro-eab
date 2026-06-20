@@ -59,6 +59,9 @@
   --brand-tint: #170c0d;
   --green: #559d69;
 
+  /* Card borders */
+  --card-border: #373749;
+
   /* Dividers */
   --rule: #ffffff12;
   --rule-strong: #ffffff21;

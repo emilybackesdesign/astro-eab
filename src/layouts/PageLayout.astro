@@ -22,9 +22,21 @@ const { title, description, ogImage } = Astro.props;
 <script>
   import AOS from 'aos';
   document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({ duration: 600, once: true, offset: 80 });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    AOS.init({ duration: 600, once: true, offset: 80, disable: prefersReducedMotion });
   });
 </script>
+<style is:global>
+  /* Ensure AOS-guarded content is always visible for reduced-motion users
+     and as a fallback before JS initializes. */
+  @media (prefers-reduced-motion: reduce) {
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
 <script>
   import { defineElement } from '@lordicon/element';
   import lottie from 'lottie-web';

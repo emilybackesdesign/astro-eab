@@ -7,12 +7,7 @@ import SwotGrid from '../components/SwotGrid.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
-
-// Case studies sorted by number ascending (.01 first)
-const allCaseStudies = await getCollection('case-studies');
-const caseStudies = allCaseStudies.sort(
-  (a, b) => parseFloat(a.data.number) - parseFloat(b.data.number)
-);
+import { caseCatalog } from '../data/case-catalog';
 
 // Posts sorted by date descending, take most recent 2
 const allPosts = await getCollection('posts');
@@ -102,6 +97,9 @@ const testimonials = [
           Herder of&nbsp;Cats.<br />
           <span class="hero-amp">&amp;</span>&nbsp;Humans.
         </h1>
+        <a href="#case-study-section" class="hero-cta">
+          See the work <span class="hero-cta-arrow" aria-hidden="true">↓</span>
+        </a>
       </div>
       <div class="hero-rive" data-aos="fade-up" data-aos-delay="200">
         <RiveEmbed />
@@ -125,7 +123,6 @@ const testimonials = [
           class="purrficiencies-paw"
         ></lord-icon>
         <h2 class="section-heading purrficiencies-title">Purr-ficiencies</h2>
-        <span class="purrficiencies-sublabel">SKILLS</span>
       </div>
 
       <div class="skills-lottie-row" data-aos="fade-up" data-aos-delay="100">
@@ -213,7 +210,7 @@ const testimonials = [
   <section class="section swot-section" aria-label="SWOT Analysis">
     <div class="container">
       <p class="swot-bridge" data-aos="fade-up">
-        Still not convinced? But wait there's <span class="pink-text">more!</span> Here's a <span class="pink-text">SWOT</span> analysis of my current skill set.
+        Still not convinced? But wait there's <span class="pink-text">more!</span> Here's a SWOT analysis of my current skill set.
       </p>
       <div class="swot-wrapper" data-aos="fade-up" data-aos-delay="100">
         <SwotGrid />
@@ -226,31 +223,32 @@ const testimonials = [
        ============================================================ -->
   <section class="section case-catalog" id="case-study-section" aria-label="Case Catalog">
     <div class="container">
-      <div class="section-label" data-aos="fade-up">
+      <div class="catalog-header" data-aos="fade-up">
         <lord-icon
           src="/assets/icons/lottie/wired-lineal-448-paws-animal-fff.json"
           trigger="loop"
           delay="2000"
           class="lottie-icon"
         ></lord-icon>
-        <span class="label-text">Case Studies</span>
+        <h2 class="section-heading catalog-heading">
+          Case <span class="pink-text">Cat</span>alog
+        </h2>
+        <span class="catalog-eyebrow">case studies</span>
       </div>
-      <h2 class="section-heading catalog-heading" data-aos="fade-up" data-aos-delay="50">
-        Case <span class="pink-text">Cat</span>alog
-      </h2>
 
       <div class="case-studies-grid">
-        {caseStudies.map((entry, i) => (
-          <div data-aos="fade-up" data-aos-delay={String(i * 100)}>
-            <CaseStudyCard
-              number={entry.data.number}
-              title={entry.data.title}
-              tags={entry.data.tags}
-              excerpt={entry.data.excerpt ?? ''}
-              slug={entry.id}
-              coverImage={entry.data.coverImage}
-            />
-          </div>
+        {caseCatalog.map((entry, i) => (
+          <CaseStudyCard
+            number={entry.number}
+            slug={entry.slug}
+            gif={entry.gif}
+            tags={entry.tags}
+            title={entry.title}
+            titleHighlights={entry.titleHighlights}
+            cta={entry.cta}
+            body={entry.body}
+            index={i}
+          />
         ))}
       </div>
     </div>
@@ -262,14 +260,7 @@ const testimonials = [
   <section class="section blog-preview" aria-label="Paws and Reflect">
     <div class="container">
       <div class="blog-header" data-aos="fade-up">
-        <lord-icon
-          src="/assets/icons/lottie/wired-lineal-448-paws-animal-fff.json"
-          trigger="loop"
-          delay="2000"
-          class="blog-header-paw"
-        ></lord-icon>
         <h2 class="blog-header-title"><span class="pink-text">Paws</span> &amp; Reflect</h2>
-        <span class="blog-header-sub">JOURNAL</span>
       </div>
 
       <div class="blog-layout" data-aos="fade-up" data-aos-delay="100">
@@ -344,7 +335,7 @@ const testimonials = [
       <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">
         Have a project or role in mind? I'd love to hear about it.
       </p>
-      <a href="/contact" class="btn btn-navy" data-aos="fade-up" data-aos-delay="150">
+      <a href="/contact" class="btn btn-primary" data-aos="fade-up" data-aos-delay="150">
         GET IN TOUCH
       </a>
     </div>
@@ -415,18 +406,22 @@ const testimonials = [
     text-decoration: none;
     padding: 0.6rem 1.4rem;
     border-radius: 4px;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
     cursor: pointer;
   }
 
   .btn-primary {
     background: var(--toe-bean-pink-200);
-    color: #333;
+    color: var(--navy-blue-500);
     border: 1px solid var(--toe-bean-pink-200);
+    box-shadow: -4px 4px 0 0 var(--bg);
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s, color 0.2s;
   }
   .btn-primary:hover {
     background: var(--toe-bean-pink-400);
     border-color: var(--toe-bean-pink-400);
+    color: var(--snow);
+    box-shadow: none;
+    transform: translate(-4px, 4px);
   }
 
   .btn-outline {
@@ -443,7 +438,7 @@ const testimonials = [
      HERO
      ---------------------------------------------------------------- */
   .hero {
-    min-height: calc(100dvh - 65px);
+    min-height: clamp(560px, 82dvh, 860px);
     display: grid;
     grid-template-rows: 1fr auto;
     background: var(--bg);
@@ -455,7 +450,7 @@ const testimonials = [
     align-items: center;
     align-self: center;
     gap: 3rem;
-    padding-block: 3rem 2rem;
+    padding-block: 2rem;
   }
 
   .hero-h1 {
@@ -463,9 +458,37 @@ const testimonials = [
     font-size: clamp(2.5rem, 6vw, 4.2rem);
     color: var(--ink);
     line-height: 1.15;
-    margin: 0;
+    margin: 0 0 1.5rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--toe-bean-pink-200);
+    text-decoration: none;
+    border: 1px solid rgba(241, 180, 187, 0.35);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .hero-cta:hover {
+    color: var(--ink);
+    border-color: var(--toe-bean-pink-200);
+    background: rgba(241, 180, 187, 0.08);
+  }
+  .hero-cta-arrow {
+    transition: transform 0.2s;
+  }
+  .hero-cta:hover .hero-cta-arrow {
+    transform: translateY(3px);
   }
 
   .hero-rive {
@@ -479,8 +502,8 @@ const testimonials = [
   @media (max-width: 700px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      padding-block: 5rem 2rem;
-      gap: 2rem;
+      padding-block: 3rem 2rem;
+      gap: 1.5rem;
     }
     .hero-rive {
       width: 100%;
@@ -514,16 +537,8 @@ const testimonials = [
     letter-spacing: 2px;
     margin: 0;
   }
-  .purrficiencies-sublabel {
-    font-family: 'Public Sans', sans-serif;
-    font-size: var(--text-extra-sm);
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-weight: 700;
-  }
 
-  /* SWOT bridge sentence */
+/* SWOT bridge sentence */
   .swot-bridge {
     font-family: 'Pridi', serif;
     font-size: 1.728rem;
@@ -535,30 +550,7 @@ const testimonials = [
     max-width: 640px;
   }
 
-  /* Navy CTA button */
-  .btn-navy {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Public Sans', sans-serif;
-    font-size: var(--text-extra-sm);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    padding: 0.75rem 2rem;
-    border-radius: 4px;
-    background: var(--navy-blue-500);
-    color: white;
-    border: 2px solid var(--navy-blue-500);
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .btn-navy:hover {
-    background: var(--navy-blue-600);
-    border-color: var(--navy-blue-600);
-  }
-
-  .skills-lottie-row {
+.skills-lottie-row {
     display: flex;
     gap: 2.5rem;
     margin-bottom: 2rem;
@@ -615,7 +607,7 @@ const testimonials = [
   .snapshot-principles,
   .snapshot-card {
     background: var(--card-bg-default);
-    border: 1px solid #373749;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     padding: var(--md-spacer);
     display: flex;
@@ -705,7 +697,7 @@ const testimonials = [
     text-transform: uppercase;
     padding: var(--xs-spacer) var(--sm-spacer);
     border-radius: 8px;
-    background: #373749e6;
+    background: color-mix(in srgb, var(--card-border) 90%, transparent);
   }
 
   /* ── Action links (pink circle arrow) ───────────────────────────────── */
@@ -765,14 +757,39 @@ const testimonials = [
     background: var(--bg);
   }
 
+  /* Header: paw → heading → eyebrow, stacked and centered (matches prod). */
+  .catalog-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .catalog-header .lottie-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .catalog-heading {
+    margin: 0 0 1rem;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+  .catalog-eyebrow {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--toe-bean-pink-200);
+  }
+
   .case-studies-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .pink-text { color: var(--toe-bean-pink-200); }
-  .catalog-heading { margin-bottom: 2rem; }
 
   /* ----------------------------------------------------------------
      BLOG PREVIEW
@@ -790,10 +807,6 @@ const testimonials = [
     gap: 0.5rem;
     margin-bottom: 3rem;
   }
-  .blog-header-paw {
-    width: 64px;
-    height: 64px;
-  }
   .blog-header-title {
     font-family: 'Pridi', serif;
     font-size: var(--h2);
@@ -802,15 +815,6 @@ const testimonials = [
     letter-spacing: 0.5px;
     line-height: 1.15;
   }
-  .blog-header-sub {
-    font-family: 'Public Sans', sans-serif;
-    font-size: var(--text-extra-sm);
-    color: var(--toe-bean-pink-200);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-weight: 700;
-  }
-
   /* Three-up row: two posts + intro card */
   .blog-layout {
     display: grid;
