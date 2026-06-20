@@ -1,0 +1,198 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Global CSS — variable names match the live Webflow site exactly so that
+   docs/site-custom.css can be used as a 1:1 reference during the port.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds / elevation */
+  --bg: #111216;
+  --surface: #1a1c23;
+  --elevated: #22242d;
+  --card-bg-default: #282838;
+  --highest: #2f313a;
+  --main-bg: #161623;
+  --main-body-bg: #161623;
+  --secondary-bg: #161623;
+  --light-bg: snow;
+  --snow: #fffafa;          /* light-page near-white: dots, progress fill, footer text */
+  --polaroid-cream: #dee1d2; /* polaroid card stock on light/custom pages */
+  --white: white;
+  --black: black;
+  --exp-bg: #fbfbfb;
+
+  /* Text */
+  --ink: #f4f4f6;
+  --body: #c4c5c9;
+  --muted: #a8a8ac;
+  --subtle: #76777d;
+  --primary-dark-600: #333;
+
+  /* Toe Bean Pink */
+  --toe-bean-pink-100: #f6dadd;
+  --toe-bean-pink-200: #f1b4bb;
+  --toe-bean-pink-300: #c88f96;
+  --toe-bean-pink-400: #c88f96;
+  --toe-bean-pink-500: #774d52;
+
+  /* Navy blue */
+  --navy-blue-100: #c3dbff;
+  --navy-blue-200: #92bfff;
+  --navy-blue-300: #6695d8;
+  --navy-blue-400: #3d68a5;
+  --navy-blue-500: #1f4172;
+  --navy-blue-600: #1a365f;
+
+  /* Midnight blue */
+  --midnight-blue-100: #dae4ff;
+  --midnight-blue-200: #bcceff;
+  --midnight-blue-300: #89a0dc;
+  --midnight-blue-400: #566da9;
+  --midnight-blue-500: #2f4276;
+  --midnight-blue-600: #132043;
+
+  /* Brand / accent */
+  --brand: #dd2a3b;
+  --brand-light: #e45562;
+  --brand-dim: #dd2a3b1a;
+  --brand-subtle: #dd2a3b0f;
+  --brand-tint: #170c0d;
+  --green: #559d69;
+
+  /* Dividers */
+  --rule: #ffffff12;
+  --rule-strong: #ffffff21;
+
+  /* 5 Pillars page palette */
+  --5p-bg: #f6f2ec;
+  --5p-sakura: #dfb1b6;
+  --5p-orchid: #cd899e;
+  --5p-ballad: #a6427c;
+  --5p-cold: #234272;
+  --toe-bean-pink-100: #f6dadd;
+  --navy-blue-100: #c3dbff;
+  --navy-blue-500: #1f4172;
+  --midnight-blue-500: #2f4276;
+  --midnight-blue-600: #132043;
+
+  /* UI / experimental */
+  --ui-minty: #c7e0da;
+  --ui-banana-smoothie: #f2e2a4;
+  --tf-body: #09143a;
+  --tf-blue: #1d44c0;
+
+  /* Typography scale */
+  --h1: 2.986rem;
+  --h2: 2.488rem;
+  --h3: 2.074rem;
+  --h4: 1.728rem;
+  --h5: 1.44rem;
+  --text-body: 1rem;
+  --text-sm: 0.833rem;
+  --text-extra-sm: 0.694rem;
+  --text-xl: 56px;
+
+  /* Spacing — semantic */
+  --xxs-spacer: 0.25rem;
+  --xs-spacer: 0.5rem;
+  --sm-spacer: 0.75rem;
+  --def-spacer: 1rem;
+  --md-spacer: 2rem;
+  --lg-spacer: 4rem;
+  --xl-spacer: 8rem;
+  --xxl-spacer: 16rem;
+
+  /* Border radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 32px;
+  --radius-full: 100%;
+
+  /* Reading */
+  --line-height-reading: 1.75;
+
+  /* Spacing — pixel aliases */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+}
+
+/* ── Base reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--body);
+  font-family: 'Public Sans', sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Pridi', serif;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--h1); font-weight: 600; letter-spacing: -0.5px; }
+h2 { font-size: var(--h2); font-weight: 600; letter-spacing: -0.25px; }
+h3 { font-size: var(--h3); font-weight: 600; letter-spacing: 0; }
+h4 { font-size: var(--h4); font-weight: 600; letter-spacing: 0; }
+h5 { font-size: var(--h5); font-weight: 600; letter-spacing: 0; }
+
+p {
+  color: var(--body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Focus styles ───────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--toe-bean-pink-200);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* ── Utilities ──────────────────────────────────────────────────────────────── */
+.text-ink    { color: var(--ink); }
+.text-body   { color: var(--body); }
+.text-muted  { color: var(--muted); }
+.text-subtle { color: var(--subtle); }
+.text-pink   { color: var(--toe-bean-pink-200); }
+
+.label-caps {
+  font-family: 'Public Sans', sans-serif;
+  font-size: var(--text-extra-sm);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

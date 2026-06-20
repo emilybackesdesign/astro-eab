@@ -12,6 +12,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.7"
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/sitemap": "^3.7.3",
+    "@lordicon/element": "^2.3.1",
+    "@types/aos": "^3.0.8",
+    "aos": "^2.3.4",
+    "astro": "^6.4.7",
+    "lottie-web": "^5.13.0",
+    "typescript": "^6.0.3"
   }
 }

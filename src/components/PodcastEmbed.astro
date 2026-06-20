@@ -1,0 +1,28 @@
+---
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+---
+<div class="podcast-embed">
+  <iframe
+    title="Podcast episode"
+    allowtransparency="true"
+    height="152"
+    width="100%"
+    style="border: none; min-width: min(100%, 430px);"
+    scrolling="no"
+    data-name="pb-iframe-player"
+    src={url}
+    loading="lazy"
+  ></iframe>
+</div>
+
+<style>
+  .podcast-embed {
+    height: 152px;
+    margin-bottom: var(--md-spacer);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,16 @@
+---
+import PageLayout from './PageLayout.astro';
+import RotateWarning from '../components/RotateWarning.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  hasRotateWarning?: boolean;
+}
+const { title, description, ogImage, hasRotateWarning = false } = Astro.props;
+---
+<PageLayout title={title} description={description} ogImage={ogImage}>
+  {hasRotateWarning && <RotateWarning />}
+  <slot />
+</PageLayout>

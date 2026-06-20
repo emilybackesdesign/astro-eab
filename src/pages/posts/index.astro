@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const POSTS_PER_PAGE = 6;
+const pagePosts = sorted.slice(0, POSTS_PER_PAGE);
+const totalPages = Math.ceil(sorted.length / POSTS_PER_PAGE);
+---
+<PageLayout title="Journal — Emily Backes" description="UX, design, and product thinking from Emily Backes.">
+  <div class="posts-page">
+    <header class="posts-header" data-aos="fade-up">
+      <span class="section-label">PAWS &amp; REFLECT</span>
+      <h1 class="posts-heading">The Journal</h1>
+    </header>
+    <div class="posts-grid">
+      {pagePosts.map((post, i) => (
+        <BlogCard
+          title={post.data.title}
+          slug={post.id}
+          date={post.data.date}
+          category={post.data.category}
+          coverImage={post.data.coverImage}
+          excerpt={post.data.excerpt}
+        />
+      ))}
+    </div>
+    {totalPages > 1 && (
+      <nav class="pagination" aria-label="Page navigation">
+        <span class="pagination-current">1 / {totalPages}</span>
+        <a href="/posts/2" class="pagination-next">Next &rarr;</a>
+      </nav>
+    )}
+  </div>
+</PageLayout>
+
+<style>
+  .posts-page { max-width: 1030px; margin: 0 auto; padding: var(--lg-spacer) 1.5rem; }
+  .posts-header { margin-bottom: var(--lg-spacer); }
+  .section-label {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .posts-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    margin: 0;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: var(--lg-spacer);
+  }
+  .pagination-current {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+  .pagination-next, .pagination-prev {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--toe-bean-pink-200);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .pagination-next:hover, .pagination-prev:hover { color: var(--toe-bean-pink-400); }
+</style>

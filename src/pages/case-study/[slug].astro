@@ -1,0 +1,134 @@
+---
+import { getCollection, render } from 'astro:content';
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('case-studies');
+  return caseStudies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, tags, excerpt, coverImage, hasRotateWarning, number } = entry.data;
+---
+<CaseStudyLayout
+  title={title + " — Emily Backes"}
+  description={excerpt}
+  ogImage={coverImage}
+  hasRotateWarning={hasRotateWarning}
+>
+  <article class="case-study-article">
+    <header class="cs-header" data-aos="fade-up">
+      <div class="cs-header-meta">
+        <span class="cs-number">{number}</span>
+        <div class="cs-tags">
+          {tags.map((tag) => <span class="cs-tag">{tag}</span>)}
+        </div>
+      </div>
+      <h1 class="cs-title">{title}</h1>
+      {coverImage && (
+        <div class="cs-cover">
+          <img src={coverImage} alt={title} />
+        </div>
+      )}
+    </header>
+    <div class="cs-body" data-aos="fade-up" data-aos-delay="100">
+      <Content />
+    </div>
+  </article>
+</CaseStudyLayout>
+
+<style>
+  .case-study-article {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: var(--lg-spacer) var(--def-spacer);
+  }
+  .cs-header {
+    margin-bottom: var(--md-spacer);
+  }
+  .cs-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .cs-number {
+    font-family: 'Pridi', serif;
+    font-size: 2rem;
+    color: var(--subtle);
+    font-weight: 600;
+  }
+  .cs-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cs-tag {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(241,180,187,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .cs-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    color: var(--ink);
+    letter-spacing: 4px;
+    line-height: 1.2;
+    margin: 0 0 var(--md-spacer);
+  }
+  .cs-cover img {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: var(--md-spacer);
+  }
+  .cs-body {
+    color: var(--body);
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.7;
+  }
+  .cs-body :global(h2) {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    color: var(--ink);
+    letter-spacing: 3px;
+    margin-top: var(--lg-spacer);
+  }
+  .cs-body :global(h3) {
+    font-family: 'Pridi', serif;
+    font-size: var(--h3);
+    color: var(--ink);
+    letter-spacing: 1px;
+    margin-top: var(--md-spacer);
+  }
+  .cs-body :global(h4) {
+    font-family: 'Pridi', serif;
+    font-size: var(--h4);
+    color: var(--ink);
+    letter-spacing: 1px;
+  }
+  .cs-body :global(img) {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: var(--md-spacer) 0;
+    display: block;
+  }
+  .cs-body :global(a) {
+    color: var(--toe-bean-pink-200);
+    text-decoration: underline;
+  }
+  .cs-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: var(--lg-spacer) 0;
+  }
+  .cs-body :global(lord-icon) {
+    vertical-align: middle;
+  }
+</style>

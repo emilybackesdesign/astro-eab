@@ -1,0 +1,192 @@
+---
+import Layout from './Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PodcastEmbed from '../components/PodcastEmbed.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+  category: string;
+  coverImage?: string;
+  coverImageAlt?: string;
+  podcastEmbedUrl?: string;
+}
+const { title, description, date, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Layout title={title} description={description} ogImage={coverImage}>
+  <Nav />
+  <main id="main-content">
+    <article class="post-article">
+      <a href="/posts" class="post-back">← Paws &amp; Reflect</a>
+      {coverImage && <div class="post-cover"><img src={coverImage} alt={coverImageAlt ?? ''} fetchpriority="high" /></div>}
+      <header class="post-header">
+        <div class="post-meta">
+          <time class="post-date" datetime={date.toISOString()}>{formattedDate}</time>
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <span class="post-category">{category}</span>
+        </div>
+        <h1 class="post-title">{title}</h1>
+      </header>
+      {podcastEmbedUrl && <PodcastEmbed url={podcastEmbedUrl} />}
+      <div class="post-body">
+        <slot />
+      </div>
+      <footer class="post-footer">
+        <a href="/posts" class="post-footer-back">← Back to Paws &amp; Reflect</a>
+      </footer>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .post-article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+  }
+  .post-cover img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--md-spacer);
+  }
+  .post-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: var(--sm-spacer);
+    transition: color 0.15s;
+  }
+  .post-back:hover { color: var(--toe-bean-pink-200); }
+  .post-header {
+    margin-bottom: var(--lg-spacer);
+  }
+  .post-meta {
+    display: flex;
+    gap: var(--xs-spacer);
+    align-items: center;
+    margin-bottom: var(--sm-spacer);
+  }
+  .post-meta-sep {
+    color: var(--subtle);
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+  }
+  .post-date {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .post-category {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border: 1px solid var(--toe-bean-pink-200);
+    border-radius: var(--radius-sm);
+  }
+  .post-title {
+    font-family: 'Pridi', serif;
+    font-size: clamp(1.6rem, 5vw, var(--h2));
+    color: var(--ink);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .post-body {
+    color: var(--body);
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    line-height: var(--line-height-reading);
+  }
+  .post-body > :global(*:first-child) { margin-top: 0; }
+  .post-body :global(h2),
+  .post-body :global(h3),
+  .post-body :global(h4) {
+    font-family: 'Pridi', serif;
+    color: var(--ink);
+  }
+  .post-body :global(h2) { font-size: clamp(1.25rem, 3vw, 1.5rem); margin-top: var(--lg-spacer); margin-bottom: var(--xs-spacer); }
+  .post-body :global(h3) { font-size: clamp(1.1rem, 2.5vw, 1.25rem); margin-top: var(--md-spacer); margin-bottom: var(--xs-spacer); }
+  .post-body :global(h4) { font-size: 1.1rem; margin-top: var(--sm-spacer); margin-bottom: var(--xxs-spacer); }
+  .post-body :global(img) {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    margin: var(--md-spacer) 0;
+  }
+  .post-body :global(a) {
+    color: var(--toe-bean-pink-200);
+    text-decoration: underline;
+  }
+  .post-body :global(p) { margin-bottom: var(--sm-spacer); }
+  .post-body :global(blockquote) {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-md);
+    padding: var(--sm-spacer) var(--md-spacer);
+    margin: var(--md-spacer) 0;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .post-body :global(code) {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+    background: var(--surface);
+    color: var(--toe-bean-pink-200);
+    padding: 0.125em 0.375em;
+    border-radius: var(--radius-sm);
+  }
+  .post-body :global(pre) {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: var(--md-spacer);
+    overflow-x: auto;
+    margin: var(--md-spacer) 0;
+  }
+  .post-body :global(pre code) {
+    background: none;
+    padding: 0;
+    color: var(--body);
+    font-size: var(--text-sm);
+  }
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    padding-left: 1.5rem;
+    color: var(--body);
+    line-height: var(--line-height-reading);
+    margin: var(--sm-spacer) 0;
+  }
+  .post-body :global(li) { margin-bottom: var(--xxs-spacer); }
+  .post-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--rule-strong);
+    margin: var(--lg-spacer) 0;
+  }
+  .post-body :global(strong) { color: var(--ink); font-weight: 700; }
+  .post-body :global(em) { font-style: italic; }
+  .post-footer {
+    margin-top: var(--xl-spacer);
+    padding-top: var(--md-spacer);
+    border-top: 1px solid var(--rule);
+  }
+  .post-footer-back {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .post-footer-back:hover { color: var(--toe-bean-pink-200); }
+</style>

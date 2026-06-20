@@ -1,0 +1,41 @@
+---
+const text = "Product Design · UX Research · Interaction Design · AI · User Testing · Product Strategy · ";
+---
+<div class="marquee-outer" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-content">{text}{text}</span>
+    <span class="marquee-content" aria-hidden="true">{text}{text}</span>
+  </div>
+</div>
+
+<style>
+  .marquee-outer {
+    overflow: hidden;
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.75rem 0;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 30s linear infinite;
+  }
+  .marquee-content {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--toe-bean-pink-200);
+    white-space: nowrap;
+    padding-right: 2rem;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>

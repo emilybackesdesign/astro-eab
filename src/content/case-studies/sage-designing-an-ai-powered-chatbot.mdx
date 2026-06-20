@@ -1,0 +1,115 @@
+---
+title: "How I Doubled Chatbot Resolution Rate and Cut Agent Tickets 29% by Turning Sortly Sage from a Full Page into a Sidekick"
+number: ".01"
+tags:
+  - "AI"
+  - "UX Research"
+  - "Product Design"
+excerpt: "When we shipped the full-page beta at 10% of users, it outperformed the old bot immediately. Users were also opening second browser windows to follow its instructions. That one behavior told me everyt"
+coverImage: "/assets/images/Image_1.png"
+hasRotateWarning: false
+---
+
+![EB Design Logo](/assets/images/eb_logo_navy_500.svg)
+
+AI / Chatbot2024–2026
+
+# How I Doubled Chatbot Resolution Rate and Cut Agent Tickets 29% by Turning Sortly Sage from a Full Page into a Sidekick
+
+When we shipped the full-page beta at 10% of users, it outperformed the old bot immediately. Users were also opening second browser windows to follow its instructions. That one behavior told me everything: accurate answers don't matter if the container fights the user.
+
+ 
+
+  
+
+Problem
+
+The off-the-shelf bot was failing. The dev team replaced it with a quick-and-dirty full-page beta: no thoughtful UI, no UX, just a proof of concept using our help center documentation plus Claude Sonnet to validate response quality. At 10% of users, it outperformed the old bot. Good enough to ship. Not good enough to use.
+
+How could I build a chatbot experience that made Sage genuinely useful for the questions it could answer, without leaving users or the CX team feeling abandoned by it?
+
+Process
+
+I started with the full-page experience and immediately hit the fundamental problem: for "How to" questions, Sage was returning accurate, step-by-step instructions. But users couldn't follow those steps while staying in an open dialogue. They had to choose between reading Sage's answer and doing the thing Sage was describing. Most opened a second browser window. Some just closed the chat.
+
+V1Full Page ExperienceSage as a destination
+
+Isolated component
+
+![Chat interface with greeting 'Hey Emily! How can I help?' and a text input field with placeholder 'Type your question here' plus three example question buttons: 'How do I move items?', 'Can I create Invoices?' and 'How do I print barcode labels?'](/assets/images/Image_1.png)
+
+This was the V1 greeting screen — shown once, the first time a user opened Sage. Once they started a prompt and returned, the full page experience took over and they never saw it again.
+
+In context
+
+![Sortly Sage app interface showing workflow setup instructions, with menu on left and cards for guides on organizing inventory.](/assets/images/Image_2.png)
+
+When a response had supporting content — help articles, videos, or gifs related to the prompt — it surfaced as a list in the chat thread. In V0 this was a list view that was very hard for users to see and navigate.
+
+We tracked closely through Amplitude: what users asked, what they did after. Two patterns became undeniable: users needed to navigate Sortly while talking to Sage, not instead of it , and when Sage couldn't resolve an issue, they were being pushed out of the product to file a Zendesk ticket, re-entering information (email, username, company ID) that Sortly already had.
+
+Version 1 was the full-page experience. Accurate responses, wrong container. Version 2 introduced a collapsible chat window. Better, but the ticket submission path still kicked users out of the product. CX stakeholders needed an in-product ticket flow; getting engineering alignment required surfacing the user cost of making someone re-enter their own account information to ask for help.
+
+V2Collapsible DrawerSage as a sidekick
+
+In context
+
+![Inventory management interface showing folders and items with a chatbot assistant named Sage offering common question options.](/assets/images/Image_3.png)
+
+We expanded the FAQs section based on the questions users asked most in V1. The collapsed nav keeps the app fully accessible — no context switch required.
+
+In context
+
+![Inventory management interface with folders and items list on the left and a chat window on the right showing support conversation and resource links.](/assets/images/Image_4.png)
+
+When Sage can't resolve an issue, the ticket is filed directly in the drawer — chat history attached, no product exit.
+
+Solution
+
+Sage became a sidekick, not a destination. Users can open it from anywhere in the product, follow instructions without losing the thread, and submit a support ticket without re-entering information we already have. The full-page experience was retired.
+
+The solution that shipped was a persistent, collapsible Sage window accessible from any screen, with a direct ticket submission screen pre-populated with account data. Sage got a name, a brand identity (the owl icon), cards for external links and how-to videos, and a layout built to scale down to mobile from day one.
+
+Outcomes
+
+Once we started to see the results, the numbers didn't lie.
+
++44%
+
+Sage-handled solves
+
+−29%
+
+Agent-handled tickets
+
+−15%
+
+Zendesk-handled tickets
+
+−48%
+
+Trial tickets in August
+
+Steepest single-month trial ticket decline in over a year · Zendesk bot fully sunsetted January 2026
+
+ 
+
+   
+
+        
+
+ 
+
+Analysis
+
+As the chatbot window gained more users, I kept tracking not just resolution rates but what Sage was actually handling. Each week I reviewed the conversations: what users asked, how Sage responded, where the answers were accurate. This is a representative week from December 2025 threads all resolved without agent handoff.
+
+    
+
+Sage wasn't perfect. The LLM occasionally fabricated instructions, and users would follow steps that were incomplete or flat-out wrong. Those failures were useful: they exposed gaps in the help center documentation, and fixing Sage's errors made the source material more accurate than it had been before Sage existed.
+
+Retrospective
+
+The hardest advocacy win was the ticket submission feature. Engineering saw it as scope; the CX team needed it; users were paying the cost of its absence every time they left the product to file a ticket. Getting alignment required making that cost visible with data, not just logic.
+
+With more time, I would have started this project 6–12 months earlier. The dev team's "quick and dirty" validation phase was necessary, but it ran longer than it needed to because the UX work wasn't parallel to the quality validation. Sage could have reached its current form sooner.

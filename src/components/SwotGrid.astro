@@ -1,0 +1,267 @@
+---
+// SWOT — pink sticky-note cards, "Just Me Again Down Here" handwritten font.
+// Matches live emilybackes.design: square cards in a 2-column grid, left-aligned
+// top-anchored text, hand-drawn illustrations, and cat-name speech-bubble
+// pointers (Tom / Jerry / Grumpy Cat / Garfield) overlaid per quadrant.
+---
+
+<div class="swot-outer">
+  <!-- Top row: STRENGTHS | WEAKNESS -->
+  <div class="swot-row">
+    <div class="swot-quad">
+      <span class="swot-quad-label">STRENGTHS</span>
+      <div class="swot-cards">
+        <div class="swot-card">
+          <div class="card-text">
+            <p>ux research</p>
+            <p>user interviews</p>
+            <p>usability heuristics</p>
+          </div>
+          <img src="/assets/images/crown.svg" alt="" class="card-illo card-illo--crown" aria-hidden="true" />
+        </div>
+        <div class="swot-card">
+          <div class="card-text">
+            <p>ui design</p>
+            <p>wireframes</p>
+            <p>sketches</p>
+            <p>product design</p>
+          </div>
+        </div>
+        <div class="swot-card">
+          <div class="card-text">
+            <p>project management</p>
+            <p>agile methods</p>
+            <p>leadership</p>
+          </div>
+        </div>
+        <div class="swot-card">
+          <div class="card-text">
+            <p>information architecture</p>
+          </div>
+          <img src="/assets/images/tree-2.svg" alt="" class="card-illo card-illo--tree" aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+
+    <div class="swot-divider-v"></div>
+
+    <div class="swot-quad">
+      <span class="swot-quad-label">WEAKNESS</span>
+      <div class="swot-cards">
+        <div class="swot-card">
+          <img src="/assets/images/thug-life.svg" alt="" class="card-illo card-illo--thug" aria-hidden="true" />
+          <div class="card-text">
+            <p>none, but if i had to pick, it&rsquo;s that I care too much.</p>
+          </div>
+        </div>
+        <div class="swot-card">
+          <div class="card-text">
+            <p>oh, i guess i&rsquo;m slightly allergic to grass (if that&rsquo;s even considered a weakness)</p>
+          </div>
+        </div>
+      </div>
+      <img src="/assets/images/tom_pointer.svg" alt="" class="swot-pointer" aria-hidden="true" />
+      <img src="/assets/images/jerry_pointer.svg" alt="" class="swot-pointer" aria-hidden="true" />
+    </div>
+  </div>
+
+  <!-- Horizontal divider -->
+  <div class="swot-divider-h"></div>
+
+  <!-- Bottom row: OPPORTUNITIES | THREATS -->
+  <div class="swot-row">
+    <div class="swot-quad">
+      <span class="swot-quad-label">OPPORTUNITIES</span>
+      <div class="swot-cards">
+        <div class="swot-card">
+          <div class="card-text">
+            <p>Looking for interesting projects &amp; companies</p>
+          </div>
+        </div>
+        <div class="swot-card swot-card--grumpy">
+          <div class="card-text">
+            <p>open to freelance work</p>
+          </div>
+          <img src="/assets/images/grumpy-cat.svg" alt="" class="card-illo card-illo--grumpy" aria-hidden="true" />
+        </div>
+      </div>
+      <img src="/assets/images/grumpy_pointer.svg" alt="" class="swot-pointer" aria-hidden="true" />
+    </div>
+
+    <div class="swot-divider-v"></div>
+
+    <div class="swot-quad">
+      <span class="swot-quad-label">THREATS</span>
+      <div class="swot-cards">
+        <div class="swot-card">
+          <div class="card-text">
+            <p>the roomba &amp; sentient robots</p>
+          </div>
+        </div>
+        <div class="swot-card">
+          <div class="card-text">
+            <p>large bodies of water</p>
+          </div>
+        </div>
+        <div class="swot-card swot-card--notsimply">
+          <img src="/assets/images/not-simply.svg" alt="" class="card-illo card-illo--notsimply" aria-hidden="true" />
+          <div class="card-text">
+            <p>kill most bugs</p>
+          </div>
+        </div>
+      </div>
+      <img src="/assets/images/garfield_pointer.svg" alt="" class="swot-pointer" aria-hidden="true" />
+    </div>
+  </div>
+</div>
+
+<style>
+  .swot-outer {
+    width: 100%;
+    margin: 2rem auto 0;
+  }
+
+  .swot-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  /* Quadrant — position:relative anchors the pointer overlays */
+  .swot-quad {
+    position: relative;
+    flex: 1;
+    padding: 1.75rem 2rem;
+    min-width: 0;
+  }
+
+  .swot-quad-label {
+    display: block;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 2-column grid of fixed-width square cards (left-aligned in quad) */
+  .swot-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 210px));
+    gap: 0.9rem;
+    justify-content: start;
+  }
+
+  /* Square pink sticky-note card */
+  .swot-card {
+    position: relative;
+    background: #f6dadd;
+    border-radius: 3px;
+    padding: 1.1rem 1.2rem;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .card-text { position: relative; z-index: 1; }
+
+  .swot-card p {
+    font-family: 'Just Me Again Down Here', cursive;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #1a365f;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+  }
+
+  /* ── Inline hand-drawn illustrations ─────────────────────────── */
+  .card-illo {
+    display: block;
+    pointer-events: none;
+  }
+  /* crown / tree sit BELOW the text, pushed toward the bottom-left */
+  .card-illo--crown {
+    width: 58px;
+    margin-top: auto;
+  }
+  .card-illo--tree {
+    width: 64px;
+    margin-top: auto;
+  }
+  /* "deal with it" pixel sunglasses sit ABOVE the text; text drops to bottom */
+  .card-illo--thug {
+    width: 120px;
+    margin-bottom: auto;
+  }
+  /* grumpy cat peeks up (ears only) from the bottom edge of the card */
+  .card-illo--grumpy {
+    position: absolute;
+    bottom: -48px;
+    right: 16px;
+    width: 88px;
+  }
+  /* not-simply face sits ABOVE the text */
+  .swot-card--notsimply { align-items: center; }
+  .card-illo--notsimply {
+    width: 92px;
+    margin-bottom: 0.75rem;
+    align-self: center;
+  }
+  .swot-card--notsimply .card-text { align-self: flex-start; margin-top: auto; }
+
+  /* ── Cat-name speech-bubble pointers (570×570 transparent SVGs) ─
+     Overlaid full-quadrant; bubble + hand-drawn arrow are baked in
+     at the right internal coordinates to point at the right card. */
+  .swot-pointer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;     /* square canvas → identical bubble scale across all four */
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Dashed vertical divider */
+  .swot-divider-v {
+    width: 1px;
+    align-self: stretch;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--subtle) 0,
+      var(--subtle) 5px,
+      transparent 5px,
+      transparent 12px
+    );
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  /* Dashed horizontal divider */
+  .swot-divider-h {
+    height: 1px;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--subtle) 0,
+      var(--subtle) 5px,
+      transparent 5px,
+      transparent 12px
+    );
+    margin: 0;
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .swot-row { flex-direction: column; }
+    .swot-divider-v { display: none; }
+    .swot-cards { grid-template-columns: repeat(2, 1fr); }
+    .swot-pointer { display: none; }
+  }
+</style>

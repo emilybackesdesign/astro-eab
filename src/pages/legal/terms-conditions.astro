@@ -1,0 +1,83 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+<PageLayout title="Terms & Conditions — Emily Backes">
+  <div class="legal-page">
+    <h1 class="legal-heading">Terms &amp; Conditions</h1>
+    <div class="legal-body">
+      <p>These Terms &amp; Conditions ("Terms") govern your use of the website emilybackes.design ("Website"). By accessing or using this Website, you agree to these Terms. If you do not agree, please refrain from using this Website.</p>
+
+      <h2>Intellectual Property</h2>
+      <p>All Website content, including text, graphics, logos, design elements, and other materials, is the property of Emily Backes or its licensors. You may not use any content without express written permission.</p>
+
+      <h2>User Conduct</h2>
+      <p>You agree to use the Website only for lawful purposes. You will not:</p>
+      <ul>
+        <li>Transmit harmful or disruptive content (viruses, spam, etc.)</li>
+        <li>Impersonate any person or entity</li>
+        <li>Violate any intellectual property or privacy rights</li>
+        <li>Engage in any activity that interferes with the Website's operation</li>
+      </ul>
+
+      <h2>Disclaimer of Warranties</h2>
+      <p>The Website is provided "as is." Emily Backes makes no warranties, expressed or implied, about the Website's accuracy, reliability, or suitability for any specific purpose.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>Emily Backes will not be liable for any damages arising from your use of the Website, including direct, indirect, or consequential damages.</p>
+
+      <h2>Changes to Terms</h2>
+      <p>Emily Backes may update these Terms at any time. Continued use of the Website after changes indicates your acceptance of the new Terms.</p>
+
+      <h2>Governing Law</h2>
+      <p>These Terms are governed by the laws of Colorado, USA. Any disputes will be resolved in the courts of Colorado, USA.</p>
+
+      <h2>Contact Information</h2>
+      <p>For questions about these Terms, please contact: <a href="mailto:emilybackes.design@gmail.com">emilybackes.design [at] gmail [.] com</a></p>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .legal-page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: var(--lg-spacer) 1.5rem;
+  }
+  .legal-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    margin-bottom: var(--md-spacer);
+  }
+  .legal-body {
+    color: var(--body);
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.7;
+  }
+  .legal-body :global(h2) {
+    font-family: 'Pridi', serif;
+    color: var(--ink);
+    font-size: var(--h3);
+    margin-top: var(--lg-spacer);
+  }
+  .legal-body :global(h3) {
+    font-family: 'Pridi', serif;
+    color: var(--ink);
+    font-size: var(--h4);
+  }
+  .legal-body :global(a) {
+    color: var(--toe-bean-pink-200);
+  }
+  .legal-body :global(ul) {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+  }
+  .legal-body :global(li) {
+    margin-bottom: 0.4rem;
+  }
+  .legal-body :global(p) {
+    margin-bottom: 1rem;
+  }
+</style>

@@ -1,0 +1,329 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Contact — Emily Backes"
+  description="Get in touch with Emily Backes — Product Designer. Got a project or role in mind? Let's chat."
+>
+
+  <section class="contact-section">
+    <div class="page-wrap">
+
+      <!-- ── Heading ────────────────────────────────────────────────────── -->
+      <div class="contact-header" data-aos="fade-up">
+        <span class="label-caps eyebrow">Get in touch</span>
+        <h1 class="contact-heading">Let's Chat.</h1>
+        <p class="contact-sub">Got a project or role in mind? Tell me about it.</p>
+      </div>
+
+      <!-- ── Form ───────────────────────────────────────────────────────── -->
+      <div class="form-wrap" data-aos="fade-up">
+        <!--
+          TODO: Replace YOUR_ACCESS_KEY_HERE in the hidden input below with your
+          real Web3Forms access key. Get a free key in 30 seconds (just an email)
+          at https://web3forms.com — free tier includes 250 submissions/month.
+        -->
+        <form
+          id="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="subject" value="New message from emilybackes.design" />
+          <input type="hidden" name="from_name" value="Emily Backes Portfolio" />
+          <div class="field-group">
+            <label for="name" class="field-label label-caps">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="email" class="field-label label-caps">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="project" class="field-label label-caps">Project Description</label>
+            <textarea
+              id="project"
+              name="project"
+              rows="6"
+              placeholder="Tell me about your project or the role you have in mind..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              Send it
+            </button>
+            <p id="error-msg" class="error-msg" aria-live="polite" hidden>
+              Something went wrong — please try again or email me directly at
+              <a href="mailto:emilybackes.design@gmail.com">emilybackes.design@gmail.com</a>.
+            </p>
+          </div>
+        </form>
+
+        <!-- ── Success state ────────────────────────────────────────────── -->
+        <div id="success-state" class="success-state" hidden aria-live="polite">
+          <div class="success-lottie">
+            <lord-icon
+              src="/assets/icons/lottie/wired-lineal-1957-maneki-cat-light.json"
+              trigger="loop"
+              colors="primary:#f1b4bb,secondary:#f1b4bb"
+              style="width:120px;height:120px"
+            ></lord-icon>
+          </div>
+          <h2 class="success-heading">Thank you!</h2>
+          <p class="success-body">I'll be in touch soon.</p>
+        </div>
+      </div>
+
+      <!-- ── Alternate contact ─────────────────────────────────────────── -->
+      <div class="alt-contact" data-aos="fade-up">
+        <p class="alt-text">
+          Prefer email?
+          <a href="mailto:emilybackes.design@gmail.com?subject=Let's%20Chat!" class="pink-link">
+            emilybackes.design@gmail.com
+          </a>
+        </p>
+        <p class="alt-text">
+          Find me on
+          <a href="https://www.linkedin.com/in/emilybackes/" class="pink-link" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</PageLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successState = document.getElementById('success-state') as HTMLElement | null;
+  const errorMsg = document.getElementById('error-msg') as HTMLElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form || !submitBtn) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    if (errorMsg) errorMsg.hidden = true;
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (response.ok) {
+        form.hidden = true;
+        if (successState) successState.hidden = false;
+      } else {
+        throw new Error('Non-OK response');
+      }
+    } catch {
+      if (errorMsg) errorMsg.hidden = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send it';
+      }
+    }
+  });
+</script>
+
+<style>
+  /* ── Layout ──────────────────────────────────────────────────────────── */
+  .page-wrap {
+    max-width: 1030px;
+    margin: 0 auto;
+    padding: 0 var(--sp-6);
+  }
+
+  .contact-section {
+    padding: var(--xl-spacer) 0 var(--lg-spacer);
+    min-height: calc(100vh - 80px);
+  }
+
+  /* ── Header ──────────────────────────────────────────────────────────── */
+  .eyebrow {
+    display: block;
+    color: var(--muted);
+    margin-bottom: var(--xs-spacer);
+    letter-spacing: 3px;
+  }
+
+  .contact-heading {
+    font-size: clamp(var(--h3), 6vw, var(--h1));
+    color: var(--ink);
+    margin-bottom: var(--xs-spacer);
+    line-height: 1.1;
+  }
+
+  .contact-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: var(--lg-spacer);
+  }
+
+  /* ── Form ────────────────────────────────────────────────────────────── */
+  .form-wrap {
+    max-width: 580px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-spacer);
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs-spacer);
+  }
+
+  .field-label {
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    border: 1px solid var(--rule-strong);
+    border-radius: 8px;
+    padding: var(--sm-spacer) var(--def-spacer);
+    outline: none;
+    transition: border-color 0.15s, background-color 0.15s;
+    resize: vertical;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--subtle);
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--toe-bean-pink-200);
+    background-color: var(--elevated);
+  }
+
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs-spacer);
+    align-items: flex-start;
+  }
+
+  .btn-submit {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: var(--toe-bean-pink-200);
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+
+  .btn-submit:hover:not(:disabled) {
+    background-color: var(--toe-bean-pink-300);
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .error-msg {
+    font-size: var(--text-sm);
+    color: var(--brand-light, #e45562);
+    line-height: 1.5;
+  }
+
+  .error-msg a {
+    color: var(--toe-bean-pink-200);
+    text-decoration: underline;
+  }
+
+  /* ── Success state ───────────────────────────────────────────────────── */
+  .success-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--lg-spacer) 0;
+    gap: var(--sm-spacer);
+  }
+
+  .success-lottie {
+    margin-bottom: var(--def-spacer);
+  }
+
+  .success-heading {
+    font-size: var(--h3);
+    color: var(--ink);
+  }
+
+  .success-body {
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  /* ── Alternate contact ───────────────────────────────────────────────── */
+  .alt-contact {
+    margin-top: var(--lg-spacer);
+    display: flex;
+    flex-direction: column;
+    gap: var(--xs-spacer);
+    border-top: 1px solid var(--rule);
+    padding-top: var(--md-spacer);
+  }
+
+  .alt-text {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+
+  .pink-link {
+    color: var(--toe-bean-pink-200);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pink-link:hover {
+    color: var(--toe-bean-pink-300, #c88f96);
+  }
+</style>

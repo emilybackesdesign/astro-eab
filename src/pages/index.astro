@@ -1,11 +1,945 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import Marquee from '../components/Marquee.astro';
+import RiveEmbed from '../components/RiveEmbed.astro';
+import SwotGrid from '../components/SwotGrid.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Case studies sorted by number ascending (.01 first)
+const allCaseStudies = await getCollection('case-studies');
+const caseStudies = allCaseStudies.sort(
+  (a, b) => parseFloat(a.data.number) - parseFloat(b.data.number)
+);
+
+// Posts sorted by date descending, take most recent 2
+const allPosts = await getCollection('posts');
+
+// Derive a short excerpt from the post body when frontmatter excerpt is empty,
+// so every blog card has consistent subtext under the title.
+function deriveExcerpt(body: string | undefined): string {
+  if (!body) return '';
+  const text = body
+    .replace(/```[\s\S]*?```/g, '')          // code blocks
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')      // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')   // links → text
+    .replace(/[#>*_`~|-]/g, ' ')               // markdown punctuation
+    .replace(/\s+/g, ' ')                      // collapse whitespace
+    .trim();
+  if (text.length <= 140) return text;
+  return text.slice(0, 140).replace(/\s+\S*$/, '') + '…';
+}
+
+const recentPosts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 2)
+  .map((entry) => ({
+    ...entry,
+    excerpt: entry.data.excerpt?.trim() || deriveExcerpt(entry.body),
+  }));
+
+const skills = [
+  'UX Research',
+  'Interaction Design',
+  'UI Design',
+  'Usability Testing',
+  'Stakeholder Management',
+  'Requirement Gathering',
+  'Process Improvement',
+  'AI Product Design',
+  'Design Systems',
+  'Product Strategy',
+  'Wireframing & Prototyping',
+  'User Interviews',
+];
+
+// Featured testimonial (spans the top row beside the heading card)
+const featuredTestimonial = {
+  name: 'Jennifer Scharps',
+  jobTitle: 'UX/UI Designer',
+  avatarSrc: '/assets/images/scharps_1.webp',
+  quote: [
+    'Emily is a skilled professional with particular strengths in user experience (UX) design, client interactions, and time management. These skills make her a highly valuable team member.',
+    'She is adept at finding UX solutions, handles difficult client relationships with diplomacy, and consistently meets deadlines thanks to her organizational abilities.',
+  ],
+};
+
+// Remaining testimonials (bottom row of three)
+const testimonials = [
+  {
+    name: 'Vidushi Bissa',
+    jobTitle: 'UX/UI Designer',
+    avatarSrc: '/assets/images/vidushi.webp',
+    quote: "What truly stood out was Emily's unwavering support for the design team. Her leadership style, marked by encouragement, empowered the entire team to contribute their best work.",
+  },
+  {
+    name: 'Sherlyna Mata',
+    jobTitle: 'UX/UI Designer',
+    avatarSrc: '/assets/images/sherlyna_1.webp',
+    quote: 'Emily displayed a remarkable ability to take decisive action, ensuring our team not only navigated through uncertainties but also thrived.',
+  },
+  {
+    name: 'Nathan Tufts Brown',
+    jobTitle: 'UX/UI Designer',
+    avatarSrc: '/assets/images/Nathan.webp',
+    quote: 'Emily has demonstrated a thoughtful and methodical approach to product strategy, stakeholder communication, and design iteration.',
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<PageLayout title="Emily Backes — Product Designer">
+
+  <!-- ============================================================
+       SECTION 1: HERO
+       ============================================================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-inner container">
+      <div class="hero-text" data-aos="fade-up">
+        <h1 class="hero-h1">
+          Wrangler of&nbsp;Pixels.<br />
+          Herder of&nbsp;Cats.<br />
+          <span class="hero-amp">&amp;</span>&nbsp;Humans.
+        </h1>
+      </div>
+      <div class="hero-rive" data-aos="fade-up" data-aos-delay="200">
+        <RiveEmbed />
+      </div>
+    </div>
+    <div class="hero-marquee">
+      <Marquee />
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: PURR-FICIENCIES
+       ============================================================ -->
+  <section class="section purrficiencies" aria-label="Purr-ficiencies">
+    <div class="container">
+      <div class="purrficiencies-heading" data-aos="fade-up">
+        <lord-icon
+          src="/assets/icons/lottie/wired-lineal-448-paws-animal-fff.json"
+          trigger="loop"
+          delay="2000"
+          class="purrficiencies-paw"
+        ></lord-icon>
+        <h2 class="section-heading purrficiencies-title">Purr-ficiencies</h2>
+        <span class="purrficiencies-sublabel">SKILLS</span>
+      </div>
+
+      <div class="skills-lottie-row" data-aos="fade-up" data-aos-delay="100">
+        <div class="skill-feature">
+          <lord-icon
+            src="/assets/icons/lottie/wired-outline-35-edit-fff.json"
+            trigger="loop"
+            delay="1500"
+            class="lottie-icon lottie-lg"
+          ></lord-icon>
+          <p class="skill-feature-text"><strong>Requirement Gathering &amp; UI Design</strong> is definitely my thing. I love synthesizing complex data, and translating it into a visual product.</p>
+        </div>
+        <div class="skill-feature">
+          <lord-icon
+            src="/assets/icons/lottie/wired-outline-981-consultation--normal.json"
+            trigger="loop"
+            delay="2000"
+            class="lottie-icon lottie-lg"
+          ></lord-icon>
+          <p class="skill-feature-text"><strong>Interviewing and Understanding People</strong> is a super power of mine. I spent 8 years in technical recruiting, and it taught me how to listen and speak to users and stakeholders while asking the right questions.</p>
+        </div>
+        <div class="skill-feature">
+          <lord-icon
+            src="/assets/icons/lottie/wired-outline-1325-code-fork-fff.json"
+            trigger="loop"
+            delay="2500"
+            class="lottie-icon lottie-lg"
+          ></lord-icon>
+          <p class="skill-feature-text"><strong>Process Improvement? I gotchu.</strong> 7 years in government contracting operations taught me how to prioritize, simplify, and automate manual processes.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2b: CAREER SNAPSHOT
+       ============================================================ -->
+  <section class="section career-snapshot" aria-label="Career Snapshot">
+    <div class="container">
+      <div class="snapshot-grid" data-aos="fade-up">
+        <div class="snapshot-text-col">
+          <div class="snapshot-principles">
+            <p class="principles-lead">I'm currently a <strong>Product Designer</strong> for <a href="https://www.sortly.com" class="principles-link">Sortly.</a></p>
+            <a href="/the-5-pillars-of-emily" class="snapshot-action">
+              <span>READ MY 5 PILLARS</span>
+              <img src="/assets/images/arrow-circle.svg" alt="" class="action-arrow" aria-hidden="true" />
+            </a>
+          </div>
+          <div class="snapshot-card">
+            <span class="snapshot-label">CAREER SNAPSHOT</span>
+            <p class="snapshot-bio">10+ years of <strong>professional</strong> experience in project management, technical recruiting, and <strong>design.</strong></p>
+            <div class="snapshot-timeline">
+              <span class="timeline-line" aria-hidden="true"></span>
+              <ul class="timeline-items">
+                <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-chip">PRODUCT DESIGNER / SORTLY / CURRENT</span></li>
+                <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-chip">UX DESIGNER / BOWTIE / 2024</span></li>
+                <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-chip">UX STRATEGY LEAD / TECH FLEET / 2023</span></li>
+              </ul>
+            </div>
+            <a href="/resume" class="snapshot-action">
+              <span>VIEW RESUME</span>
+              <img src="/assets/images/arrow-circle.svg" alt="" class="action-arrow" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div class="snapshot-portrait" data-aos="fade-up" data-aos-delay="100">
+          <div class="portrait-wrapper">
+            <img src="/assets/images/eb_full_body.svg" alt="Emily Backes" class="portrait-base" />
+            <img src="/assets/images/eb_award.svg" alt="" class="portrait-layer" aria-hidden="true" />
+            <img src="/assets/images/eb_cat_v3.svg" alt="" class="portrait-layer" aria-hidden="true" />
+            <img src="/assets/images/potter_scar.svg" alt="" class="portrait-layer" aria-hidden="true" />
+            <img src="/assets/images/sunflower.svg" alt="" class="portrait-layer" aria-hidden="true" />
+            <img src="/assets/images/potter_glasses.svg" alt="" class="portrait-layer" aria-hidden="true" />
+            <img src="/assets/images/skill_line_weave.svg" alt="" class="portrait-layer" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2c: SWOT
+       ============================================================ -->
+  <section class="section swot-section" aria-label="SWOT Analysis">
+    <div class="container">
+      <p class="swot-bridge" data-aos="fade-up">
+        Still not convinced? But wait there's <span class="pink-text">more!</span> Here's a <span class="pink-text">SWOT</span> analysis of my current skill set.
+      </p>
+      <div class="swot-wrapper" data-aos="fade-up" data-aos-delay="100">
+        <SwotGrid />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: CASE CATALOG
+       ============================================================ -->
+  <section class="section case-catalog" id="case-study-section" aria-label="Case Catalog">
+    <div class="container">
+      <div class="section-label" data-aos="fade-up">
+        <lord-icon
+          src="/assets/icons/lottie/wired-lineal-448-paws-animal-fff.json"
+          trigger="loop"
+          delay="2000"
+          class="lottie-icon"
+        ></lord-icon>
+        <span class="label-text">Case Studies</span>
+      </div>
+      <h2 class="section-heading catalog-heading" data-aos="fade-up" data-aos-delay="50">
+        Case <span class="pink-text">Cat</span>alog
+      </h2>
+
+      <div class="case-studies-grid">
+        {caseStudies.map((entry, i) => (
+          <div data-aos="fade-up" data-aos-delay={String(i * 100)}>
+            <CaseStudyCard
+              number={entry.data.number}
+              title={entry.data.title}
+              tags={entry.data.tags}
+              excerpt={entry.data.excerpt ?? ''}
+              slug={entry.id}
+              coverImage={entry.data.coverImage}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: BLOG PREVIEW — PAWS & REFLECT
+       ============================================================ -->
+  <section class="section blog-preview" aria-label="Paws and Reflect">
+    <div class="container">
+      <div class="blog-header" data-aos="fade-up">
+        <lord-icon
+          src="/assets/icons/lottie/wired-lineal-448-paws-animal-fff.json"
+          trigger="loop"
+          delay="2000"
+          class="blog-header-paw"
+        ></lord-icon>
+        <h2 class="blog-header-title"><span class="pink-text">Paws</span> &amp; Reflect</h2>
+        <span class="blog-header-sub">JOURNAL</span>
+      </div>
+
+      <div class="blog-layout" data-aos="fade-up" data-aos-delay="100">
+        {recentPosts.map((entry) => (
+          <BlogCard
+            title={entry.data.title}
+            slug={entry.id}
+            date={new Date(entry.data.date)}
+            category={entry.data.category}
+            coverImage={entry.data.coverImage}
+            excerpt={entry.excerpt}
+          />
+        ))}
+        <div class="blog-intro">
+          <h3 class="blog-intro-heading">Read about my news and insights.</h3>
+          <p class="blog-intro-body">Occasional bad takes, mostly good banter, some helpful UX/UI opinions, life, and random postings.</p>
+          <a href="/posts" class="btn btn-primary blog-cta">READ THE BLOG</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: TESTIMONIALS
+       ============================================================ -->
+  <section class="section testimonials" aria-label="Testimonials">
+    <div class="container">
+      <div class="testimonials-grid">
+        <div class="testimonials-heading-card" data-aos="fade-up">
+          <h2 class="testimonials-heading">
+            Some <span class="pink-text">nice</span> things people have apparently said <span class="pink-text">about me</span>.
+          </h2>
+        </div>
+
+        <div class="testimonials-featured" data-aos="fade-up" data-aos-delay="100">
+          <TestimonialCard
+            name={featuredTestimonial.name}
+            jobTitle={featuredTestimonial.jobTitle}
+            quote={featuredTestimonial.quote}
+            avatarSrc={featuredTestimonial.avatarSrc}
+            featured
+          />
+        </div>
+
+        {testimonials.map((t, i) => (
+          <div data-aos="fade-up" data-aos-delay={String(i * 100)}>
+            <TestimonialCard
+              name={t.name}
+              jobTitle={t.jobTitle}
+              quote={t.quote}
+              avatarSrc={t.avatarSrc}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: CTA
+       ============================================================ -->
+  <section class="section cta-section" aria-label="Contact call to action">
+    <div class="container cta-inner">
+      <div class="cta-lottie" data-aos="fade-up">
+        <lord-icon
+          src="/assets/icons/lottie/lets_cat.json"
+          trigger="loop"
+          class="lottie-cta"
+        ></lord-icon>
+      </div>
+      <h2 class="cta-heading pink-text" data-aos="fade-up" data-aos-delay="50">Let's Chat.</h2>
+      <p class="cta-sub" data-aos="fade-up" data-aos-delay="100">
+        Have a project or role in mind? I'd love to hear about it.
+      </p>
+      <a href="/contact" class="btn btn-navy" data-aos="fade-up" data-aos-delay="150">
+        GET IN TOUCH
+      </a>
+    </div>
+  </section>
+
+</PageLayout>
+
+<style>
+  /* ----------------------------------------------------------------
+     Shared layout utilities
+     ---------------------------------------------------------------- */
+  .container {
+    max-width: 1030px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+
+  /* ----------------------------------------------------------------
+     Section label row (paw icon + uppercase label)
+     ---------------------------------------------------------------- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .lottie-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .label-text {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--toe-bean-pink-200);
+  }
+
+  .section-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    color: var(--ink);
+    margin: 0 0 2.5rem;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+
+  /* ----------------------------------------------------------------
+     Buttons
+     ---------------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--toe-bean-pink-200);
+    color: #333;
+    border: 1px solid var(--toe-bean-pink-200);
+  }
+  .btn-primary:hover {
+    background: var(--toe-bean-pink-400);
+    border-color: var(--toe-bean-pink-400);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--toe-bean-pink-200);
+    border: 1px solid rgba(241, 180, 187, 0.4);
+  }
+  .btn-outline:hover {
+    background: rgba(241, 180, 187, 0.08);
+    border-color: var(--toe-bean-pink-200);
+  }
+
+  /* ----------------------------------------------------------------
+     HERO
+     ---------------------------------------------------------------- */
+  .hero {
+    min-height: calc(100dvh - 65px);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background: var(--bg);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    align-self: center;
+    gap: 3rem;
+    padding-block: 3rem 2rem;
+  }
+
+  .hero-h1 {
+    font-family: 'Pridi', serif;
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    color: var(--ink);
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-rive {
+    width: clamp(200px, 26vw, 340px);
+    flex-shrink: 0;
+  }
+
+  .hero-amp { color: var(--toe-bean-pink-200); }
+  .hero-marquee { overflow: hidden; min-width: 0; }
+
+  @media (max-width: 700px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding-block: 5rem 2rem;
+      gap: 2rem;
+    }
+    .hero-rive {
+      width: 100%;
+      max-width: 280px;
+      margin-inline: auto;
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     PURR-FICIENCIES
+     ---------------------------------------------------------------- */
+  .purrficiencies {
+    background: var(--surface);
+  }
+
+  /* Purr-ficiencies centered heading block */
+  .purrficiencies-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+  .purrficiencies-paw {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5rem;
+  }
+  .purrficiencies-title {
+    letter-spacing: 2px;
+    margin: 0;
+  }
+  .purrficiencies-sublabel {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+
+  /* SWOT bridge sentence */
+  .swot-bridge {
+    font-family: 'Pridi', serif;
+    font-size: 1.728rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.4;
+    margin: 0 auto 2rem;
+    max-width: 640px;
+  }
+
+  /* Navy CTA button */
+  .btn-navy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    background: var(--navy-blue-500);
+    color: white;
+    border: 2px solid var(--navy-blue-500);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-navy:hover {
+    background: var(--navy-blue-600);
+    border-color: var(--navy-blue-600);
+  }
+
+  .skills-lottie-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .skill-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .lottie-lg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .skill-feature-text {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--body);
+    line-height: 1.65;
+    text-align: center;
+    margin: 0;
+    max-width: 260px;
+  }
+
+  .swot-wrapper {
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── Career Snapshot ───────────────────────────────────────────────── */
+  .career-snapshot {
+    background: var(--bg);
+    padding-block: 5rem;
+  }
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  /* ── Left column: two stacked cards ─────────────────────────────────── */
+  .snapshot-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--def-spacer);
+  }
+  .snapshot-principles,
+  .snapshot-card {
+    background: var(--card-bg-default);
+    border: 1px solid #373749;
+    border-radius: 8px;
+    padding: var(--md-spacer);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .snapshot-principles {
+    flex: 1;
+    justify-content: flex-start;
+    gap: 0;
+  }
+  .snapshot-principles .principles-lead {
+    margin-block: auto;
+  }
+  .snapshot-card {
+    flex: 1;
+    gap: 1.25rem;
+  }
+  .principles-lead {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--h5);
+    line-height: var(--h4);
+    color: var(--light-bg);
+    margin: 0;
+  }
+  .principles-link {
+    color: var(--light-bg);
+    text-decoration: none;
+  }
+  .principles-link:hover { color: var(--toe-bean-pink-200); }
+
+  .snapshot-label {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .snapshot-bio {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--light-bg);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── Timeline: vertical gradient line + dotted chips ────────────────── */
+  .snapshot-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .timeline-line {
+    position: absolute;
+    left: 4px;
+    top: 0.5rem;
+    width: 1px;
+    height: calc(100% - 1rem);
+    background-image: radial-gradient(circle farthest-corner at 50% 50%, var(--toe-bean-pink-200), var(--card-bg-default));
+  }
+  .timeline-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .timeline-item {
+    display: flex;
+    align-items: center;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--card-bg-default);
+    background: var(--toe-bean-pink-200);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .timeline-chip {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    padding: var(--xs-spacer) var(--sm-spacer);
+    border-radius: 8px;
+    background: #373749e6;
+  }
+
+  /* ── Action links (pink circle arrow) ───────────────────────────────── */
+  .snapshot-action {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--light-bg);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .snapshot-action:hover { color: var(--toe-bean-pink-200); }
+  .action-arrow {
+    width: 24px;
+    height: 24px;
+    transform: rotate(-90deg);
+    flex-shrink: 0;
+  }
+
+  /* ── Right column: stacked portrait ─────────────────────────────────── */
+  .snapshot-portrait {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .portrait-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 500 / 730;
+  }
+  .portrait-base,
+  .portrait-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  .portrait-base { border-radius: 8px; }
+
+  @media (max-width: 768px) {
+    .snapshot-grid { grid-template-columns: 1fr; }
+    .portrait-wrapper { max-width: 360px; margin-inline: auto; }
+  }
+
+  /* ----------------------------------------------------------------
+     CASE CATALOG
+     ---------------------------------------------------------------- */
+  .case-catalog {
+    background: var(--bg);
+  }
+
+  .case-studies-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pink-text { color: var(--toe-bean-pink-200); }
+  .catalog-heading { margin-bottom: 2rem; }
+
+  /* ----------------------------------------------------------------
+     BLOG PREVIEW
+     ---------------------------------------------------------------- */
+  .blog-preview {
+    background: var(--surface);
+  }
+
+  /* Centered header: paw icon → "Paws & Reflect" → JOURNAL */
+  .blog-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+  .blog-header-paw {
+    width: 64px;
+    height: 64px;
+  }
+  .blog-header-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+  .blog-header-sub {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+
+  /* Three-up row: two posts + intro card */
+  .blog-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .blog-intro {
+    background: var(--card-bg-default);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .blog-intro-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h4);
+    color: var(--ink);
+    letter-spacing: 1px;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .blog-intro-body {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--body);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .blog-cta { margin-top: 0.5rem; }
+
+  @media (max-width: 900px) {
+    .blog-layout { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+    .blog-intro { order: -1; }
+  }
+
+  /* ----------------------------------------------------------------
+     TESTIMONIALS
+     ---------------------------------------------------------------- */
+  .testimonials {
+    background: var(--bg);
+  }
+
+  /* Asymmetric grid:
+     Row 1 → heading card (col 1) + featured testimonial (cols 2-3)
+     Row 2 → three testimonials, one per column */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2.5rem;
+    align-items: start;
+  }
+
+  .testimonials-heading-card {
+    background: var(--card-bg-default);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+  }
+  .testimonials-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h3);
+    color: var(--ink);
+    line-height: 1.25;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  .testimonials-featured {
+    grid-column: 2 / 4;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .testimonials-featured {
+      grid-column: auto;
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     CTA
+     ---------------------------------------------------------------- */
+  .cta-section {
+    background: var(--surface);
+  }
+
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .cta-lottie {
+    display: flex;
+    justify-content: center;
+  }
+
+  .lottie-cta {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cta-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    color: var(--toe-bean-pink-200);
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .swot-section {
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .cta-sub {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.05rem;
+    color: var(--body);
+    margin: 0;
+    max-width: 44ch;
+    line-height: 1.6;
+  }
+</style>

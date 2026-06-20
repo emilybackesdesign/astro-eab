@@ -1,0 +1,639 @@
+---
+/*
+ * ABOUT — 1:1 port of the production Webflow page (https://emilybackes.design/about).
+ * This is a LIGHT / Toe-Bean-Pink page that intentionally diverges from the dark-mode
+ * default in DESIGN.md (see DESIGN.md › "Light custom pages"). To keep the dark pages
+ * untouched, the page ships its own prod-matching light nav + footer rather than the
+ * shared dark Nav.astro / Footer.astro components.
+ */
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const facts = [
+  { icon: 'wired-outline-448-paws-animal.json', text: 'I have 2 cats that I found on the street, just like anyone who owns cats.' },
+  { icon: 'wired-outline-1021-rules.json', text: 'I have strong opinions about how to load a dishwasher.' },
+  { icon: 'wired-outline-1360-grocery-shelf.json', text: 'I bake and decorate cakes as a hobby.' },
+  { icon: 'wired-outline-784-trumpet.json', text: 'I played the trumpet for 11 years and still tickle the old valves now and then.' },
+  { icon: 'wired-outline-498-ambulance.json', text: 'In 2019 I broke my humerus and spent 6 months paralyzed from forearm to fingertip.' },
+];
+
+const polaroids = [
+  { rot: 'p1', photo: 'em_fishing.webp', caption: 'RedDirt20.svg', alt: 'Red Dirt Res Fishing Trip', cap: "Red Dirt '20" },
+  { rot: 'p2', photo: 'marfa_2020.webp', caption: 'MarfaPrada20.svg', alt: 'Marfa Prada Store', cap: "Marfa Prada '20" },
+  { rot: 'p3', photo: 'flower_cake.webp', caption: 'MOthersDayCake20.svg', alt: "Custom Mother's Day Cake", cap: "Mother's Day Cake '20" },
+  { rot: 'p4', photo: 'girls_bikes.webp', caption: 'ChingonaRace19.svg', alt: 'Chingona Bike Race', cap: "Chingona Race '19" },
+];
+
+const timeline = [
+  {
+    year: '2009',
+    title: 'Becoming an Expert in Heuristics',
+    body: 'I graduated from the <strong>University of Colorado </strong>(SKO BUFFS!) with a BA in <strong>Sociology</strong>. I spent a year working for Vail Corporation in customer service and sales where I learned valuable CX lessons faced by customers of large corporations.',
+    img: '2009_CU_grad.webp',
+    alt: 'Graduation Day CU',
+  },
+  {
+    year: '2012',
+    title: 'Closing Feedback Loops',
+    body: '<strong>I moved to the DC Metro area in 2012,</strong> where I mastered complex Government projects and developed a reputation for innovative problem-solving. I streamlined a redundant government process, increasing efficiency within my contract.',
+    img: '2012_DC_v2.webp',
+    alt: 'Jefferson Memorial during Cherry Blossom',
+  },
+  {
+    year: '2015',
+    title: 'Making UX Research My Jam',
+    body: 'After relocating to <strong>San Antonio in 2015</strong>, I launched my recruiting career within a government contracting startup, taking on a variety of responsibilities. There, I excelled in conducting user interviews, gathering stakeholder requirements, and effectively managing expectations.',
+    img: '2015_SATX.webp',
+    alt: 'SATX, Tower of the Americas',
+  },
+  {
+    year: '2022',
+    title: 'Jumping Head First into UX Design',
+    body: "<strong>In 2022</strong>, my experience recruiting UX designers sparked my interest in the field, leading me to enroll in <strong>General Assembly's UX/UI bootcamp</strong> for foundational knowledge. I found a natural aptitude for the UX process, I concentrated on developing my weaker design areas.",
+    img: '2022_Denver.webp',
+    alt: 'Milk Market, Denver',
+  },
+  {
+    year: 'Present Day',
+    title: 'Constant Learning',
+    body: "Recognizing the need for stronger visual design skills, I independently mastered concepts like grid systems, the golden ratio, and Figma's technical features.",
+    img: '2024_Current.webp',
+    alt: 'Maroon Bells, CO',
+    bottom: true,
+  },
+];
+---
+
+<Layout
+  title="About - Emily Backes | Product Designer"
+  description="Hi, I'm Emily Backes — Product Designer, cat herder, cake baker, and former trumpet player. Learn about me."
+>
+  <Nav />
+
+  <main id="main-content">
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+    <section class="pl-hero">
+      <div class="pl-container">
+        <div class="pl-hero-head">
+          <div class="pl-hero-headline">
+            <h1 class="pl-hero-h1">Hi, my name is,</h1>
+            <h1 class="pl-hero-h1">Emily Backes (Back-<em>hiss</em>)</h1>
+          </div>
+          <div class="pl-hero-intro">
+            <p>I love making people laugh, and my <strong>two</strong> cats inspired the the theme for this site.</p>
+          </div>
+        </div>
+
+        <div class="pl-hero-grid">
+          <div class="pl-photo pl-photo--lavender">
+            <div class="pl-photo-overlay">
+              <h2 class="pl-photo-label">Meyers Briggs: ESFJ / Enneagram: 1,6,8</h2>
+            </div>
+          </div>
+          <div class="pl-hero-cats">
+            <div class="pl-photo pl-photo--bow">
+              <div class="pl-photo-overlay">
+                <h2 class="pl-photo-label">Bowtie: President of SASS</h2>
+              </div>
+            </div>
+            <div class="pl-photo pl-photo--tux">
+              <div class="pl-photo-overlay">
+                <h2 class="pl-photo-label">Tux: CEO (Cat EO)</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick Facts ───────────────────────────────────────────────────────── -->
+    <section class="pl-facts">
+      <div class="pl-container">
+        <div class="pl-facts-grid">
+          <div class="pl-facts-box">
+            <h2 class="pl-facts-title">QUICK</h2>
+            <h2 class="pl-facts-title">FACTS</h2>
+          </div>
+          <div class="pl-facts-list">
+            {facts.map((f) => (
+              <div class="pl-fact">
+                <lord-icon
+                  src={`/assets/icons/lottie/${f.icon}`}
+                  trigger="loop"
+                  delay="1200"
+                  colors="primary:#1f4172,secondary:#1f4172"
+                  class="pl-fact-icon"
+                ></lord-icon>
+                <p class="pl-fact-text">{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Polaroid marquee ──────────────────────────────────────────────────── -->
+    <section class="pl-polaroid-section" aria-label="Life outside the pixels">
+      <div class="pl-marquee">
+        {[0, 1].map((dup) => (
+          <div class="pl-track" aria-hidden={dup === 1 ? 'true' : undefined}>
+            {polaroids.map((p) => (
+              <figure class={`pl-polaroid pl-polaroid--${p.rot}`}>
+                <img src={`/assets/images/${p.photo}`} alt={dup === 1 ? '' : p.alt} class="pl-polaroid-img" loading="lazy" />
+                <figcaption class="pl-polaroid-cap">
+                  <img src={`/assets/images/${p.caption}`} alt={dup === 1 ? '' : p.cap} width="150" />
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── Path to UX timeline ───────────────────────────────────────────────── -->
+    <section class="pl-tl-heading">
+      <div class="pl-container">
+        <h2 class="pl-tl-title">Path to UX</h2>
+        <div class="pl-tl-sub">Understanding the UX journey has been a life long lesson</div>
+      </div>
+    </section>
+
+    <section class="pl-tl">
+      <div class="pl-tl-wrapper">
+        <div class="pl-tl-track"><div class="pl-tl-fill" id="pl-tl-fill"></div></div>
+        {timeline.map((t, i) => (
+          <div class={`pl-tl-row${i === timeline.length - 1 ? ' pl-tl-row--last' : ''}`}>
+            <div class="pl-tl-left">
+              <div class="pl-tl-year">{t.year}</div>
+              <p class="pl-tl-body" set:html={t.body}></p>
+            </div>
+            <div class="pl-tl-center"><span class="pl-tl-dot"></span></div>
+            <div class="pl-tl-right">
+              <div class="pl-tl-entry-title"><strong>{t.title}</strong></div>
+              <img
+                src={`/assets/images/${t.img}`}
+                alt={t.alt}
+                class={`pl-tl-img${t.bottom ? ' pl-tl-img--bottom' : ''}`}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── CTA boxes ─────────────────────────────────────────────────────────── -->
+    <section class="pl-cta">
+      <div class="pl-container">
+        <div class="pl-cta-wrap">
+          <div class="pl-cta-box pl-cta-box--resume">
+            <h2 class="pl-cta-h">Looking for a detailed summary of my work experience?</h2>
+            <a href="/resume" class="pl-btn">read resume</a>
+          </div>
+          <div class="pl-cta-box pl-cta-box--pillars">
+            <div class="pl-cta-pillars-img">
+              <img src="/assets/images/group_pillars.svg" alt="" />
+            </div>
+            <div class="pl-cta-pillars-text">
+              <h2 class="pl-cta-h">5 Pillars of Emily</h2>
+              <a href="/the-5-pillars-of-emily" class="pl-btn">what i'm looking for</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<!-- Page-scoped: this page is light / Toe-Bean-Pink, overriding the dark default. -->
+<style is:global>
+  body { background-color: var(--toe-bean-pink-200); }
+</style>
+
+<style>
+  /* ── Shared container ───────────────────────────────────────────────────── */
+  .pl-container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  /* ── Hero ───────────────────────────────────────────────────────────────── */
+  .pl-hero { position: relative; z-index: 3; }
+  .pl-hero .pl-container { padding-top: 8rem; }
+  .pl-hero-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 8rem;
+  }
+  .pl-hero-headline { min-width: 50%; }
+  .pl-hero-h1 {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 2px;
+    color: var(--navy-blue-500);
+    margin: 0 0 0.5rem;
+  }
+  .pl-hero-h1 em { font-style: italic; }
+  .pl-hero-intro { max-width: 30%; display: flex; flex-direction: column; align-items: flex-start; }
+  .pl-hero-intro p {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--navy-blue-500);
+    padding-bottom: 0.5rem;
+    margin: 0;
+  }
+  .pl-hero-intro strong { font-weight: 700; }
+
+  .pl-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    height: 616px;
+  }
+  .pl-photo {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+  }
+  .pl-photo--lavender {
+    grid-column: span 2 / span 2;
+    background-image: url('/assets/images/Ice_-14-scaled.webp');
+    background-position: 0 0;
+  }
+  .pl-hero-cats { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
+  .pl-photo--bow {
+    background-image: url('/assets/images/bow_hs.avif');
+    background-position: 50% 0;
+  }
+  .pl-photo--tux {
+    background-image: url('/assets/images/tx-hs.avif');
+    background-position: 50% 0;
+  }
+  .pl-photo-overlay {
+    width: 100%;
+    min-width: 100%;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-image: linear-gradient(transparent 33%, var(--midnight-blue-500));
+  }
+  .pl-photo-label {
+    font-family: 'Pridi', serif;
+    font-size: var(--h5);
+    font-weight: 600;
+    line-height: 36px;
+    letter-spacing: 1px;
+    color: var(--toe-bean-pink-200);
+    text-align: center;
+    padding: 1rem 2rem;
+    margin: 0;
+  }
+
+  /* ── Quick Facts ────────────────────────────────────────────────────────── */
+  .pl-facts { position: relative; z-index: 3; padding-bottom: 8rem; }
+  .pl-facts .pl-container { padding-top: 1rem; }
+  .pl-facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .pl-facts-box {
+    grid-column: 1 / 2;
+    min-width: 400px;
+    background-color: var(--navy-blue-500);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pl-facts-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 2px;
+    color: var(--toe-bean-pink-200);
+    margin: 0 0 1rem;
+  }
+  .pl-facts-title:last-child { margin-bottom: 0; }
+  .pl-facts-list {
+    grid-column: span 2 / span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .pl-fact { display: flex; align-items: center; }
+  .pl-fact-icon { width: 40px; height: 40px; margin-right: 1rem; flex-shrink: 0; }
+  .pl-fact-text {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--navy-blue-500);
+    margin: 0;
+  }
+
+  /* ── Polaroid marquee ───────────────────────────────────────────────────── */
+  .pl-marquee { display: flex; flex-flow: row; overflow: hidden; width: 100%; }
+  .pl-track {
+    display: flex;
+    min-width: 100%;
+    flex: 0 0 100%;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 2rem 0;
+    animation: pl-marquee 22s linear infinite;
+  }
+  @keyframes pl-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-100%, 0, 0); }
+  }
+  .pl-polaroid {
+    background-color: var(--polaroid-cream);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    margin: 0 1rem 1rem 0;
+  }
+  .pl-polaroid--p1 { transform: rotate(3deg); }
+  .pl-polaroid--p2 { transform: rotate(-3deg); }
+  .pl-polaroid--p3 { transform: rotate(7deg); }
+  .pl-polaroid--p4 { transform: rotate(-5deg); }
+  .pl-polaroid-img {
+    width: 310px;
+    height: 310px;
+    object-fit: cover;
+    border-top-left-radius: var(--radius-xs);
+    border-top-right-radius: var(--radius-xs);
+    margin-bottom: 1rem;
+  }
+  .pl-polaroid-cap { display: flex; justify-content: center; align-items: center; margin: 0; }
+  .pl-polaroid-cap img { width: 150px; max-width: 100%; height: auto; }
+
+  /* ── Path to UX timeline ────────────────────────────────────────────────── */
+  .pl-tl-heading .pl-container { padding-top: 2rem; padding-bottom: 4rem; }
+  .pl-tl-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 2px;
+    color: var(--navy-blue-500);
+    text-align: center;
+    margin: 0;
+  }
+  .pl-tl-sub {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--midnight-blue-500);
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .pl-tl { position: relative; }
+  .pl-tl-wrapper {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+  }
+  .pl-tl-track {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: var(--toe-bean-pink-300);
+    z-index: 0;
+  }
+  .pl-tl-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--snow);
+  }
+  .pl-tl-row {
+    display: grid;
+    grid-template-columns: 1fr 160px 1fr;
+    width: 100%;
+    padding: 1rem 0 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .pl-tl-row--last { padding-bottom: 0; }
+  .pl-tl-left { text-align: right; }
+  .pl-tl-year {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--h3);
+    font-weight: 800;
+    line-height: 2.5rem;
+    color: var(--midnight-blue-500);
+    padding-bottom: 1rem;
+  }
+  .pl-tl-body {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--navy-blue-500);
+    text-align: justify;
+    margin-bottom: 1rem;
+  }
+  .pl-tl-body strong { font-weight: 700; }
+  .pl-tl-center { display: flex; justify-content: center; }
+  .pl-tl-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    background-color: var(--snow);
+  }
+  .pl-tl-entry-title {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    line-height: 20px;
+    color: var(--navy-blue-500);
+    padding-bottom: 1rem;
+  }
+  .pl-tl-entry-title strong { font-weight: 700; }
+  .pl-tl-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+  .pl-tl-img--bottom { object-position: 50% 100%; }
+
+  /* ── CTA boxes ──────────────────────────────────────────────────────────── */
+  .pl-cta .pl-container { padding: 8rem 0; }
+  .pl-cta-wrap { display: flex; flex-direction: row; gap: 16px; height: 20rem; }
+  .pl-cta-box { width: 50%; border-radius: 8px; padding: 2rem; }
+  .pl-cta-box--resume {
+    background-color: var(--navy-blue-500);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .pl-cta-box--pillars {
+    background-color: var(--midnight-blue-600);
+    padding: 2rem 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+  }
+  /* position:absolute so the card's overflow:hidden definitively clips the pillar bases */
+  .pl-cta-pillars-img { position: relative; align-self: stretch; flex: 0 0 auto; width: 240px; }
+  .pl-cta-pillars-img img { position: absolute; bottom: -60px; left: 0; width: 240px; height: auto; }
+  .pl-cta-pillars-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+  }
+  .pl-cta-h {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    font-weight: 600;
+    line-height: var(--h1);
+    letter-spacing: 1px;
+    color: var(--white);
+    margin: 0;
+  }
+  .pl-btn {
+    align-self: flex-start;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy-blue-500);
+    background-color: var(--toe-bean-pink-200);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-sm);
+    box-shadow: -4px 4px 0 0 var(--snow);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .pl-btn:hover {
+    background-color: var(--toe-bean-pink-400);
+    box-shadow: none;
+    color: var(--white);
+    transform: translate(-4px, 4px);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────────────────── */
+  @media (max-width: 991px) {
+    .pl-hero, .pl-facts-grid { margin: 0 1rem; }
+    .pl-hero-head { flex-wrap: wrap; }
+    .pl-photo-label { font-size: var(--text-body); }
+    /* QUICK FACTS becomes a full-width band with the list stacked below (prod) */
+    .pl-facts-grid { grid-template-columns: 1fr; }
+    .pl-facts-box {
+      grid-column: auto;
+      flex-direction: row;
+      justify-content: center;
+      min-width: 0;
+      padding: 2rem;
+      align-items: center;
+    }
+    .pl-facts-title { margin-bottom: 0; padding-right: 1rem; }
+    .pl-facts-list { grid-column: auto; }
+    .pl-polaroid-img { width: 200px; height: 200px; }
+    .pl-track { padding: 1rem 0; }
+
+    /* CTA boxes stack on tablet & below (prod) */
+    .pl-cta-wrap { flex-direction: column; height: auto; }
+    .pl-cta-box { width: 100%; }
+    .pl-cta-box--resume { align-items: center; text-align: center; }
+    .pl-cta-box--pillars { flex-direction: column; align-items: center; text-align: center; padding: 2rem; }
+    .pl-cta-pillars-text { align-items: center; padding-bottom: 0; }
+    .pl-btn { align-self: center; }
+    .pl-cta-h { font-size: var(--h5); line-height: 1.3; }
+    .pl-cta-pillars-img img { max-height: 200px; }
+  }
+
+  @media (max-width: 767px) {
+    .pl-hero-h1 { font-size: var(--h3); line-height: var(--h3); margin-bottom: 0; }
+    .pl-hero-head { margin-bottom: 4rem; }
+    .pl-hero-intro { max-width: 100%; margin-top: 1rem; }
+    .pl-hero-grid { grid-template-columns: 1fr; height: auto; }
+    .pl-photo--lavender { grid-column: auto; min-height: 20rem; }
+    .pl-hero-cats { grid-template-rows: auto auto; }
+    .pl-photo--bow, .pl-photo--tux { min-height: 20rem; }
+
+    .pl-facts-grid { grid-template-columns: 1fr; }
+    .pl-facts-box { grid-column: auto; margin-bottom: 1rem; }
+    .pl-facts-list { grid-column: auto; }
+
+    .pl-tl-body { text-align: left; }
+  }
+
+  @media (max-width: 479px) {
+    .pl-facts-title { font-size: var(--h4); }
+    .pl-fact-text { font-size: var(--text-extra-sm); }
+    .pl-fact-icon { width: 32px; height: 32px; }
+    .pl-polaroid-img { width: 140px; height: 140px; }
+
+    /* Production hides the timeline entirely below 480px. */
+    .pl-tl, .pl-tl-heading { display: none; }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pl-track { animation: none; }
+  }
+</style>
+
+<script>
+  // Timeline scroll-progress white fill (mirrors prod's white progress line)
+  const track = document.querySelector('.pl-tl-track');
+  const fill = document.getElementById('pl-tl-fill');
+  if (track && fill) {
+    const onScroll = () => {
+      const rect = (track as HTMLElement).getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height;
+      const progressed = Math.min(Math.max(vh / 2 - rect.top, 0), total);
+      (fill as HTMLElement).style.height = progressed + 'px';
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  }
+</script>
+
+<script>
+  // Lottie / lord-icon for the Quick Facts icons
+  import { defineElement } from '@lordicon/element';
+  import lottie from 'lottie-web';
+  // @ts-ignore — @lordicon/element v2 type defs incorrectly declare 0 params
+  defineElement(lottie.loadAnimation);
+</script>

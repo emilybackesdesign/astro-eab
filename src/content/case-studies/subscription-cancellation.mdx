@@ -1,0 +1,170 @@
+---
+title: "How I Helped Sortly Recover 80 Customers a Month by Untangling Cancellation from Deletion"
+number: ".03"
+tags:
+  - "UX Design"
+  - "Retention"
+  - "Mobile"
+excerpt: "When the FTC sued Uber One for a 23-screen cancellation gauntlet, we looked at our own process. Sortly didn't have a cancellation flow. The only exit was deletion."
+coverImage: ""
+# TODO: no cover image on the live case study — add one manually or leave empty
+hasRotateWarning: false
+---
+
+![EB Design Logo](/assets/images/eb_logo2.svg)
+
+  Cancellation & Retention Q2 2025
+
+# How I Helped Sortly Recover 80 Customers a Month by Untangling Cancellation from Deletion
+
+When the FTC sued Uber One for a 23-screen cancellation gauntlet, we looked at our own process. Sortly didn't have a cancellation flow. The only exit was deletion.
+
+  
+
+    
+
+  
+
+**The Problem**
+
+## Our user had exactly two cancellation options: call customer support, or delete their account entirely
+
+The deletion route worked. Technically. But over 40 customers a month were coming back after deleting, forced to start from scratch. Their data, their setup, their history: gone.   
+
+  
+
+The reactivation rate was sitting at 4.5%.Every returning customer was paying a tax they shouldn't have had to.
+
+  
+
+   
+
+     
+
+Before the Redesign
+
+     
+
+       
+
+         
+
+                    
+
+         
+
+### Call support
+
+         
+           
+- Business hours only
+
+           
+- Wait on hold
+
+           
+- Dependent on rep availability
+
+         
+         FRICTION       
+
+        
+
+         OR       
+
+        
+
+         
+
+                    
+
+         
+
+### Delete account
+
+         
+           
+- All inventory data: removed
+
+           
+- All user accounts: removed
+
+           
+- History and settings: permanently gone
+
+         
+         IRREVERSIBLE       
+
+     
+
+   
+
+   
+
+Pre-redesign state: no self-service cancellation path existed. The only exit was account deletion.
+
+ 
+
+*How could I make it easy to leave Sortly, and even easier to come back?*
+
+Process
+
+## What looked like a copy change, wasn't
+
+My PM and I mapped the existing deletion flow end to end. Sketches are low consequences. I started there, mapping where a cancellation path could branch off the deletion flow without duplicating it.   
+
+  
+
+The constraints surfaced fast: different subscription plans had different deletion flows, and Apple's App Store has strict regulations around in-app cancellation that full account deletion doesn't trigger. Cancellation and deletion couldn't share the same screens. They couldn't even follow the same logic.
+
+    
+
+Version 1 used inline modals throughout. App Store compliance required full-screen modals on iOS discovered mid-design. Version 2 splits by platform.
+
+    
+
+Version 2 splits by platform: web keeps the inline modal (valid), iOS uses a full-screen flow required by the App Store. Both passed review.
+
+Version 1 layered a cancellation path on top of the existing deletion screens, using a modal approach that matched the deletion UI. Testing killed it: the App Store compliance requirements for subscription cancellation on iOS require full-screen modals, not inline ones. I had to rebuild the screens I'd just designed.
+
+The approach that held was separating cancellation and deletion entirely: cancellation as its own discrete flow, embedded within the deletion process as a branch rather than a replacement. A user who wanted to cancel their subscription could do so without touching their account or data. If they wanted to delete later, that remained a separate, explicit choice.
+
+Solution
+
+## Cancellation and deletion are now distinct actions
+
+The cancellation flow surfaces before any deletion prompt. Users who want to leave keep their data, their account, and a clear path back. The deletion flow still exists for users who want a full exit. Neither process conflicts with the other, and both comply with App Store regulations.
+
+The solution architecture: cancellation embedded   
+
+as a branch within the deletion flow.   
+
+11 flows, one entry point.
+
+Outcomes
+
+Reactivation rate increased from 4.5% to 7.4% in the first 8 weeks. That's 80 of 1,086 cancellations converting back, surpassing the 5% SNG target ahead of schedule.
+
+First 8 Weeks
+
+4.5% reactivation rate at project start
+
+7.4% reactivation rate after launch —**surpassed 5% SNG target**
+
+80 customers recovered per month out of  cancellations
+
+Target: 5.0% · Delivered: 7.4% · Ahead of schedule
+
+Retrospective
+
+## The hardest part was scope & waiting
+
+Stakeholders initially assumed this was a copy change. It became a separate product surface. With more time, I would have mapped the App Store mobile requirements before the first sketch.   
+
+  
+
+Discovering them mid-design meant rebuilding modal screens as full-screen modals and absorbing that rework cost late in the project. Those constraints belong in the kickoff, not the handoff.  
+
+  
+
+When releasing a critical design flow to production where the difference can mean gaining or losing about $100,000 a year in customer subscriptions, waiting for relevant data to come in was excrutiating.
