@@ -10,12 +10,14 @@ interface Props {
   seoTitle?: string;
   description?: string;
   date: Date;
+  /** Optional "last updated" date; defaults to `date` when not threaded from frontmatter. */
+  dateModified?: Date;
   category: string;
   coverImage?: string;
   coverImageAlt?: string;
   podcastEmbedUrl?: string;
 }
-const { title, seoTitle, description, date, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
+const { title, seoTitle, description, date, dateModified, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
 const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 // BlogPosting JSON-LD (E-E-A-T / rich-result eligibility).
@@ -24,7 +26,16 @@ const blogPostingJsonLd = {
   '@type': 'BlogPosting',
   headline: title,
   datePublished: date.toISOString(),
+  // Honest default: when a post hasn't been refreshed, "last modified" = published.
+  dateModified: (dateModified ?? date).toISOString(),
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
   author: {
+    '@type': 'Person',
+    '@id': 'https://emilybackes.design/#person',
+    name: 'Emily Backes',
+    url: 'https://emilybackes.design/',
+  },
+  publisher: {
     '@type': 'Person',
     name: 'Emily Backes',
   },
@@ -60,6 +71,14 @@ const blogPostingJsonLd = {
         <slot />
       </div>
       <footer class="post-footer">
+        <div class="post-author">
+          <img class="post-author-avatar" src="/assets/images/emy1080-p-500_1.avif" alt="Emily Backes" width="56" height="56" loading="lazy" />
+          <div class="post-author-text">
+            <p class="post-author-name">Emily Backes</p>
+            <p class="post-author-bio">Senior Product Designer focused on healthcare software UX/UI. 10+ years across technical recruiting, government-contracting operations, and product design.</p>
+            <a href="/about" class="post-author-link">More about Emily →</a>
+          </div>
+        </div>
         <a href="/posts" class="post-footer-back">← Back to Paws &amp; Reflect</a>
       </footer>
     </article>
@@ -206,6 +225,41 @@ const blogPostingJsonLd = {
     padding-top: var(--md-spacer);
     border-top: 1px solid var(--rule);
   }
+  .post-author {
+    display: flex;
+    gap: var(--sm-spacer);
+    align-items: flex-start;
+    margin-bottom: var(--md-spacer);
+  }
+  .post-author-avatar {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+  }
+  .post-author-text {
+    font-family: 'Public Sans', sans-serif;
+  }
+  .post-author-name {
+    margin: 0 0 var(--xxs-spacer);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .post-author-bio {
+    margin: 0 0 var(--xxs-spacer);
+    font-size: var(--text-sm);
+    line-height: var(--line-height-reading);
+    color: var(--muted);
+  }
+  .post-author-link {
+    font-size: var(--text-sm);
+    color: var(--toe-bean-pink-200);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .post-author-link:hover { text-decoration: underline; }
   .post-footer-back {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-sm);

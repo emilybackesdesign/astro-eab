@@ -1,0 +1,29 @@
+# Emily Backes
+
+> Product designer who turns messy, complex requirements into clear, usable products — with a researcher's ear and an operator's eye for process.
+
+Emily Backes is a Senior Product Designer at Sortly, focused on healthcare software UX/UI. She works end-to-end — UX research, interaction design, UI, and design systems — and brings an operator's background (technical recruiting and government-contracting operations) to product strategy and stakeholder work. Her case studies pair design craft with measurable business outcomes.
+
+## About
+
+Emily designs clear, usable products for complex, regulated domains, with a particular focus on healthcare software. She combines hands-on UX research and usability testing with interaction and UI design, design systems, and AI product design. Her portfolio emphasizes real, verifiable outcomes rather than visuals alone.
+
+## Key pages
+
+- [About](https://emilybackes.design/about) — background, path to UX, and how she works
+- [Resume](https://emilybackes.design/resume) — experience, skills, and roles
+- [The 5 Pillars of Emily](https://emilybackes.design/the-5-pillars-of-emily) — what she values and brings to a team
+- [Posts](https://emilybackes.design/posts) — "Paws & Reflect," her blog on UX research, design, and careers
+- [Contact](https://emilybackes.design/contact) — how to get in touch
+
+## Case studies
+
+- [Folsom Psychology](https://emilybackes.design/case-study/folsom-psychology) — redesigned the patient-intake and scheduling workflow, cutting patient scheduling time in half.
+- [Sage: Designing an AI-Powered Chatbot](https://emilybackes.design/case-study/sage-designing-an-ai-powered-chatbot) — redesigned the Sage AI chatbot, doubling resolution rates and cutting agent tickets by 29%.
+- [Sprocket App](https://emilybackes.design/case-study/sprocket-app) — product and UX design that doubled app sign-ups in three months.
+- [Subscription Cancellation](https://emilybackes.design/case-study/subscription-cancellation) — redesigned the subscription-cancellation flow, returning roughly $100k/yr in revenue.
+- [Lago](https://emilybackes.design/case-study/lago) — product strategy and UX leadership case study; as Product Strategy Lead, Emily led a distributed team through discovery, strategy, and design for a health-insurance aggregator (NDA-anonymized).
+
+## Contact
+
+Email: emilybackes.design@gmail.com

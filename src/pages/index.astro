@@ -82,12 +82,36 @@ const testimonials = [
     quote: 'Emily has demonstrated a thoughtful and methodical approach to product strategy, stakeholder communication, and design iteration.',
   },
 ];
+
+// Review JSON-LD — derived from the testimonial data above so it stays in sync
+// with the visible cards. Each testimonial becomes a Review of Emily (the Person),
+// reusing the homepage Person node's @id to tie into the site's entity graph.
+const reviewJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [featuredTestimonial, ...testimonials].map((t) => ({
+    '@type': 'Review',
+    author: {
+      '@type': 'Person',
+      name: t.name,
+      jobTitle: t.jobTitle,
+    },
+    reviewBody: Array.isArray(t.quote) ? t.quote.join(' ') : t.quote,
+    itemReviewed: {
+      '@type': 'Person',
+      '@id': 'https://emilybackes.design/#person',
+      name: 'Emily Backes',
+    },
+  })),
+};
 ---
 
 <PageLayout
   title="Emily Backes — Senior Product Designer (Healthcare UX/UI)"
   description="Portfolio of Emily Backes, Senior Product Designer specializing in healthcare UX/UI. Outcome-driven case studies in UX research and product design."
 >
+
+  <!-- Review structured data (testimonials as Reviews of Emily) -->
+  <script type="application/ld+json" set:html={JSON.stringify(reviewJsonLd)} />
 
   <!-- ============================================================
        SECTION 1: HERO

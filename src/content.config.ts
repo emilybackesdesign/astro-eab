@@ -20,6 +20,8 @@ const posts = defineCollection({
     /** Optional ≤60-char override for the SEO <title>/OG title when `title` is too long for SERPs. */
     seoTitle: z.string().optional(),
     date: z.coerce.date(),
+    /** Optional "last updated" date; defaults to `date` (publish date) when absent. Used for BlogPosting.dateModified freshness signal. */
+    dateModified: z.coerce.date().optional(),
     category: z.string(),
     coverImage: z.string(),
     excerpt: z.string(),
