@@ -6,6 +6,8 @@ import PodcastEmbed from '../components/PodcastEmbed.astro';
 
 interface Props {
   title: string;
+  /** Optional ≤60-char title for the <title>/OG tags; falls back to `title`. Visible H1 always uses `title`. */
+  seoTitle?: string;
   description?: string;
   date: Date;
   category: string;
@@ -13,10 +15,33 @@ interface Props {
   coverImageAlt?: string;
   podcastEmbedUrl?: string;
 }
-const { title, description, date, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
+const { title, seoTitle, description, date, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
 const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// BlogPosting JSON-LD (E-E-A-T / rich-result eligibility).
+const blogPostingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  datePublished: date.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Emily Backes',
+  },
+  ...(coverImage ? { image: new URL(coverImage, Astro.site).href } : {}),
+  ...(description ? { description } : {}),
+};
 ---
-<Layout title={title} description={description} ogImage={coverImage}>
+<Layout
+  title={seoTitle ?? title}
+  description={description}
+  ogImage={coverImage}
+  leanFonts={true}
+  ogType="article"
+  publishedTime={date.toISOString()}
+  author="Emily Backes"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingJsonLd)} />
   <Nav />
   <main id="main-content">
     <article class="post-article">

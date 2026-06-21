@@ -12,14 +12,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const { title, date, category, coverImage, excerpt, podcastEmbedUrl } = entry.data;
+const { title, seoTitle, date, category, coverImage, coverImageAlt, excerpt, podcastEmbedUrl } = entry.data;
 ---
 <PostLayout
   title={title}
+  seoTitle={seoTitle}
   description={excerpt}
   date={date}
   category={category}
   coverImage={coverImage}
+  coverImageAlt={coverImageAlt}
   podcastEmbedUrl={podcastEmbedUrl}
 >
   <Content />

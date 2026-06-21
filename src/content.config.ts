@@ -17,6 +17,8 @@ const posts = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
+    /** Optional ≤60-char override for the SEO <title>/OG title when `title` is too long for SERPs. */
+    seoTitle: z.string().optional(),
     date: z.coerce.date(),
     category: z.string(),
     coverImage: z.string(),
