@@ -37,6 +37,12 @@
       "skillPath": "skills/free-tools/SKILL.md",
       "computedHash": "3fd8ab504b9b6d791b307baed7a87f49b455fc084ff367772c7418b8a57ce56d"
     },
+    "humanizer": {
+      "source": "brandonwise/humanizer",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "e7a83fa99fa878561454d0a8a1d2cdad47515df4628e6d468aa46a5bb60edb7d"
+    },
     "image": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
