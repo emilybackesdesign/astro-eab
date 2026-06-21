@@ -63,6 +63,42 @@ const timeline = [
     bottom: true,
   },
 ];
+
+const faqs = [
+  {
+    q: 'What does Emily Backes do?',
+    a: "I'm a Senior Product Designer focused on healthcare software UX/UI. I design digital products end-to-end — UX research, interaction design, UI, and design systems — so the whole experience hangs together, not just the pretty screens.",
+  },
+  {
+    q: 'What kind of results has Emily delivered?',
+    a: 'A redesigned subscription-cancellation flow that brought back roughly $100k/yr in returning revenue; app sign-ups doubled in 3 months at Sprocket; new-patient scheduling time cut in half at Folsom Psychology; and a redesign of the Sage AI chatbot that doubled resolution rates and cut support tickets by 29%.',
+  },
+  {
+    q: "What's Emily's background?",
+    a: "10+ years of it: about 8 years in technical recruiting (a whole lot of interviewing and listening), roughly 7 years in government-contracting operations (simplifying processes nobody else wanted to touch), plus formal UX training. It's an unusual blend of research, operations, and design.",
+  },
+  {
+    q: "What is Emily's design approach?",
+    a: 'Research-led. I tie every design decision back to a user or business outcome rather than personal taste, and I lean on my strengths in requirement-gathering, stakeholder management, and leading through ambiguity.',
+  },
+  {
+    q: 'How can I get in touch with Emily?',
+    a: 'Through the contact page at /contact, or by email at emilybackes.design@gmail.com.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
 ---
 
 <Layout
@@ -89,18 +125,18 @@ const timeline = [
         <div class="pl-hero-grid">
           <div class="pl-photo pl-photo--lavender">
             <div class="pl-photo-overlay">
-              <h2 class="pl-photo-label">Meyers Briggs: ESFJ / Enneagram: 1,6,8</h2>
+              <p class="pl-photo-label">Meyers Briggs: ESFJ / Enneagram: 1,6,8</p>
             </div>
           </div>
           <div class="pl-hero-cats">
             <div class="pl-photo pl-photo--bow">
               <div class="pl-photo-overlay">
-                <h2 class="pl-photo-label">Bowtie: President of SASS</h2>
+                <p class="pl-photo-label">Bowtie: President of SASS</p>
               </div>
             </div>
             <div class="pl-photo pl-photo--tux">
               <div class="pl-photo-overlay">
-                <h2 class="pl-photo-label">Tux: CEO (Cat EO)</h2>
+                <p class="pl-photo-label">Tux: CEO (Cat EO)</p>
               </div>
             </div>
           </div>
@@ -113,8 +149,8 @@ const timeline = [
       <div class="pl-container">
         <div class="pl-facts-grid">
           <div class="pl-facts-box">
-            <h2 class="pl-facts-title">QUICK</h2>
-            <h2 class="pl-facts-title">FACTS</h2>
+            <p class="pl-facts-title">QUICK</p>
+            <p class="pl-facts-title">FACTS</p>
           </div>
           <div class="pl-facts-list">
             {facts.map((f) => (
@@ -184,6 +220,24 @@ const timeline = [
       </div>
     </section>
 
+    <!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
+    <section class="pl-faq" aria-labelledby="pl-faq-title">
+      <div class="pl-container">
+        <h2 class="pl-faq-title" id="pl-faq-title">Frequently Asked (by humans and robots alike)</h2>
+        <div class="pl-faq-list">
+          {faqs.map((f) => (
+            <details class="pl-faq-item">
+              <summary class="pl-faq-q">
+                <h3 class="pl-faq-q-text">{f.q}</h3>
+                <span class="pl-faq-icon" aria-hidden="true"></span>
+              </summary>
+              <p class="pl-faq-a">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- ── CTA boxes ─────────────────────────────────────────────────────────── -->
     <section class="pl-cta">
       <div class="pl-container">
@@ -205,6 +259,8 @@ const timeline = [
       </div>
     </section>
   </main>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <Footer />
 </Layout>
@@ -486,6 +542,76 @@ const timeline = [
     display: block;
   }
   .pl-tl-img--bottom { object-position: 50% 100%; }
+
+  /* ── FAQ ────────────────────────────────────────────────────────────────── */
+  .pl-faq .pl-container { padding: 4rem 1rem 0; }
+  .pl-faq-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2);
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 2px;
+    color: var(--navy-blue-500);
+    text-align: center;
+    margin: 0 0 3rem;
+  }
+  .pl-faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pl-faq-item {
+    background-color: var(--navy-blue-500);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+  }
+  .pl-faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .pl-faq-q::-webkit-details-marker { display: none; }
+  .pl-faq-q-text {
+    font-family: 'Pridi', serif;
+    font-size: var(--h5);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    color: var(--toe-bean-pink-200);
+    margin: 0;
+  }
+  .pl-faq-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    position: relative;
+  }
+  .pl-faq-icon::before,
+  .pl-faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--toe-bean-pink-200);
+    transition: opacity 0.2s;
+  }
+  .pl-faq-icon::before { width: 14px; height: 2px; }
+  .pl-faq-icon::after { width: 2px; height: 14px; }
+  .pl-faq-item[open] .pl-faq-icon::after { opacity: 0; }
+  .pl-faq-a {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: 22px;
+    color: var(--snow);
+    margin: 1rem 0 0;
+  }
 
   /* ── CTA boxes ──────────────────────────────────────────────────────────── */
   .pl-cta .pl-container { padding: 8rem 0; }
