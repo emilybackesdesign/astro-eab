@@ -2,21 +2,40 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import FeaturedPostCard from '../../components/FeaturedPostCard.astro';
 
 const allPosts = await getCollection('posts');
 const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 7;
 const pagePosts = sorted.slice(0, POSTS_PER_PAGE);
-const totalPages = Math.ceil(sorted.length / POSTS_PER_PAGE);
+const totalPages = Math.ceil((sorted.length - 1) / (POSTS_PER_PAGE - 1));
+
+const [featured, ...rest] = pagePosts;
 ---
 <PageLayout title="Journal — Emily Backes" description="UX, design, and product thinking from Emily Backes.">
   <div class="posts-page">
     <header class="posts-header" data-aos="fade-up">
-      <span class="section-label">PAWS &amp; REFLECT</span>
-      <h1 class="posts-heading">The Journal</h1>
+      <div class="posts-header-text">
+        <span class="section-label">PAWS &amp; REFLECT</span>
+        <h1 class="posts-heading">The Design Journal</h1>
+        <p class="posts-subhead">
+          Occasional bad takes, mostly good banter, and a few UX/UI opinions worth keeping.
+        </p>
+      </div>
+      <span class="posts-count">{sorted.length} posts</span>
     </header>
+
+    <FeaturedPostCard
+      title={featured.data.title}
+      slug={featured.id}
+      date={featured.data.date}
+      category={featured.data.category}
+      coverImage={featured.data.coverImage}
+      excerpt={featured.data.excerpt}
+    />
+
     <div class="posts-grid">
-      {pagePosts.map((post, i) => (
+      {rest.map((post) => (
         <BlogCard
           title={post.data.title}
           slug={post.id}
@@ -27,18 +46,36 @@ const totalPages = Math.ceil(sorted.length / POSTS_PER_PAGE);
         />
       ))}
     </div>
+
     {totalPages > 1 && (
       <nav class="pagination" aria-label="Page navigation">
-        <span class="pagination-current">1 / {totalPages}</span>
-        <a href="/posts/2" class="pagination-next">Next &rarr;</a>
+        <span class="pagination-spacer" aria-hidden="true"></span>
+        <span class="pagination-current">Page 1 of {totalPages}</span>
+        <a href="/posts/2" class="pagination-link pagination-next">Older posts <span aria-hidden="true">&rarr;</span></a>
       </nav>
     )}
   </div>
 </PageLayout>
 
 <style>
-  .posts-page { max-width: 1030px; margin: 0 auto; padding: var(--lg-spacer) 1.5rem; }
-  .posts-header { margin-bottom: var(--lg-spacer); }
+  .posts-page {
+    max-width: 1030px;
+    margin: 0 auto;
+    padding: var(--lg-spacer) 1.5rem var(--xl-spacer);
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-spacer);
+  }
+
+  .posts-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ffffff12;
+    margin-bottom: 0.5rem;
+  }
   .section-label {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-extra-sm);
@@ -54,30 +91,75 @@ const totalPages = Math.ceil(sorted.length / POSTS_PER_PAGE);
     color: var(--ink);
     letter-spacing: -0.5px;
     margin: 0;
+    line-height: 1.05;
   }
+  .posts-subhead {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin: 0.75rem 0 0;
+    max-width: 48ch;
+    line-height: 1.6;
+  }
+  .posts-count {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
   }
+
   .pagination {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
-    margin-top: var(--lg-spacer);
+    margin-top: var(--md-spacer);
+    padding-top: 1.5rem;
+    border-top: 1px solid #ffffff12;
   }
+  .pagination-spacer { flex: 1; }
   .pagination-current {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-sm);
     color: var(--muted);
+    text-align: center;
+    flex: 1;
   }
-  .pagination-next, .pagination-prev {
+  .pagination-link {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-sm);
     color: var(--toe-bean-pink-200);
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color 0.2s;
+    white-space: nowrap;
   }
-  .pagination-next:hover, .pagination-prev:hover { color: var(--toe-bean-pink-400); }
+  .pagination-next { flex: 1; text-align: right; }
+  .pagination-link:hover { color: var(--toe-bean-pink-400); }
+  .pagination-link span {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pagination-next:hover span { transform: translateX(3px); }
+
+  @media (max-width: 600px) {
+    .posts-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .pagination-current { display: none; }
+    .pagination-spacer { display: none; }
+    .pagination { justify-content: flex-end; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pagination-link,
+    .pagination-link span { transition: none; }
+    .pagination-next:hover span { transform: none; }
+  }
 </style>

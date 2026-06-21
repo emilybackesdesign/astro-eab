@@ -1,16 +1,17 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
+import { getRelatedPosts } from '../../data/related-posts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map((entry) => ({
     params: { slug: entry.id },
-    props: { entry },
+    props: { entry, relatedPosts: getRelatedPosts(entry, posts) },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, relatedPosts } = Astro.props;
 const { Content } = await render(entry);
 const { title, seoTitle, date, category, coverImage, coverImageAlt, excerpt, podcastEmbedUrl } = entry.data;
 ---
@@ -23,6 +24,7 @@ const { title, seoTitle, date, category, coverImage, coverImageAlt, excerpt, pod
   coverImage={coverImage}
   coverImageAlt={coverImageAlt}
   podcastEmbedUrl={podcastEmbedUrl}
+  relatedPosts={relatedPosts}
 >
   <Content />
 </PostLayout>

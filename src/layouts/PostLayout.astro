@@ -1,8 +1,10 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import PodcastEmbed from '../components/PodcastEmbed.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 interface Props {
   title: string;
@@ -16,8 +18,9 @@ interface Props {
   coverImage?: string;
   coverImageAlt?: string;
   podcastEmbedUrl?: string;
+  relatedPosts?: CollectionEntry<'posts'>[];
 }
-const { title, seoTitle, description, date, dateModified, category, coverImage, coverImageAlt, podcastEmbedUrl } = Astro.props;
+const { title, seoTitle, description, date, dateModified, category, coverImage, coverImageAlt, podcastEmbedUrl, relatedPosts = [] } = Astro.props;
 const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 // BlogPosting JSON-LD (E-E-A-T / rich-result eligibility).
@@ -82,6 +85,7 @@ const blogPostingJsonLd = {
         <a href="/posts" class="post-footer-back">← Back to Paws &amp; Reflect</a>
       </footer>
     </article>
+    <RelatedPosts posts={relatedPosts} />
   </main>
   <Footer />
 </Layout>

@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+const { posts } = Astro.props;
+---
+{posts.length > 0 && (
+  <section class="related-posts" aria-labelledby="related-posts-heading">
+    <h2 id="related-posts-heading" class="related-posts-heading">Keep reading</h2>
+    <div class="related-posts-grid">
+      {posts.map((post) => (
+        <BlogCard
+          title={post.data.title}
+          slug={post.id}
+          date={post.data.date}
+          category={post.data.category}
+          coverImage={post.data.coverImage}
+          excerpt={post.data.excerpt}
+        />
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related-posts {
+    max-width: 1030px;
+    margin: 0 auto;
+    padding: var(--xl-spacer) clamp(1rem, 4vw, 1.5rem) var(--xxl-spacer);
+    border-top: 1px solid var(--rule);
+  }
+  .related-posts-heading {
+    font-family: 'Pridi', serif;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: var(--ink);
+    letter-spacing: 1px;
+    margin: 0 0 var(--md-spacer);
+  }
+  .related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--md-spacer);
+  }
+</style>

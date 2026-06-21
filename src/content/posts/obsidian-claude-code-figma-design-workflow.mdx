@@ -28,7 +28,7 @@ That structure is what makes the other two tools useful. When I built the mobile
 
 I enforce one rule hard: PascalCase for every file and folder. Boring, and it paid for itself the day I cleaned up naming across the vault. Seven folders renamed, 43 files moved, 40 files updated to fix their links, all in one pass, because the convention was mechanical enough to automate. Consistency is a feature you only notice when it is missing.
 
-The research lives here too. Eight user interviews across two rounds, each filed with full transcripts and a standardized synthesis matrix. That structure surfaced the pattern that reshaped the whole onboarding flow: every single user in round one skipped adding items so they could build their folder structure first. The flow order was backwards. I would not have seen it scanning notes one at a time. I saw it because nine themes sat side by side in one table.
+The research lives here too. Eight [user interviews](/post/how-to-conduct-effective-ux-interviews) across two rounds, each filed with full transcripts and a standardized synthesis matrix. That structure surfaced the pattern that reshaped the whole onboarding flow: every single user in round one skipped adding items so they could build their folder structure first. The flow order was backwards. I would not have seen it scanning notes one at a time. I saw it because nine themes sat side by side in one table.
 
 ## Claude Code: the build engine
 
@@ -37,8 +37,6 @@ Claude Code is where notes become things.
 The onboarding research turned into a working prototype you could click through. Five web screens in Astro, React 19, and Tailwind. Then seven mobile screens in Expo with a real state store and clean TypeScript. When round two confirmed users wanted a conversational, structure-first flow, I rebuilt the entire mobile chat experience: three mock personas, 50 industry-matched items each across five subcategories, and a real CSV import path that parses your columns and auto-detects which one holds the item name.
 
 The most useful thing Claude Code does is the unglamorous heavy lifting. The production icon library had 786 custom SVGs scattered across two source sections with 80 near-duplicates. I scripted the audit: pull every asset, split vector from raster, dedupe by base name, and rebuild the file into 23 semantic categories. Then a second pass grouped the icons into 35 variant clusters so I could answer one design-system question before componentizing: how many visual states does each icon concept actually need? You cannot design a component API by eyeballing 760 icons. You can design one by counting.
-
-I also taught Claude Code my own voice. I built a brand-voice skill from three of my live case studies, then ran three evals against it. The baseline defaulted to a generic third-person template. The skill-driven version sounded like me: outcome-first, honest about iteration, no em-dashes. This blog post is written through that skill. The tool learned the rules so I would stop re-explaining them.
 
 ## Figma: where it gets real
 
