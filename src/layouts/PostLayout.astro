@@ -55,7 +55,7 @@ const blogPostingJsonLd = {
   publishedTime={date.toISOString()}
   author="Emily Backes"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(blogPostingJsonLd)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogPostingJsonLd)} />
   <Nav />
   <main id="main-content">
     <article class="post-article">
@@ -179,7 +179,9 @@ const blogPostingJsonLd = {
     color: var(--toe-bean-pink-200);
     text-decoration: underline;
   }
-  .post-body :global(p) { margin-bottom: var(--sm-spacer); }
+  /* Reclaim the reading line-height: the global `p { line-height: 1.6 }` would
+     otherwise override .post-body's 1.75 on paragraph children. */
+  .post-body :global(p) { margin-bottom: var(--sm-spacer); line-height: var(--line-height-reading); }
   .post-body :global(blockquote) {
     background: rgba(255, 255, 255, 0.04);
     border-radius: var(--radius-md);

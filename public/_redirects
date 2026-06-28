@@ -1,1 +1,11 @@
+# Host canonicalization: www -> non-www (301).
+# Requires www.emilybackes.design to be attached as a custom domain on the
+# Pages project (otherwise the www host never reaches this file). Cloudflare
+# Pages matches the full URL when scheme+host are given; :splat = the matched path.
+https://www.emilybackes.design/* https://emilybackes.design/:splat 301
+
+# Dropped experimental pages (not migrated, ~0 traffic) -> journal.
+/experimental/* /posts 301
+
+# Slug typo fix: indexed Webflow URL -> corrected slug.
 /case-study/subscription-cancelletion /case-study/subscription-cancellation 301

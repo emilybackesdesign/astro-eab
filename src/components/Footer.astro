@@ -9,12 +9,14 @@ const theme: PageTheme = Astro.props.theme ?? getPageTheme(Astro.url.pathname);
 // The footer card is dark in both themes, so use the light wordmark; the light
 // pages historically shipped eb_logo2.svg.
 const logoSrc = theme === 'light' ? '/assets/images/eb_logo2.svg' : '/assets/images/eb_logo_navy_500.svg';
+// Keep the copyright year current automatically (rendered at build time).
+const year = new Date().getFullYear();
 ---
 <footer class="site-footer" data-theme={theme}>
   <div class="footer-wrap">
     <div class="footer-card">
       <a href="/" class="footer-logo" aria-label="Emily Backes Design — home">
-        <img src={logoSrc} alt="EB Design" height="56" />
+        <img src={logoSrc} alt="EB Design" height="56" decoding="async" />
       </a>
       <nav class="footer-nav" aria-label="Footer navigation">
         <div class="footer-col">
@@ -31,7 +33,7 @@ const logoSrc = theme === 'light' ? '/assets/images/eb_logo2.svg' : '/assets/ima
         </div>
       </nav>
     </div>
-    <p class="footer-copy">Copyright &copy; 2024 | <strong>Proudly Crafted in Colorado</strong></p>
+    <p class="footer-copy">Copyright &copy; {year} | <strong>Proudly Crafted in Colorado</strong></p>
   </div>
 </footer>
 

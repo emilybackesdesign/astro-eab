@@ -13,13 +13,14 @@ export async function getStaticPaths() {
 
 const { entry, relatedPosts } = Astro.props;
 const { Content } = await render(entry);
-const { title, seoTitle, date, category, coverImage, coverImageAlt, excerpt, podcastEmbedUrl } = entry.data;
+const { title, seoTitle, date, dateModified, category, coverImage, coverImageAlt, excerpt, podcastEmbedUrl } = entry.data;
 ---
 <PostLayout
   title={title}
   seoTitle={seoTitle}
   description={excerpt}
   date={date}
+  dateModified={dateModified}
   category={category}
   coverImage={coverImage}
   coverImageAlt={coverImageAlt}

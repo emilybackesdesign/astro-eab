@@ -1,0 +1,142 @@
+---
+/**
+ * Reusable FAQ accordion that also emits FAQPage JSON-LD for SEO / AI-SEO.
+ * Theme auto-detects from the route (same source as Nav/Footer) so it reads
+ * correctly on both the light Webflow-port case studies and the dark ones:
+ *  - light: navy cards on the light page background
+ *  - dark:  same navy cards plus a faint pink border so they separate from the
+ *           near-black background.
+ * Pass `theme` to override the auto-detection.
+ */
+import { getPageTheme, type PageTheme } from '../lib/page-theme';
+
+interface FaqItem {
+  q: string;
+  a: string;
+}
+interface Props {
+  faqs: FaqItem[];
+  title?: string;
+  theme?: PageTheme;
+}
+const { faqs, title = 'Frequently Asked Questions' } = Astro.props;
+const theme: PageTheme = Astro.props.theme ?? getPageTheme(Astro.url.pathname);
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+<section class="faq" data-theme={theme} aria-labelledby="faq-title">
+  <div class="faq-container">
+    <h2 class="faq-title" id="faq-title">{title}</h2>
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary class="faq-q">
+            <h3 class="faq-q-text">{f.q}</h3>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <p class="faq-a">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />
+</section>
+
+<style>
+  .faq-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 5rem 1rem 7rem;
+  }
+  .faq-title {
+    font-family: 'Pridi', serif;
+    font-size: var(--h2, 2.488rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0 0 3rem;
+    color: var(--navy-blue-500);
+  }
+  .faq[data-theme='dark'] .faq-title { color: var(--ink); }
+
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .faq-item {
+    background-color: var(--navy-blue-500);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md, 8px);
+    padding: 1.25rem 1.5rem;
+  }
+  /* On dark pages the navy card is close to the background — a faint pink edge
+     gives it definition without changing the light-page look. */
+  .faq[data-theme='dark'] .faq-item { border-color: rgba(241, 180, 187, 0.25); }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q-text {
+    font-family: 'Pridi', serif;
+    font-size: var(--h5, 1.44rem);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    color: var(--toe-bean-pink-200);
+    margin: 0;
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    position: relative;
+  }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--toe-bean-pink-200);
+    transition: opacity 0.2s;
+  }
+  .faq-icon::before { width: 14px; height: 2px; }
+  .faq-icon::after { width: 2px; height: 14px; }
+  .faq-item[open] .faq-icon::after { opacity: 0; }
+
+  .faq-a {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-body, 1rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--snow);
+    margin: 1rem 0 0;
+  }
+
+  @media (max-width: 600px) {
+    .faq-container { padding: 3.5rem 1rem 5rem; }
+    .faq-title { font-size: 1.8rem; letter-spacing: 1px; }
+  }
+</style>

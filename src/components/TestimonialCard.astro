@@ -14,7 +14,7 @@ const paragraphs = Array.isArray(quote) ? quote : [quote];
   <header class="testimonial-head">
     <div class="testimonial-avatar">
       {avatarSrc
-        ? <img src={avatarSrc} alt={name} loading="lazy" />
+        ? <img src={avatarSrc} alt={name} loading="lazy" decoding="async" />
         : <span class="avatar-initials">{initials}</span>
       }
     </div>

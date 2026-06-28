@@ -1,8 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  // Verbatim 1:1 Webflow ports contain third-party inline SVG + animation scripts
-  // that aren't meaningfully type-checkable as TSX; `npm run build` still validates them.
   "exclude": [
     "dist",
     "src/pages/case-study/sage-designing-an-ai-powered-chatbot.astro",

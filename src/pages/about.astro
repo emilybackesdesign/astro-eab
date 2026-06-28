@@ -104,6 +104,7 @@ const faqJsonLd = {
 <Layout
   title="About - Emily Backes | Product Designer"
   description="Hi, I'm Emily Backes — Product Designer, cat herder, cake baker, and former trumpet player. Learn about me."
+  leanFonts={true}
 >
   <Nav />
 
@@ -118,7 +119,7 @@ const faqJsonLd = {
             <h1 class="pl-hero-h1">Emily Backes (Back-<em>hiss</em>)</h1>
           </div>
           <div class="pl-hero-intro">
-            <p>I love making people laugh, and my <strong>two</strong> cats inspired the the theme for this site.</p>
+            <p>I love making people laugh, and my <strong>two</strong> cats inspired the theme for this site.</p>
           </div>
         </div>
 
@@ -155,13 +156,11 @@ const faqJsonLd = {
           <div class="pl-facts-list">
             {facts.map((f) => (
               <div class="pl-fact">
-                <lord-icon
-                  src={`/assets/icons/lottie/${f.icon}`}
-                  trigger="loop"
-                  delay="1200"
-                  colors="primary:#1f4172,secondary:#1f4172"
+                <span
                   class="pl-fact-icon"
-                ></lord-icon>
+                  data-lottie-src={`/assets/icons/lottie/${f.icon}`}
+                  aria-hidden="true"
+                ></span>
                 <p class="pl-fact-text">{f.text}</p>
               </div>
             ))}
@@ -220,24 +219,6 @@ const faqJsonLd = {
       </div>
     </section>
 
-    <!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
-    <section class="pl-faq" aria-labelledby="pl-faq-title">
-      <div class="pl-container">
-        <h2 class="pl-faq-title" id="pl-faq-title">Frequently Asked (by humans and robots alike)</h2>
-        <div class="pl-faq-list">
-          {faqs.map((f) => (
-            <details class="pl-faq-item">
-              <summary class="pl-faq-q">
-                <h3 class="pl-faq-q-text">{f.q}</h3>
-                <span class="pl-faq-icon" aria-hidden="true"></span>
-              </summary>
-              <p class="pl-faq-a">{f.a}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <!-- ── CTA boxes ─────────────────────────────────────────────────────────── -->
     <section class="pl-cta">
       <div class="pl-container">
@@ -258,9 +239,27 @@ const faqJsonLd = {
         </div>
       </div>
     </section>
+
+    <!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
+    <section class="pl-faq" aria-labelledby="pl-faq-title">
+      <div class="pl-container">
+        <h2 class="pl-faq-title" id="pl-faq-title">Frequently Asked (by humans and robots alike)</h2>
+        <div class="pl-faq-list">
+          {faqs.map((f) => (
+            <details class="pl-faq-item">
+              <summary class="pl-faq-q">
+                <h3 class="pl-faq-q-text">{f.q}</h3>
+                <span class="pl-faq-icon" aria-hidden="true"></span>
+              </summary>
+              <p class="pl-faq-a">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />
 
   <Footer />
 </Layout>
@@ -394,7 +393,7 @@ const faqJsonLd = {
     align-items: flex-start;
   }
   .pl-fact { display: flex; align-items: center; }
-  .pl-fact-icon { width: 40px; height: 40px; margin-right: 1rem; flex-shrink: 0; }
+  .pl-fact-icon { display: block; width: 40px; height: 40px; margin-right: 1rem; flex-shrink: 0; }
   .pl-fact-text {
     font-family: 'Public Sans', sans-serif;
     font-size: var(--text-body);
@@ -544,7 +543,7 @@ const faqJsonLd = {
   .pl-tl-img--bottom { object-position: 50% 100%; }
 
   /* ── FAQ ────────────────────────────────────────────────────────────────── */
-  .pl-faq .pl-container { padding: 4rem 1rem 0; }
+  .pl-faq .pl-container { padding: 4rem 1rem 8rem; }
   .pl-faq-title {
     font-family: 'Pridi', serif;
     font-size: var(--h2);
@@ -614,7 +613,7 @@ const faqJsonLd = {
   }
 
   /* ── CTA boxes ──────────────────────────────────────────────────────────── */
-  .pl-cta .pl-container { padding: 8rem 0; }
+  .pl-cta .pl-container { padding: 8rem 0 4rem; }
   .pl-cta-wrap { display: flex; flex-direction: row; gap: 16px; height: 20rem; }
   .pl-cta-box { width: 50%; border-radius: 8px; padding: 2rem; }
   .pl-cta-box--resume {
@@ -724,7 +723,7 @@ const faqJsonLd = {
 
   @media (max-width: 479px) {
     .pl-facts-title { font-size: var(--h4); }
-    .pl-fact-text { font-size: var(--text-extra-sm); }
+    .pl-fact-text { font-size: var(--text-sm); }
     .pl-fact-icon { width: 32px; height: 32px; }
     .pl-polaroid-img { width: 140px; height: 140px; }
 
@@ -757,9 +756,28 @@ const faqJsonLd = {
 </script>
 
 <script>
-  // Lottie / lord-icon for the Quick Facts icons
-  import { defineElement } from '@lordicon/element';
-  import lottie from 'lottie-web';
-  // @ts-ignore — @lordicon/element v2 type defs incorrectly declare 0 params
-  defineElement(lottie.loadAnimation);
+  // Render the "Quick Facts" [data-lottie-src] icons. This page wraps Layout
+  // directly (not PageLayout), so it needs its own copy of the lottie loader.
+  const lottieIcons = document.querySelectorAll<HTMLElement>('[data-lottie-src]');
+  if (lottieIcons.length) {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    const { default: lottie } = await import('lottie-web');
+    lottieIcons.forEach((el) => {
+      if (el.dataset.lottieInit) return;
+      el.dataset.lottieInit = 'true';
+      const path = el.dataset.lottieSrc;
+      if (!path) return;
+      lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        // Reduced-motion users get a static first frame (no autoplay).
+        autoplay: !prefersReducedMotion,
+        path,
+      });
+    });
+  }
 </script>
+

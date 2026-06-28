@@ -5,6 +5,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 <PageLayout
   title="Resume — Emily Backes"
   description="Resume of Emily Backes, Product Designer — 10 years of experience in UX/UI, product design, and research."
+  leanFonts={true}
 >
 
   <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
@@ -60,16 +61,20 @@ import PageLayout from '../layouts/PageLayout.astro';
       </div>
 
       <div class="pdf-frame-wrap">
+        <!-- The iframe src is set by JS only after we confirm a real PDF exists,
+             so a missing/404 /resume.pdf never renders the site's own 404 page
+             inside the frame. -->
         <iframe
-          src="/resume.pdf"
           title="Emily Backes Resume"
           class="resume-iframe"
           loading="lazy"
           id="resume-iframe"
+          style="display:none"
         ></iframe>
-        <p class="pdf-fallback" id="pdf-missing-msg" style="display:none">
-          Resume PDF loading&hellip; If it doesn&rsquo;t appear,
-          <a href="/resume.pdf" class="pink-link">download it directly</a>.
+        <p class="pdf-fallback" id="pdf-missing-msg">
+          The inline resume preview isn&rsquo;t available right now &mdash;
+          <a href="/resume.pdf" class="pink-link">download the PDF directly</a>
+          or <a href="/contact" class="pink-link">get in touch</a>.
         </p>
         <noscript>
           <p class="pdf-fallback">
@@ -80,25 +85,24 @@ import PageLayout from '../layouts/PageLayout.astro';
       </div>
       <script>
         (function () {
-          var iframe = document.getElementById('resume-iframe');
-          var msg = document.getElementById('pdf-missing-msg');
+          const iframe = document.getElementById('resume-iframe');
+          const msg = document.getElementById('pdf-missing-msg');
           if (!iframe || !msg) return;
-          // Show the fallback message immediately — it stays visible until the
-          // iframe reports a successful load (i.e. the PDF exists).
-          msg.style.display = 'block';
-          iframe.addEventListener('load', function () {
-            // A real PDF load hides the message; a 404 keeps it showing.
-            try {
-              // Accessing contentDocument throws on cross-origin or successful
-              // PDF plugin loads — either way means something loaded.
-              msg.style.display = 'none';
-            } catch (_) {
-              msg.style.display = 'none';
-            }
-          });
-          iframe.addEventListener('error', function () {
-            msg.style.display = 'block';
-          });
+          // Probe before embedding: a 404 returns the SPA's HTML 404 body (which
+          // would otherwise render a whole nested page inside the iframe). Only
+          // swap in the real preview when the response is OK and actually a PDF.
+          fetch('/resume.pdf', { method: 'HEAD' })
+            .then(function (res) {
+              const type = res.headers.get('content-type') || '';
+              if (res.ok && type.indexOf('pdf') !== -1) {
+                iframe.setAttribute('src', '/resume.pdf');
+                iframe.style.display = '';
+                msg.style.display = 'none';
+              }
+            })
+            .catch(function () {
+              /* leave the fallback message visible */
+            });
         })();
       </script>
 
@@ -280,7 +284,7 @@ import PageLayout from '../layouts/PageLayout.astro';
     letter-spacing: 2px;
     text-transform: uppercase;
     background-color: var(--toe-bean-pink-200);
-    color: #333;
+    color: var(--primary-dark-600);
     border-radius: 4px;
     padding: 10px 20px;
     transition: background-color 0.15s;
@@ -446,7 +450,7 @@ import PageLayout from '../layouts/PageLayout.astro';
     letter-spacing: 2px;
     text-transform: uppercase;
     background-color: var(--toe-bean-pink-200);
-    color: #333;
+    color: var(--primary-dark-600);
     border-radius: 4px;
     padding: 10px 20px;
     transition: background-color 0.15s;
@@ -454,6 +458,6 @@ import PageLayout from '../layouts/PageLayout.astro';
   }
 
   .btn-primary:hover {
-    background-color: var(--toe-bean-pink-400, #c88f96);
+    background-color: var(--toe-bean-pink-300, #c88f96);
   }
 </style>

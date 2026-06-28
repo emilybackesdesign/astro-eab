@@ -42,7 +42,7 @@ const { title, tags, excerpt, coverImage, hasRotateWarning, number } = entry.dat
       <h1 class="cs-title">{title}</h1>
       {coverImage && (
         <div class="cs-cover">
-          <img src={coverImage} alt={title} />
+          <img src={coverImage} alt="" />
         </div>
       )}
     </header>
@@ -139,7 +139,7 @@ const { title, tags, excerpt, coverImage, hasRotateWarning, number } = entry.dat
     border-top: 1px solid var(--rule);
     margin: var(--lg-spacer) 0;
   }
-  .cs-body :global(lord-icon) {
+  .cs-body :global([data-lottie-src]) {
     vertical-align: middle;
   }
 </style>

@@ -12,7 +12,7 @@ const isLight = theme === 'light';
 <nav class="site-nav" data-theme={theme} role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Emily Backes Design home">
-      <img src="/assets/images/eb_logo_navy_500.svg" alt="EB Design" />
+      <img src="/assets/images/eb_logo_navy_500.svg" alt="EB Design" decoding="async" />
     </a>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="nav-toggle">
       <span></span><span></span><span></span>
@@ -59,13 +59,19 @@ const isLight = theme === 'light';
     color: var(--ink);
     text-decoration: none;
     padding: 5px 8px;
+    border: 1.5px solid transparent;
     border-radius: 4px;
-    transition: color 0.15s, background 0.15s;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
   }
+  /* Unified hover + active state — identical in both themes: navy text on a
+     pink-200 pill. The pill is opaque so contrast no longer depends on the page
+     background; the navy border delineates the chip on pink surfaces (the
+     /about body and the light mobile menu) where the fill would otherwise blend. */
   .nav-link:hover,
   .nav-link[aria-current="page"] {
-    color: var(--toe-bean-pink-200);
-    background: rgba(241, 180, 187, 0.08);
+    color: var(--navy-blue-500);
+    background: var(--toe-bean-pink-200);
+    border-color: var(--navy-blue-500);
   }
   .nav-cta {
     font-family: 'Public Sans', sans-serif;
@@ -83,7 +89,8 @@ const isLight = theme === 'light';
     transition: all 0.2s;
   }
   .nav-cta:hover {
-    background: var(--toe-bean-pink-400);
+    /* Keep the pink-200 fill (navy text → 5.8:1); the press-in motion is the
+       hover feedback. The old pink-400 fill dropped contrast to 3.8:1. */
     box-shadow: none;
     transform: translate(-4px, 4px);
   }
@@ -136,11 +143,8 @@ const isLight = theme === 'light';
     letter-spacing: 0.25px;
     margin: 0 4px;
   }
-  .site-nav[data-theme="light"] .nav-link:hover,
-  .site-nav[data-theme="light"] .nav-link[aria-current="page"] {
-    color: var(--toe-bean-pink-200);
-    background: transparent;
-  }
+  /* Hover/active is the shared base rule (navy text on pink-200 pill) — the
+     light theme only needs to set the rest-state link color below. */
   .site-nav[data-theme="light"] .nav-cta {
     font-weight: 400;
     letter-spacing: 2px;

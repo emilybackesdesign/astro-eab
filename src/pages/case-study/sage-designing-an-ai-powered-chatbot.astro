@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import Faq from '../../components/Faq.astro';
 
 const pageUrl = 'https://emilybackes.design/case-study/sage-designing-an-ai-powered-chatbot';
 const description = "How redesigning Sage from full-page to sidekick doubled resolution rates and cut agent tickets 29%.";
@@ -33,9 +34,32 @@ const jsonLd = {
     }
   ]
 };
+
+const faqs = [
+  {
+    q: 'What was the core problem Emily was solving with Sage?',
+    a: "Sortly's chatbot, Sage, gave accurate answers but lived in a full-page container that fought the user. For 'how to' questions, people couldn't follow step-by-step instructions while staying in the chat, so they opened a second browser window or closed the chat entirely.",
+  },
+  {
+    q: "What was Emily's specific role on the Sage project?",
+    a: "I was the product designer for Sortly's AI assistant. The dev team built a quick-and-dirty full-page beta to validate response quality, and my role was to design the actual chatbot experience around it, advocating for the UX and the in-product ticketing flow.",
+  },
+  {
+    q: "What was Emily's design process and approach?",
+    a: 'I started with the full-page V1, then tracked closely through Amplitude what users asked and what they did next. Two patterns drove the redesign: users needed to navigate Sortly while talking to Sage, and they were being pushed out of the product to file Zendesk tickets, re-entering account info Sortly already had.',
+  },
+  {
+    q: 'What was the final solution?',
+    a: 'I turned Sage from a destination into a sidekick: a persistent, collapsible window accessible from any screen, with a ticket submission flow pre-populated with account data. Sage got a name, an owl brand identity, cards for help articles and how-to videos, and a layout built to scale to mobile. The full-page experience was retired.',
+  },
+  {
+    q: 'What measurable impact did the redesign have?',
+    a: 'Sage-handled solves rose 44%, agent-handled tickets dropped 29%, and Zendesk-handled tickets fell 15%. Trial tickets in August dropped 48%, the steepest single-month decline in over a year, and the old Zendesk bot was fully sunsetted in January 2026.',
+  },
+];
 ---
-<PageLayout title="Designing Sage — An AI Powered Chatbot | Emily Backes" description={description} ogImage="/assets/cs/sage/662ad570421ba9e8a98b25bc_og-eb-logo.png" bodyBg="#f3f7f4">
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<PageLayout title="Designing Sage — An AI Powered Chatbot | Emily Backes" description={description} ogImage="/assets/cs/sage/662ad570421ba9e8a98b25bc_og-eb-logo.png" bodyBg="#f3f7f4" extraFonts={['Lato', 'Josefin Sans']}>
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
 <div class="sage-main-wrapper"><div id="sage-header-hero-section" class="sage-header-hero-section"><div id="sage-page-header" class="sage-page-header"><div class="inline-div-0"><span class="inline-span-0"></span><span class="inline-span-1"></span><span>AI / Chatbot</span><span class="inline-span-2"></span><span>2024–2026</span></div><h1 class="inline-h1-0">How I Doubled Chatbot Resolution Rate and Cut Agent Tickets 29% by Turning Sortly Sage from a Full Page into a Sidekick</h1><p class="inline-p-0">When we shipped the full-page beta at 10% of users, it outperformed the old bot immediately. Users were also opening second browser windows to follow its instructions. That one behavior told me everything: accurate answers don&#x27;t matter if the container fights the user.</p></div><div id="sage-hero-placeholder" class="sage-hero-visual"><div class="w-embed"><!-- ── Animated Chatbot Hero ─────────────────────────────────────────────────── -->
 <div class="anim-section reveal">
 <svg id="sage-anim" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
@@ -473,6 +497,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script></div>
 
 <script is:inline>(()=>{if(window.__sageOutcomeAnim)return;window.__sageOutcomeAnim=1;const s=document.getElementById('sage-outcomes-section');if(!s)return;const items=[['sage-outcome-solves',44,'+'],['sage-outcome-agent-tickets',29,'-'],['sage-outcome-zendesk-tickets',15,'-'],['sage-outcome-trial-tickets',48,'-']].map(([id,target,prefix])=>({el:document.getElementById(id),target,prefix})).filter(x=>x.el);items.forEach(x=>x.el.textContent=x.prefix+'0%');const run=()=>items.forEach((x,i)=>setTimeout(()=>{const a=performance.now(),d=720;requestAnimationFrame(function f(n){const t=Math.min((n-a)/d,1),v=Math.round(x.target*(1-(1-t)**4));x.el.textContent=x.prefix+v+'%';if(t<1)requestAnimationFrame(f);});},i*110));const o=new IntersectionObserver(e=>{if(e[0]&&e[0].isIntersecting){o.disconnect();run();}},{rootMargin:'0px 0px -33% 0px'});o.observe(s);})();</script>
+
+  <Faq faqs={faqs} />
 </PageLayout>
 
 <style>
@@ -526,7 +552,6 @@ input.w-button{-webkit-appearance:button}
 @media screen and (max-width:991px){.w-nav[data-collapse=medium] .w-nav-menu{display:none}.w-nav[data-collapse=medium] .w-nav-button{display:block}}
 @media screen and (max-width:767px){.w-nav[data-collapse=small] .w-nav-menu{display:none}.w-nav[data-collapse=small] .w-nav-button{display:block}.w-nav-brand{padding-left:10px}}
 @media screen and (max-width:479px){.w-nav[data-collapse=tiny] .w-nav-menu{display:none}.w-nav[data-collapse=tiny] .w-nav-button{display:block}}
-.sage-main-wrapper{--light-bg:snow;--card-bg-default:#282838;--lg-spacer:4rem;--main-bg:#161623;--h2:2.488rem;--white:white;--text-body:1rem;--toe-bean-pink-200:#f1b4bb;--midnight-blue-500:#2f4276;--def-spacer:1rem;--navy-blue-500:#1f4172;--toe-bean-pink-400:#c88f96;--text-extra-sm:.694rem;--md-spacer:2rem;--exp-bg:#fbfbfb;--h1:2.986rem;--h5:1.44rem;--h3:2.074rem;--tf-body:#09143a;--main-body-bg:#161623;--primary-dark-600:#333;--h4:1.728rem;--xl-spacer:8rem;--5p-bg:#f6f2ec;--text-sm:.833rem;--tf-blue:#1d44c0;--toe-bean-pink-300:#c88f96;--text-xl:56px;--navy-blue-200:#92bfff;--navy-blue-100:#c3dbff;--secondary-bg:#161623;--toe-bean-pink-100:#f6dadd;--midnight-blue-300:#89a0dc;--midnight-blue-600:#132043;--xs-spacer:.5rem;--5p-sakura:#dfb1b6;--5p-cold:#234272;--xxs-spacer:.25rem;--5p-orchid:#cd899e;--sm-spacer:.75rem;--5p-ballad:#a6427c;--xxl-spacer:16rem;--ui-minty:#c7e0da;--ui-banana-smoothie:#f2e2a4;--bg:#111216;--body:#c4c5c9;--sp-9:96px;--sp-6:32px;--sp-5:24px;--sp-3:12px;--muted:#a8a8ac;--subtle:#76777d;--ink:#f4f4f6;--sp-7:48px;--rule:#ffffff12;--surface:#1a1c23;--elevated:#22242d;--brand-tint:#170c0d;--sp-8:64px;--sp-4:16px;--brand:#dd2a3b;--brand-light:#e45562;--rule-strong:#ffffff21;--sp-2:8px;--sp-1:4px;--highest:#2f313a;--brand-dim:#dd2a3b1a;--brand-subtle:#dd2a3b0f;--green:#559d69;--toe-bean-pink-500:#774d52;--navy-blue-300:#6695d8;--navy-blue-400:#3d68a5;--navy-blue-600:#1a365f;--midnight-blue-100:#dae4ff;--midnight-blue-200:#bcceff;--midnight-blue-400:#566da9;--black:black}
 .navbar-logo-left-container{z-index:5;background-color:#0000;width:1030px;max-width:100%;margin-left:auto;margin-right:auto;padding:15px 20px}
 .navbar-logo-left-container.shadow-three{z-index:888;-webkit-backdrop-filter:blur(1rem);backdrop-filter:blur(1rem);-webkit-text-fill-color:inherit;background-color:#28283800;background-clip:border-box;border:1px #373749;border-radius:4px;width:100%;max-width:1140px;margin-top:0;margin-bottom:0;padding:2rem 1rem;position:sticky;top:1rem}
 .container-13{width:100%;max-width:1140px;margin-left:auto;margin-right:auto}
@@ -677,7 +702,7 @@ input.w-button{-webkit-appearance:button}
 @media screen and (min-width:1440px){.nav-link-2.nav_last_item{margin-right:var(--def-spacer)}.inline-p-0-1{margin-right:2rem}}
 @media screen and (max-width:991px){.navbar-logo-left-container.shadow-three{margin-left:0;margin-right:0}.container-13{max-width:728px}.nav-menu-wrapper-2{background-color:#0000}.nav-menu-two{background-color:#fff;border-radius:4px;flex-wrap:wrap;justify-content:space-around;align-items:center;margin-top:10px;padding:20px;display:flex;box-shadow:0 8px 50px #0000000d}.nav-link-2{color:var(--midnight-blue-500);padding-left:5px;padding-right:5px}.btn_primary{font-size:var(--text-extra-sm)}.menu-button-2{padding:12px}.menu-button-2.w--open{color:#fff;background-color:#a6b1bf}.icon-2,.list-item{color:var(--navy-blue-500)}.inline-div-2-1{flex-flow:column}}
 @media screen and (max-width:767px){.navbar-logo-left-container{max-width:100%}.navbar-brand-2{padding-left:0}.nav-menu-wrapper-2{justify-content:center;align-items:center;display:flex}.nav-menu-two{border-radius:20px;flex-flow:row;margin-top:.5rem;margin-bottom:.5rem;padding:2rem 1rem}.nav-link-2{padding-top:10px;padding-bottom:10px;display:inline-block}.nav-link-2.nav_last_item{text-align:left;padding:12px 4px}.mobile-margin-top-11{margin-top:10px}.btn_primary{padding:.5rem;font-size:.55rem}.icon-2{color:var(--navy-blue-500)}.inline-div-2-1{margin-top:4rem}}
-@media screen and (max-width:479px){.container-13{max-width:none}.nav-menu-two{flex-flow:column;justify-content:center;align-items:center}.nav-link-2.nav_last_item{margin-left:0;margin-right:0;padding-left:0;padding-right:0}.outcomes-grid.inline-div-33{flex-flow:column;display:flex}}
+@media screen and (max-width:479px){.container-13{max-width:none}.nav-menu-two{flex-flow:column;justify-content:center;align-items:center}.nav-link-2.nav_last_item{margin-left:0;margin-right:0;padding-left:0;padding-right:0}.outcomes-grid.inline-div-33{flex-flow:column;display:flex}.sage-outcomes-grid{flex-direction:column}}
 .sage-main-wrapper p{color:#586867}
 .cs-summary__section{max-width:920px;margin:0 auto;padding:0 var(--sp-6) var(--sp-7)}
 .cs-summary__card{background:#fff;border:1px solid #d9e8e7;border-radius:16px;padding:2rem}

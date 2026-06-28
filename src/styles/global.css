@@ -72,11 +72,6 @@
   --5p-orchid: #cd899e;
   --5p-ballad: #a6427c;
   --5p-cold: #234272;
-  --toe-bean-pink-100: #f6dadd;
-  --navy-blue-100: #c3dbff;
-  --navy-blue-500: #1f4172;
-  --midnight-blue-500: #2f4276;
-  --midnight-blue-600: #132043;
 
   /* UI / experimental */
   --ui-minty: #c7e0da;
@@ -186,12 +181,6 @@ img, svg {
 :focus:not(:focus-visible) { outline: none; }
 
 /* ── Utilities ──────────────────────────────────────────────────────────────── */
-.text-ink    { color: var(--ink); }
-.text-body   { color: var(--body); }
-.text-muted  { color: var(--muted); }
-.text-subtle { color: var(--subtle); }
-.text-pink   { color: var(--toe-bean-pink-200); }
-
 .label-caps {
   font-family: 'Public Sans', sans-serif;
   font-size: var(--text-extra-sm);

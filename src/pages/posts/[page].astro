@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 const { pagePosts, page, totalPages, totalPosts } = Astro.props;
 ---
-<PageLayout title={"Journal Page " + page + " — Emily Backes"}>
+<PageLayout title={"Journal Page " + page + " — Emily Backes"} description="More from Emily Backes' design journal — UX, design, and product thinking from the archive." leanFonts={true}>
   <div class="posts-page">
     <header class="posts-header" data-aos="fade-up">
       <div class="posts-header-text">

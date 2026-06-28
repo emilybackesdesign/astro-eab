@@ -2,11 +2,12 @@
 //
 // This is a 1:1 port of the production (emilybackes.design) Case Catalog and is
 // intentionally decoupled from the case-study content collection: it holds the
-// prod-verbatim card copy plus presentation-only fields (gif, titleHighlights, cta)
+// prod-verbatim card copy plus presentation-only fields (titleHighlights, cta)
 // so the case-study MDX frontmatter and detail pages stay untouched.
 //
-// `slug` maps to the existing /case-study/<slug> route. `titleHighlights` are the
-// phrases rendered in the pink accent color inside the title.
+// `slug` maps to the existing /case-study/<slug> route. `gif` is the card cover
+// image path. `titleHighlights` are the phrases rendered in the pink accent
+// color inside the title.
 
 export interface CaseCatalogEntry {
   number: string;
@@ -23,7 +24,7 @@ export const caseCatalog: CaseCatalogEntry[] = [
   {
     number: '.01',
     slug: 'sage-designing-an-ai-powered-chatbot',
-    gif: '/assets/images/cs-sage.gif',
+    gif: '/assets/images/cs-sage.webp',
     tags: ['ux-ui', 'UX Research', 'product design', 'AI / LLM'],
     title: 'Designing an AI Powered Chatbot for a Better CX Experience',
     titleHighlights: ['AI Powered'],
@@ -33,7 +34,7 @@ export const caseCatalog: CaseCatalogEntry[] = [
   {
     number: '.02',
     slug: 'folsom-psychology',
-    gif: '/assets/images/cs-folsom.gif',
+    gif: '/assets/images/cs-folsom.webp',
     tags: ['ux-ui', 'UX Research', 'product design'],
     title: 'How I Helped Reduce Patient Scheduling Times In Half',
     titleHighlights: ['Helped', 'Half'],
@@ -43,7 +44,7 @@ export const caseCatalog: CaseCatalogEntry[] = [
   {
     number: '.03',
     slug: 'subscription-cancellation',
-    gif: '/assets/images/cs-sub-cancel.gif',
+    gif: '/assets/images/cs-sub-cancel.webp',
     tags: ['ux-ui', 'UX Research', 'product design', 'saas subscriptions'],
     title: "Breaking up with a SaaS doesn't have to be hard, or illegal",
     titleHighlights: [],
@@ -53,7 +54,7 @@ export const caseCatalog: CaseCatalogEntry[] = [
   {
     number: '.04',
     slug: 'lago',
-    gif: '/assets/images/cs-lago.gif',
+    gif: '/assets/images/cs-lago.webp',
     tags: ['Leadership', 'agile', 'product strategy'],
     title: 'Herding Cats Around The World in 6 Weeks',
     titleHighlights: ['Cats'],
@@ -63,7 +64,7 @@ export const caseCatalog: CaseCatalogEntry[] = [
   {
     number: '.05',
     slug: 'sprocket-app',
-    gif: '/assets/images/cs-sprocket.gif',
+    gif: '/assets/images/cs-sprocket.webp',
     tags: ['UX-UI', 'mobile', 'design', 'research'],
     title: 'How I doubled expected registration and app sign up in 3 months',
     titleHighlights: ['doubled'],

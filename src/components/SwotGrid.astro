@@ -82,7 +82,7 @@
           <div class="card-text">
             <p>open to freelance work</p>
           </div>
-          <img src="/assets/images/grumpy-cat.svg" alt="" class="card-illo card-illo--grumpy" aria-hidden="true" />
+          <img src="/assets/images/grumpy-cat.svg" alt="" class="card-illo card-illo--grumpy" aria-hidden="true" data-aos="fade-up" data-aos-duration="700" data-aos-offset="0" />
         </div>
       </div>
       <img src="/assets/images/grumpy_pointer.svg" alt="" class="swot-pointer" aria-hidden="true" />
@@ -198,10 +198,11 @@
     width: 120px;
     margin-bottom: auto;
   }
-  /* grumpy cat peeks up (ears only) from the bottom edge of the card */
+  /* grumpy cat rises up to sit at the bottom-right of the card — full face
+     showing, ~16px above the bottom edge (matches live site) */
   .card-illo--grumpy {
     position: absolute;
-    bottom: -48px;
+    bottom: 16px;
     right: 16px;
     width: 88px;
   }

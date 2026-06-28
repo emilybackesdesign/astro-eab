@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+// Surface the 3 most-recent posts so a wrong URL still lands on something useful.
+const allPosts = await getCollection('posts');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+<PageLayout
+  title="Page not found (404) — Emily Backes"
+  description="That page wandered off. Head home or dig into the latest from the design journal."
+  leanFonts={true}
+>
+  <div class="notfound">
+    <header class="notfound-header" data-aos="fade-up">
+      <span class="notfound-code">404</span>
+      <h1 class="notfound-heading">Crap, we&rsquo;ve probably lost that thing.</h1>
+      <p class="notfound-sub">
+        The page you were after has moved, been renamed, or never existed.
+        No harm done &mdash; here&rsquo;s the way back, plus a few reads worth your time.
+      </p>
+      <a href="/" class="btn btn-primary notfound-cta">Take me home</a>
+    </header>
+
+    <section class="notfound-posts" aria-label="Recent posts">
+      <div class="notfound-posts-head">
+        <span class="section-label">WHILE YOU&rsquo;RE HERE</span>
+        <a href="/posts" class="notfound-all">All posts <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="posts-grid">
+        {recentPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            slug={post.id}
+            date={post.data.date}
+            category={post.data.category}
+            coverImage={post.data.coverImage}
+            excerpt={post.data.excerpt}
+          />
+        ))}
+      </div>
+    </section>
+  </div>
+</PageLayout>
+
+<style>
+  .notfound {
+    max-width: 1030px;
+    margin: 0 auto;
+    padding: var(--lg-spacer) 1.5rem var(--xl-spacer);
+    display: flex;
+    flex-direction: column;
+    gap: var(--lg-spacer);
+  }
+
+  .notfound-header {
+    text-align: center;
+    max-width: 60ch;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .notfound-code {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--toe-bean-pink-200);
+    margin-bottom: 1rem;
+  }
+  .notfound-heading {
+    font-family: 'Pridi', serif;
+    font-size: var(--h1);
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .notfound-sub {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 1rem 0 0;
+  }
+  .notfound-cta {
+    margin-top: 2rem;
+  }
+
+  /* Buttons aren't in global.css; mirror index.astro's .btn / .btn-primary. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--toe-bean-pink-200);
+    color: var(--navy-blue-500);
+    border: 1px solid var(--toe-bean-pink-200);
+    box-shadow: -4px 4px 0 0 var(--bg);
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s, color 0.2s;
+  }
+  .btn-primary:hover {
+    background: var(--toe-bean-pink-400);
+    border-color: var(--toe-bean-pink-400);
+    color: var(--snow);
+    box-shadow: none;
+    transform: translate(-4px, 4px);
+  }
+
+  .notfound-posts-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .section-label {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-extra-sm);
+    color: var(--toe-bean-pink-200);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .notfound-all {
+    font-family: 'Public Sans', sans-serif;
+    font-size: var(--text-sm);
+    color: var(--toe-bean-pink-200);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .notfound-all:hover { color: var(--toe-bean-pink-400); }
+  .notfound-all span {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .notfound-all:hover span { transform: translateX(3px); }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .notfound-all,
+    .notfound-all span { transition: none; }
+    .btn-primary:hover { transform: none; }
+    .notfound-all:hover span { transform: none; }
+  }
+</style>

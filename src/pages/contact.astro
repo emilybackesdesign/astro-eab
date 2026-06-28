@@ -5,6 +5,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 <PageLayout
   title="Contact — Emily Backes"
   description="Get in touch with Emily Backes — Product Designer. Got a project or role in mind? Let's chat."
+  leanFonts={true}
 >
 
   <section class="contact-section">
@@ -20,9 +21,12 @@ import PageLayout from '../layouts/PageLayout.astro';
       <!-- ── Form ───────────────────────────────────────────────────────── -->
       <div class="form-wrap" data-aos="fade-up">
         <!--
-          TODO: Replace YOUR_ACCESS_KEY_HERE in the hidden input below with your
-          real Web3Forms access key. Get a free key in 30 seconds (just an email)
-          at https://web3forms.com — free tier includes 250 submissions/month.
+          The Web3Forms access key is read from the PUBLIC_WEB3FORMS_KEY
+          environment variable (a local `.env` file in dev, and the Cloudflare
+          Pages project's environment variables in production). The PUBLIC_
+          prefix is required so Astro exposes it to the client-rendered HTML.
+          Get a free key (just an email) at https://web3forms.com — free tier
+          includes 250 submissions/month.
         -->
         <form
           id="contact-form"
@@ -30,7 +34,7 @@ import PageLayout from '../layouts/PageLayout.astro';
           method="POST"
           novalidate
         >
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY ?? ''} />
           <input type="hidden" name="subject" value="New message from emilybackes.design" />
           <input type="hidden" name="from_name" value="Emily Backes Portfolio" />
           <div class="field-group">
@@ -82,12 +86,12 @@ import PageLayout from '../layouts/PageLayout.astro';
         <!-- ── Success state ────────────────────────────────────────────── -->
         <div id="success-state" class="success-state" hidden aria-live="polite">
           <div class="success-lottie">
-            <lord-icon
-              src="/assets/icons/lottie/wired-lineal-1957-maneki-cat-light.json"
-              trigger="loop"
-              colors="primary:#f1b4bb,secondary:#f1b4bb"
-              style="width:120px;height:120px"
-            ></lord-icon>
+            <span
+              class="lottie-icon"
+              data-lottie-src="/assets/icons/lottie/wired-lineal-1957-maneki-cat-light-pink.json"
+              style="width:120px;height:120px;display:inline-block"
+              aria-hidden="true"
+            ></span>
           </div>
           <h2 class="success-heading">Thank you!</h2>
           <p class="success-body">I'll be in touch soon.</p>
@@ -227,7 +231,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 
   input::placeholder,
   textarea::placeholder {
-    color: var(--subtle);
+    /* --muted clears WCAG AA on surface/elevated; --subtle did not (3.8:1). */
+    color: var(--muted);
   }
 
   input:focus,
@@ -250,10 +255,11 @@ import PageLayout from '../layouts/PageLayout.astro';
     letter-spacing: 2px;
     text-transform: uppercase;
     background-color: var(--toe-bean-pink-200);
-    color: #333;
+    color: var(--primary-dark-600);
     border: none;
     border-radius: 4px;
     padding: 10px 24px;
+    min-height: 44px;
     cursor: pointer;
     transition: background-color 0.15s;
   }

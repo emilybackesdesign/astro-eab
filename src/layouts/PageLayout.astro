@@ -10,10 +10,14 @@ interface Props {
   ogImage?: string;
   /** Per-page <body> background for light Webflow-port pages (see Layout.astro). */
   bodyBg?: string;
+  /** Load only the two design-system families (Pridi + Public Sans). See Layout.astro. */
+  leanFonts?: boolean;
+  /** Extra font families (by name) to load on top of the base set. See Layout.astro. */
+  extraFonts?: string[];
 }
-const { title, description, ogImage, bodyBg } = Astro.props;
+const { title, description, ogImage, bodyBg, leanFonts, extraFonts } = Astro.props;
 ---
-<Layout title={title} description={description} ogImage={ogImage} bodyBg={bodyBg}>
+<Layout title={title} description={description} ogImage={ogImage} bodyBg={bodyBg} leanFonts={leanFonts} extraFonts={extraFonts}>
   <Nav />
   <main id="main-content">
     <slot />
@@ -22,11 +26,12 @@ const { title, description, ogImage, bodyBg } = Astro.props;
 </Layout>
 
 <script>
-  import AOS from 'aos';
-  document.addEventListener('DOMContentLoaded', () => {
+  // Only load AOS when the page actually has animated elements.
+  if (document.querySelector('[data-aos]')) {
+    const { default: AOS } = await import('aos');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     AOS.init({ duration: 600, once: true, offset: 80, disable: prefersReducedMotion });
-  });
+  }
 </script>
 <style is:global>
   /* Ensure AOS-guarded content is always visible for reduced-motion users
@@ -40,8 +45,34 @@ const { title, description, ogImage, bodyBg } = Astro.props;
   }
 </style>
 <script>
-  import { defineElement } from '@lordicon/element';
-  import lottie from 'lottie-web';
-  // @ts-ignore — @lordicon/element v2 type defs incorrectly declare 0 params
-  defineElement(lottie.loadAnimation);
+  // Render every [data-lottie-src] icon with lottie-web (svg renderer, looping).
+  // Same-origin JSON only, lazy-loaded so the library cost is paid only on pages
+  // that actually have icons.
+  const lottieIcons = document.querySelectorAll<HTMLElement>('[data-lottie-src]');
+  if (lottieIcons.length) {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    const { default: lottie } = await import('lottie-web');
+    lottieIcons.forEach((el) => {
+      // Guard against double-init (e.g. if this script ever runs twice).
+      if (el.dataset.lottieInit) return;
+      el.dataset.lottieInit = 'true';
+      const path = el.dataset.lottieSrc;
+      if (!path) return;
+      // Optional per-icon stagger (ms) to approximate the former loop delay.
+      const delay = Number(el.dataset.lottieDelay ?? 0);
+      const anim = lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        // Reduced-motion users get a static first frame (no autoplay).
+        autoplay: prefersReducedMotion ? false : delay === 0,
+        path,
+      });
+      if (!prefersReducedMotion && delay > 0) {
+        window.setTimeout(() => anim.play(), delay);
+      }
+    });
+  }
 </script>
