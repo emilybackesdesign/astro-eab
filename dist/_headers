@@ -1,0 +1,34 @@
+# Cloudflare Pages response headers. Served as-is from public/.
+# Syntax: a path pattern line, then indented "Name: value" lines.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+
+# ── Security headers (all routes) ─────────────────────────────────────────────
+/*
+  # Force HTTPS for 2 years incl. subdomains. Safe: site is HTTPS-only behind CF.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  # Block MIME sniffing.
+  X-Content-Type-Options: nosniff
+  # Don't leak full referrer URLs to third parties.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Lock down powerful APIs this site never uses.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  # Content Security Policy. Allowlist reflects the site's real third parties:
+  #   - Google Fonts (stylesheet + font files)
+  #   - web3forms (contact form POST target) -> connect-src
+  #   - Podbean + Rive embeds -> frame-src
+  #   - PDF resume served from same origin -> 'self'
+  #   - GA4 (gtag.js, G-K6ZBTPD3BT) -> googletagmanager.com (script) + google-analytics
+  #     / analytics.google.com region endpoints (connect, beacons) + pixel fallback (img)
+  # VERIFY on `npm run preview` (or a CF preview deploy) that fonts, the contact
+  # form, the Podbean/Rive embeds, and GA hits all still work before promoting to prod.
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://www.podbean.com https://rive.app; form-action 'self' https://api.web3forms.com
+
+# ── Caching ───────────────────────────────────────────────────────────────────
+# Astro emits content-hashed filenames under /_astro/ — safe to cache forever.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# public/assets/ filenames are NOT content-hashed (e.g. cs-lago.webp). Cache a day
+# and revalidate so a re-uploaded image (same name) isn't served stale for long.
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

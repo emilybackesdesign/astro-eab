@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_astro/aos.D5bI65VX.js","_astro/_commonjsHelpers.CqkleIqs.js"])))=>i.map(i=>d[i]);
+import{_ as r}from"./preload-helper.CVfkMyKi.js";if(document.querySelector("[data-aos]")){const{default:e}=await r(async()=>{const{default:a}=await import("./aos.D5bI65VX.js").then(o=>o.a);return{default:a}},__vite__mapDeps([0,1])),t=window.matchMedia("(prefers-reduced-motion: reduce)").matches;e.init({duration:600,once:!0,offset:80,disable:t})}
